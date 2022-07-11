@@ -1,0 +1,12 @@
+{
+  "UP" : "w",
+  "DOWN" : "s",
+  "LEFT" : "a",
+  "RIGHT" : "d",
+  "START" : " ",
+  "OPEN_INVENTORY" : "i",
+  "CLOSE_INVENTORY" : "\u001b",
+  "1" : "1",
+  "2" : "2",
+  "3" : "3"
+}

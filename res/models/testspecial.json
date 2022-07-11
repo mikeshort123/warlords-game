@@ -1,0 +1,14 @@
+{
+
+  "name" : "Test special",
+  "imgname" : "weapons.test_special",
+  "imgsrc" : "res/textures/items/testspecial.png",
+  "scale" : 64,
+
+  "handle" : [24,24],
+  "barrel" : [60,35],
+  "direction" : [1,0],
+  "left_hand" : [4,25]
+
+
+}

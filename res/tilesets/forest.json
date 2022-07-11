@@ -1,0 +1,24 @@
+{
+  "tiles" : [
+
+    {
+      "name" : "grass",
+      "imgname" : "tiles.forest.grass",
+      "imgsrc" : "res/textures/tiles/forest/grass.png",
+      "solid" : false
+    },
+    {
+      "name" : "rock",
+      "imgname" : "tiles.forest.rock",
+      "imgsrc" : "res/textures/tiles/forest/rock.png",
+      "solid" : true
+    },
+    {
+      "name" : "tree",
+      "imgname" : "tiles.forest.tree",
+      "imgsrc" : "res/textures/tiles/forest/tree.png",
+      "solid" : true
+    }
+
+  ]
+}

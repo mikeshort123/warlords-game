@@ -1,0 +1,13 @@
+{
+
+  "name" : "Test primary",
+  "imgname" : "weapons.test_primary",
+  "imgsrc" : "res/textures/items/testprimary.png",
+  "scale" : 128,
+
+  "handle" : [12,29],
+  "barrel" : [54,49],
+  "direction" : [1,1]
+
+
+}

@@ -1,0 +1,15 @@
+{
+
+  "name" : "Test melee",
+  "imgname" : "weapons.test_melee",
+  "imgsrc" : "res/textures/items/testmelee.png",
+  "scale" : 64,
+
+  "handle" : [26,36],
+  "barrel" : [46,16],
+  "direction" : [1,1],
+  "left_hand" : [12,52],
+  "body_offset": [0,-3]
+
+
+}

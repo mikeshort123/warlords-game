@@ -1,0 +1,113 @@
+{
+  "tiles" : [
+
+    {
+      "name" : "path",
+      "imgname" : "tiles.temple.path",
+      "imgsrc" : "res/textures/tiles/temple/path.png",
+      "solid" : false
+    },
+    {
+      "name" : "void",
+      "imgname" : "tiles.temple.void",
+      "imgsrc" : "res/textures/tiles/temple/void.png",
+      "solid" : true
+    },
+    {
+      "name" : "wall",
+      "imgname" : "tiles.temple.wall",
+      "imgsrc" : "res/textures/tiles/temple/wall.png",
+      "solid" : true
+    },
+    {
+      "name" : "chest",
+      "imgname" : "tiles.temple.chest",
+      "imgsrc" : "res/textures/tiles/temple/chest.png",
+      "solid" : false
+    },
+    {
+      "name" : "shrub",
+      "imgname" : "tiles.temple.shrub",
+      "imgsrc" : "res/textures/tiles/temple/shrub.png",
+      "solid" : true
+    },
+    {
+      "name" : "grass",
+      "imgname" : "tiles.temple.grass",
+      "imgsrc" : "res/textures/tiles/temple/grass.png",
+      "solid" : false
+    },
+    {
+      "name" : "edge_down",
+      "imgname" : "tiles.temple.edge_down",
+      "imgsrc" : "res/textures/tiles/temple/edge_down.png",
+      "solid" : true
+    },
+    {
+      "name" : "edge_up",
+      "imgname" : "tiles.temple.edge_up",
+      "imgsrc" : "res/textures/tiles/temple/edge_up.png",
+      "solid" : true
+    },
+    {
+      "name" : "edge_left",
+      "imgname" : "tiles.temple.edge_left",
+      "imgsrc" : "res/textures/tiles/temple/edge_left.png",
+      "solid" : true
+    },
+    {
+      "name" : "edge_right",
+      "imgname" : "tiles.temple.edge_right",
+      "imgsrc" : "res/textures/tiles/temple/edge_right.png",
+      "solid" : true
+    },
+    {
+      "name" : "edge_inner_up_left",
+      "imgname" : "tiles.temple.edge_inner_up_left",
+      "imgsrc" : "res/textures/tiles/temple/edge_inner_up_left.png",
+      "solid" : true
+    },
+    {
+      "name" : "edge_inner_up_right",
+      "imgname" : "tiles.temple.edge_inner_up_right",
+      "imgsrc" : "res/textures/tiles/temple/edge_inner_up_right.png",
+      "solid" : true
+    },
+    {
+      "name" : "edge_inner_down_left",
+      "imgname" : "tiles.temple.edge_inner_down_left",
+      "imgsrc" : "res/textures/tiles/temple/edge_inner_down_left.png",
+      "solid" : true
+    },
+    {
+      "name" : "edge_inner_down_right",
+      "imgname" : "tiles.temple.edge_inner_down_right",
+      "imgsrc" : "res/textures/tiles/temple/edge_inner_down_right.png",
+      "solid" : true
+    },
+    {
+      "name" : "edge_outer_up_left",
+      "imgname" : "tiles.temple.edge_outer_up_left",
+      "imgsrc" : "res/textures/tiles/temple/edge_outer_up_left.png",
+      "solid" : true
+    },
+    {
+      "name" : "edge_outer_up_right",
+      "imgname" : "tiles.temple.edge_outer_up_right",
+      "imgsrc" : "res/textures/tiles/temple/edge_outer_up_right.png",
+      "solid" : true
+    },
+    {
+      "name" : "edge_outer_down_left",
+      "imgname" : "tiles.temple.edge_outer_down_left",
+      "imgsrc" : "res/textures/tiles/temple/edge_outer_down_left.png",
+      "solid" : true
+    },
+    {
+      "name" : "edge_outer_down_right",
+      "imgname" : "tiles.temple.edge_outer_down_right",
+      "imgsrc" : "res/textures/tiles/temple/edge_outer_down_right.png",
+      "solid" : true
+    }
+  ]
+}
