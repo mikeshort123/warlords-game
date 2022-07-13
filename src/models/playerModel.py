@@ -83,17 +83,12 @@ class PlayerModel():
         self.parts["left_foot"].render(renderer,pos,cam,d=df)
         self.parts["right_foot"].render(renderer,pos,cam,d=-df)
 
+        self.parts["left_hand"].render(renderer,pos,cam)
 
         if self.weaponModel:
-            self.weaponModel.render(renderer,pos,cam,theta = -self.theta)
+            self.weaponModel.render(renderer,pos,self.parts["right_hand"].offset,cam,theta = -self.theta)
 
-        if self.weaponModel and self.weaponModel.lefthandle:
-            self.parts["left_hand"].render(renderer,pos,cam,d=self.weaponModel.lefthandle,theta=-self.theta,override=True,untoffset=self.weaponModel.body_offset)
-        else:
-            self.parts["left_hand"].render(renderer,pos,cam)
-
-        if self.weaponModel:
-            self.parts["right_hand"].render(renderer,pos,cam,theta = -self.theta,untoffset=self.weaponModel.body_offset)
+            self.parts["right_hand"].render(renderer,pos,cam,theta = -self.theta)
         else:
             self.parts["right_hand"].render(renderer,pos,cam,theta = -self.theta)
 

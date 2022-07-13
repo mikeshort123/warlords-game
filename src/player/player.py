@@ -18,9 +18,9 @@ class Player():
 
         self.model = PlayerModel("res/models/testarmour.json")
 
-        self.primary = WeaponModel("res/models/testprimary.json", self.model.parts["right_hand"].offset)
-        self.special = WeaponModel("res/models/testspecial.json", self.model.parts["right_hand"].offset)
-        self.melee = WeaponModel("res/models/testmelee.json", self.model.parts["right_hand"].offset)
+        self.primary = WeaponModel("res/models/testprimary.json")
+        self.special = WeaponModel("res/models/testspecial.json")
+        self.melee = WeaponModel("res/models/testmelee.json")
 
         self.inventory = Inventory()
 
