@@ -1,0 +1,5 @@
+{
+  "name" : "Test melee",
+  "model" : "res/models/testmelee.json",
+  "icon" : "res/textures/items/testmelee.png"
+}

@@ -1,0 +1,19 @@
+{
+  "name" : "Summoner",
+  "icon" : "res/icons/summoner.png",
+
+  "slot" : 0,
+  "element" : 3,
+
+  "frame" : {
+      "type" : "res/frames/assult-rifle.json",
+      "subtype" : "adaptive"
+  },
+
+  "stats" : {
+    "range" : 7,
+    "handling" : 10,
+    "crit_chance" : 0.3,
+    "element_chance" : 0.5
+  }
+}

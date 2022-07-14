@@ -3,12 +3,15 @@ from src.utils.assets import Assets
 from src.cam import Cam
 from src.world import World
 from src.player.player import Player
+from src.element import Element
 
 class Game(StateTemplate):
 
     def __init__(self):
 
         Assets.loadImage("inventory","res/textures/uis/inventory.png")
+        Assets.loadFont()
+        Element.loadElementDefinitions("res/elements.json")
 
         self.cam = Cam(0,0)
         self.player = Player(125/2,5)

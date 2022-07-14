@@ -22,7 +22,7 @@ class Player():
         self.special = WeaponModel("res/models/testspecial.json")
         self.melee = WeaponModel("res/models/testmelee.json")
 
-        self.inventory = Inventory()
+        self.inventory = Inventory("res/save.json")
 
     def tick(self,handler,grid):
 

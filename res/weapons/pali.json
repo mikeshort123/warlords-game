@@ -1,0 +1,19 @@
+{
+  "name" : "Palindrome",
+  "icon" : "res/icons/pali.png",
+
+  "slot" : 0,
+  "element" : 1,
+
+  "frame" : {
+      "type" : "res/frames/handcannon.json",
+      "subtype" : "adaptive"
+  },
+
+  "stats" : {
+    "range" : 10,
+    "handling" : 5,
+    "crit_chance" : 0.1,
+    "element_chance" : 0.5
+  }
+}

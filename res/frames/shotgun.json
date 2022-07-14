@@ -1,0 +1,12 @@
+{
+  "type" : "gun-semiauto",
+
+  "subtypes" : {
+
+    "lightweight" : {
+      "damage" : 500,
+      "firerate" : 1
+    }
+
+  }
+}

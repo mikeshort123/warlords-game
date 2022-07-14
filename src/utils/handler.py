@@ -17,6 +17,7 @@ class Handler():
         self.mousepos = Vector()
 
         self.mouseButtons = [False for i in range(3)]
+        self.mouseButtonBinds = [None for i in range(3)]
 
 
     def getKey(self,key):
@@ -45,7 +46,12 @@ class Handler():
             self.mousepos = Vector(e.pos)
 
         if e.type == MOUSEBUTTONDOWN:
-            self.mouseButtons[e.button] = True
+            self.mouseButtons[e.button-1] = True
+            if self.mouseButtonBinds[e.button-1] != None:
+                self.mouseButtonBinds[e.button-1](self)
 
         if e.type == MOUSEBUTTONUP:
-            self.mouseButtons[e.button] = False
+            self.mouseButtons[e.button-1] = False
+
+    def bindClickFunction(self,f,k):
+        self.mouseButtonBinds[k] = f

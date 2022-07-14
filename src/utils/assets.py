@@ -20,3 +20,9 @@ class Assets():
     def flush():
 
         Assets.assets.clear()
+
+    font = None
+
+    @staticmethod
+    def loadFont():
+        Assets.font = pygame.font.SysFont(None, 18)

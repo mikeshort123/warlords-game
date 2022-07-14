@@ -1,0 +1,5 @@
+{
+  "name" : "Test primary",
+  "model" : "res/models/testprimary.json",
+  "icon" : "res/textures/items/testprimary.png"
+}

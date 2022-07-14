@@ -1,0 +1,12 @@
+{
+  "type" : "gun-auto",
+
+  "subtypes" : {
+
+    "adaptive" : {
+      "damage" : 10,
+      "firerate" : 10
+    }
+
+  }
+}
