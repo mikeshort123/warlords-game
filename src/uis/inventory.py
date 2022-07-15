@@ -1,15 +1,10 @@
-import json
+import json,pygame
 
-from src.utils.assets import Assets
 from src.uis.inventorySlot import InventorySlot
-from src.weapons.weapon import Weapon
 
 class Inventory:
 
     def __init__(self,fn):
-
-        self.active = False
-        self.img = Assets.getImage("inventory")
 
         with open(fn,"r") as f:
             data = json.load(f)
@@ -24,12 +19,6 @@ class Inventory:
 
     def tick(self,handler):
 
-        if not self.active:
-             self.active = handler.getKey("OPEN_INVENTORY")
-             return
-
-        self.active = not handler.getKey("CLOSE_INVENTORY")
-
         if self.primary.mouse_in_bounds(handler,self.active_display == self.primary): self.active_display = self.primary
         elif self.special.mouse_in_bounds(handler,self.active_display == self.special): self.active_display = self.special
         elif self.melee.mouse_in_bounds(handler,self.active_display == self.melee): self.active_display = self.melee
@@ -43,12 +32,12 @@ class Inventory:
             handler.bindClickFunction(None,0)
             self.weapon_info = None
 
-    def render(self,renderer):
+    def render(self,renderer,cam):
 
-        if not self.active:
-             return
-
-        renderer.drawImage(self.img,20,20)
+        s = pygame.Surface(renderer.display.get_size())
+        s.set_alpha(180)
+        s.fill((0,0,0))
+        renderer.display.blit(s,(0,0))
 
         self.primary.render(renderer.display,self.active_display == self.primary)
         self.special.render(renderer.display,self.active_display == self.special)

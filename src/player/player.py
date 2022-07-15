@@ -1,4 +1,4 @@
-import pygame,math
+import pygame
 from src.utils.assets import Assets
 from src.tiles.tile import Tile
 from src.uis.inventory import Inventory
@@ -26,8 +26,8 @@ class Player():
 
     def tick(self,handler,grid):
 
-        self.inventory.tick(handler)
-        if self.inventory.active: return
+        #self.inventory.tick(handler)
+        #if self.inventory.active: return
 
         n = Vector()
 
@@ -85,4 +85,4 @@ class Player():
 
         self.model.render(renderer,self.pos,cam)
 
-        self.inventory.render(renderer)
+        #self.inventory.render(renderer)
