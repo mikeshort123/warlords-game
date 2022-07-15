@@ -1,4 +1,5 @@
 import pygame, json
+
 from src.element import Element
 from src.utils.assets import Assets
 from src.models.weaponModel import WeaponModel
@@ -8,9 +9,12 @@ class Item:
 
     class ItemInfo:
 
+        WIDTH = 300
+        HEIGHT = 200
+
         def __init__(self,item):
 
-            self.img = pygame.Surface((300,200))
+            self.img = pygame.Surface((Item.ItemInfo.WIDTH,Item.ItemInfo.HEIGHT))
             self.img.fill((130,0,100))
             words = Assets.font.render(item.name, True, (255,255,255))
             self.img.blit(words, (20, 20))
@@ -25,8 +29,10 @@ class Item:
             self.x = 0
             self.y = 0
 
-        def draw(self,screen):
-            screen.blit(self.img,(self.x,self.y))
+        def draw(self,renderer):
+            x = min(renderer.display.get_width()-Item.ItemInfo.WIDTH,self.x)
+            y = min(renderer.display.get_height()-Item.ItemInfo.HEIGHT,self.y)
+            renderer.drawImage(self.img,x,y)
 
         def setpos(self,x,y):
             self.x = x
@@ -43,7 +49,7 @@ class Item:
 
         self.element = Element.getElement(weapon_data["element"])
 
-        self.img = Assets.loadImage("blah",weapon_data["icon"])
+        self.img = Assets.loadImage(weapon_data["icon"])
 
         frame_data = weapon_data["frame"]
         with open(frame_data["type"],"r", encoding="utf8") as f:
@@ -58,8 +64,8 @@ class Item:
 
 
 
-    def drawIcon(self,screen,x,y):
-        screen.blit(self.img, (x,y))
+    def drawIcon(self,renderer,x,y):
+        renderer.drawImage(self.img,x,y)
 
     def getInfo(self,x,y):
         return self.info.setpos(x,y)

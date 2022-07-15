@@ -1,10 +1,6 @@
-import pygame
-from src.utils.assets import Assets
 from src.tiles.tile import Tile
 from src.uis.inventory import Inventory
-from src.models.playerModel import PlayerModel
 from src.utils.vector import Vector
-from src.models.weaponModel import WeaponModel
 
 class Player():
 
@@ -15,9 +11,7 @@ class Player():
     def __init__(self,x,y):
 
         self.pos = Vector(x,y)
-
         self.weapon_selection = "none"
-
         self.inventory = Inventory("res/save.json")
 
     def tick(self,handler,grid):
@@ -39,7 +33,6 @@ class Player():
         n.normalize(m=Player.speed)
 
         self.inventory.armour.slots[0].model.tick(handler,n,self.getWeaponModel())
-
 
         if self.checkCornerCollisions(self.pos.x+n.x,self.pos.y,grid): self.pos.x += n.x
         if self.checkCornerCollisions(self.pos.x,self.pos.y+n.y,grid): self.pos.y += n.y

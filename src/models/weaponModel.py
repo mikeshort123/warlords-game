@@ -12,7 +12,7 @@ class WeaponModel():
         with open(fn, encoding="utf8") as f:
             data = json.load(f)
 
-        img = Assets.loadImage(data["imgname"],data["imgsrc"])
+        img = Assets.loadImage(data["imgsrc"])
 
         scale = data["scale"]
         handle = Vector(data["handle"]) / scale

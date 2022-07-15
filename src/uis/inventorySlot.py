@@ -1,5 +1,7 @@
 import pygame
+
 from src.items.item import Item
+from src.utils.assets import Assets
 
 class InventorySlot:
 
@@ -10,6 +12,8 @@ class InventorySlot:
 
     def __init__(self,data,x,y):
 
+        self.blankimg = Assets.loadImage("res/textures/uis/itemslot.png")
+
         self.x = x
         self.y = y
 
@@ -19,10 +23,10 @@ class InventorySlot:
         self.slots = [Item(item_data) for item_data in data]
 
 
-    def render(self,screen,active):
+    def render(self,renderer,active):
 
         if len(self.slots) > 0:
-            self.slots[0].drawIcon(screen,self.x,self.y)
+            self.slots[0].drawIcon(renderer,self.x,self.y)
 
         if not active: return
         for i in range(InventorySlot.WIDTH):
@@ -31,9 +35,9 @@ class InventorySlot:
                 x,y = self.x + i * (InventorySlot.ITEM_SIZE+InventorySlot.ITEM_SPACING), self.y + (j+1) * (InventorySlot.ITEM_SIZE+InventorySlot.ITEM_SPACING)
 
                 if len(self.slots) > index:
-                    self.slots[index].drawIcon(screen,x,y)
+                    self.slots[index].drawIcon(renderer,x,y)
                 else:
-                    pygame.draw.rect(screen,(100,100,100),(x,y,InventorySlot.ITEM_SIZE,InventorySlot.ITEM_SIZE))
+                    renderer.drawImage(self.blankimg,x,y)
 
 
     def mouse_in_bounds(self,handler,active):

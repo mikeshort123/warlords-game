@@ -24,10 +24,10 @@ class PlayerModel():
 
     def __init__(self,fn):
 
-        with open(fn, encoding="utf8") as f:
+        with open(fn) as f:
             data = json.load(f)
 
-        modelTexture = Assets.loadImage(data["imgname"],data["imgsrc"])
+        modelTexture = Assets.loadImage(data["imgsrc"])
 
         self.parts = {}
 

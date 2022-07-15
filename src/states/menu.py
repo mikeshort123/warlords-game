@@ -7,7 +7,7 @@ class Menu(StateTemplate):
 
     def __init__(self,handler):
 
-        self.title = Assets.loadImage("title","res/textures/menu/titlescreen.png")
+        self.title = Assets.loadImage("res/textures/menu/titlescreen.png")
 
 
 

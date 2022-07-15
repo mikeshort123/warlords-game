@@ -1,4 +1,4 @@
-import json,pygame
+import json
 
 from src.uis.inventorySlot import InventorySlot
 
@@ -34,14 +34,13 @@ class Inventory:
 
     def render(self,renderer):
 
-        s = pygame.Surface(renderer.display.get_size())
-        s.set_alpha(180)
-        s.fill((0,0,0))
-        renderer.display.blit(s,(0,0))
 
-        self.primary.render(renderer.display,self.active_display == self.primary)
-        self.special.render(renderer.display,self.active_display == self.special)
-        self.melee.render(renderer.display,self.active_display == self.melee)
-        self.armour.render(renderer.display,self.active_display == self.armour)
 
-        if self.weapon_info: self.weapon_info.draw(renderer.display)
+        renderer.drawAlphaBackground((0,0,0),180)
+
+        self.primary.render(renderer,self.active_display == self.primary)
+        self.special.render(renderer,self.active_display == self.special)
+        self.melee.render(renderer,self.active_display == self.melee)
+        self.armour.render(renderer,self.active_display == self.armour)
+
+        if self.weapon_info: self.weapon_info.draw(renderer)

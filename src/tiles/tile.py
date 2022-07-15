@@ -33,5 +33,5 @@ class Tile():
     def __init__(self,d):
 
         self.name = d["name"]
-        self.texture = Assets.loadImage(d["imgname"],d["imgsrc"])
+        self.texture = Assets.loadImage(d["imgsrc"])
         self.solid = d["solid"]
