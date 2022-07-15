@@ -20,3 +20,10 @@ class Renderer():
         img = pygame.transform.scale(img, dsize.int().list())
 
         self.display.blit(img, dpos.list())
+
+    def drawAlphaBackground(self,colour,alpha):
+
+        s = pygame.Surface(self.display.get_size())
+        s.set_alpha(alpha)
+        s.fill(colour)
+        self.display.blit(s,(0,0))

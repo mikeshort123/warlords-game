@@ -1,0 +1,15 @@
+{
+
+  "name" : "Knights Blade",
+  "imgname" : "weapons.knights-blade",
+  "imgsrc" : "res/textures/items/knights-blade.png",
+  "scale" : 64,
+
+  "handle" : [11,53],
+  "barrel" : [41,22],
+  "direction" : [1,1],
+  "left_hand" : [12,52],
+  "body_offset": [0,-3]
+
+
+}

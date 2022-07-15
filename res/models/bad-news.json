@@ -1,0 +1,14 @@
+{
+
+  "name" : "Bad News",
+  "imgname" : "weapons.bad-news",
+  "imgsrc" : "res/textures/items/bad-news.png",
+  "scale" : 64,
+
+  "handle" : [24,24],
+  "barrel" : [60,35],
+  "direction" : [1,0],
+  "left_hand" : [4,25]
+
+
+}

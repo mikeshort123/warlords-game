@@ -1,0 +1,13 @@
+{
+
+  "name" : "TST-01",
+  "imgname" : "weapons.TST-01",
+  "imgsrc" : "res/textures/items/TST-01.png",
+  "scale" : 96,
+
+  "handle" : [12,29],
+  "barrel" : [54,49],
+  "direction" : [1,1]
+
+
+}

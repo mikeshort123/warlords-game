@@ -1,0 +1,17 @@
+{
+  "type" : "gun-semiauto",
+
+  "subtypes" : {
+
+    "adaptive" : {
+      "damage" : 100,
+      "firerate" : 1
+    },
+
+    "rapid-fire" : {
+      "damage" : 60,
+      "firerate" : 2
+    }
+
+  }
+}

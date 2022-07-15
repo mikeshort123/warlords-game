@@ -6,19 +6,20 @@ class World():
     width = 11
     height = 9
 
-    def __init__(self,player):
+    def __init__(self,player,cam):
 
         self.grid = World.loadGrid("res/grids/temple1.grid")
 
         self.player = player
+        self.cam = cam
 
     def tick(self,handler):
 
         self.player.tick(handler,self.grid)
 
-    def render(self,renderer,cam):
+    def render(self,renderer):
 
-        cam.moveTo(self.player)
+        self.cam.moveTo(self.player)
 
         for i in range(World.width):
 
@@ -32,15 +33,15 @@ class World():
                     y = int(sy) + j + (sy >= 0)
                     if 0 <= y < len(self.grid[x]):
 
-                        renderer.drawCamImage(Tile.getTile(self.grid[x][y]).texture,Vector(x,y),Vector(1,1),cam)
+                        renderer.drawCamImage(Tile.getTile(self.grid[x][y]).texture,Vector(x,y),Vector(1,1),self.cam)
 
-        self.player.render(renderer,cam)
+        self.player.render(renderer,self.cam)
 
 
     @staticmethod
     def loadGrid(fn):
 
-        with open(fn) as f:
+        with open(fn, encoding="utf8") as f:
             d = f.read()
 
         tilepath = ""

@@ -1,8 +1,8 @@
 {
 
-  "name" : "Test armour",
-  "imgname" : "models.test_armour",
-  "imgsrc" : "res/textures/items/testarmour.png",
+  "name" : "Streetwear",
+  "imgname" : "models.streetwear",
+  "imgsrc" : "res/textures/items/streetwear.png",
   "scale" : 64,
 
   "parts" : {

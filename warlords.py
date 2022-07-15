@@ -28,7 +28,7 @@ class Main():
         handler = Handler()
         renderer = Renderer(display)
 
-        State.setState(Menu)
+        State.setState(Menu,handler)
 
 
 

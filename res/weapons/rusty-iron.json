@@ -1,0 +1,20 @@
+{
+  "name" : "Rusty Iron",
+  "icon" : "res/textures/icons/rusty-iron.png",
+  "model" : "res/models/rusty-iron.json",
+
+  "slot" : 0,
+  "element" : 2,
+
+  "frame" : {
+      "type" : "res/frames/handcannon.json",
+      "subtype" : "rapid-fire"
+  },
+
+  "stats" : {
+    "range" : 11,
+    "handling" : 4,
+    "crit_chance" : 0.3,
+    "element_chance" : 0.2
+  }
+}

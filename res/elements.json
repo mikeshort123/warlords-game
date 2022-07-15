@@ -1,0 +1,39 @@
+{
+  "elements" : [
+    {
+      "name" : "BLANK",
+      "id" : 0,
+      "colour" : null
+    },
+    {
+      "name" : "FIRE",
+      "id" : 1,
+      "colour" : [255,150,0]
+    },
+    {
+      "name" : "ICE",
+      "id" : 2,
+      "colour" : [100,100,255]
+    },
+    {
+      "name" : "LIFE",
+      "id" : 3,
+      "colour" : [120,255,50]
+    },
+    {
+      "name" : "REAPER",
+      "id" : 4,
+      "colour" : [160,0,0]
+    },
+    {
+      "name" : "LIGHTNING",
+      "id" : 5,
+      "colour" : [100,50,180]
+    },
+    {
+      "name" : "POISON",
+      "id" : 6,
+      "colour" : [0,110,0]
+    }
+  ]
+}

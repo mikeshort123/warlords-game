@@ -5,15 +5,16 @@ from src.utils.assets import Assets
 
 class Menu(StateTemplate):
 
-    def __init__(self):
+    def __init__(self,handler):
 
-        self.title = Assets.loadImage("title","res/textures/menu/titlescreen.png")
+        self.title = Assets.loadImage("res/textures/menu/titlescreen.png")
+
 
 
     def tick(self,handler):
 
         if handler.getKey("START"):
-            State.setState(Game)
+            State.setState(Game,handler)
 
 
     def render(self,renderer):

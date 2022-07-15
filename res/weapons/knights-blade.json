@@ -1,0 +1,20 @@
+{
+  "name" : "Knights Blade",
+  "icon" : "res/textures/icons/knights-blade.png",
+  "model" : "res/models/knights-blade.json",
+
+  "slot" : 2,
+  "element" : 4,
+
+  "frame" : {
+      "type" : "res/frames/handcannon.json",
+      "subtype" : "rapid-fire"
+  },
+
+  "stats" : {
+    "range" : 11,
+    "handling" : 4,
+    "crit_chance" : 0.3,
+    "element_chance" : 0.2
+  }
+}

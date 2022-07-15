@@ -1,0 +1,12 @@
+{
+  "type" : "gun-semiauto",
+
+  "subtypes" : {
+
+    "bidge" : {
+      "damage" : 1000,
+      "firerate" : 0.5
+    }
+
+  }
+}
