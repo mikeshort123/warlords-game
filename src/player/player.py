@@ -16,11 +16,11 @@ class Player():
 
         self.pos = Vector(x,y)
 
-        self.model = PlayerModel("res/models/testarmour.json")
+        self.model = PlayerModel("res/models/streetwear.json")
 
-        self.primary = WeaponModel("res/models/testprimary.json")
-        self.special = WeaponModel("res/models/testspecial.json")
-        self.melee = WeaponModel("res/models/testmelee.json")
+        self.primary = WeaponModel("res/models/rusty-iron.json")
+        self.special = WeaponModel("res/models/bad-news.json")
+        self.melee = WeaponModel("res/models/headsmans-axe.json")
 
         self.inventory = Inventory("res/save.json")
 

@@ -1,0 +1,19 @@
+{
+  "name" : "Headsmans Axe",
+  "icon" : "res/icons/headsmans-axe.png",
+
+  "slot" : 2,
+  "element" : 3,
+
+  "frame" : {
+      "type" : "res/frames/handcannon.json",
+      "subtype" : "rapid-fire"
+  },
+
+  "stats" : {
+    "range" : 11,
+    "handling" : 4,
+    "crit_chance" : 0.3,
+    "element_chance" : 0.2
+  }
+}

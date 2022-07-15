@@ -10,6 +10,7 @@ class Menu(StateTemplate):
         self.title = Assets.loadImage("title","res/textures/menu/titlescreen.png")
 
 
+
     def tick(self,handler):
 
         if handler.getKey("START"):

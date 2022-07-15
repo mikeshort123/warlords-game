@@ -1,0 +1,13 @@
+{
+
+  "name" : "Rusty Iron",
+  "imgname" : "weapons.rusty-iron",
+  "imgsrc" : "res/textures/items/rusty-iron.png",
+  "scale" : 128,
+
+  "handle" : [12,29],
+  "barrel" : [54,49],
+  "direction" : [1,1]
+
+
+}

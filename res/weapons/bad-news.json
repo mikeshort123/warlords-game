@@ -1,9 +1,9 @@
 {
-  "name" : "Eyasluna",
-  "icon" : "res/icons/eyasluna.png",
+  "name" : "Bad News",
+  "icon" : "res/icons/bad-news.png",
 
-  "slot" : 0,
-  "element" : 2,
+  "slot" : 1,
+  "element" : 5,
 
   "frame" : {
       "type" : "res/frames/handcannon.json",

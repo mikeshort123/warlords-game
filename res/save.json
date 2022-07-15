@@ -1,47 +1,35 @@
 {
   "primary" : [
     {
-      "src" : "res/weapons/pali.json",
+      "src" : "res/weapons/TST-01.json",
       "sockets" : [0,1,3,0,0,3]
     },
     {
-      "src" : "res/weapons/eyasluna.json",
+      "src" : "res/weapons/rusty-iron.json",
       "sockets" : [0,0,2,0,0,4]
-    },
-    {
-      "src" : "res/weapons/summoner.json",
-      "sockets" : [1,1,0,0,0,5]
     }
 
   ],
   "special" : [
     {
-      "src" : "res/weapons/hezen-vengence.json",
+      "src" : "res/weapons/bad-news.json",
       "sockets" : [0,2,2,0,0,0]
-    },
-    {
-      "src" : "res/weapons/comedian.json",
-      "sockets" : [6,0,0,5,0,5]
     }
   ],
   "melee" : [
     {
-      "src" : "res/weapons/comedian.json",
+      "src" : "res/weapons/headsmans-axe.json",
       "sockets" : [6,0,0,5,0,5]
     },
     {
-      "src" : "res/weapons/comedian.json",
-      "sockets" : [6,0,0,5,0,5]
+      "src" : "res/weapons/knights-blade.json",
+      "sockets" : [1,2,3,4,5,6]
     }
   ],
   "armour" : [
     {
-      "src" : "res/weapons/comedian.json",
+      "src" : "res/weapons/streetwear.json",
       "sockets" : [1,2,3,4,5,6]
-    },
-    {
-      "src" : "res/weapons/comedian.json",
-      "sockets" : [6,5,4,3,2,1]
     }
   ]
 }

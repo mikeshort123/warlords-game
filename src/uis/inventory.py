@@ -32,7 +32,7 @@ class Inventory:
             handler.bindClickFunction(None,0)
             self.weapon_info = None
 
-    def render(self,renderer,cam):
+    def render(self,renderer):
 
         s = pygame.Surface(renderer.display.get_size())
         s.set_alpha(180)

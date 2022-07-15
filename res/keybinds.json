@@ -5,7 +5,7 @@
   "RIGHT" : "d",
   "START" : " ",
   "OPEN_INVENTORY" : "i",
-  "CLOSE_INVENTORY" : "\u001b",
+  "CLOSE_INVENTORY" : "i",
   "1" : "1",
   "2" : "2",
   "3" : "3"

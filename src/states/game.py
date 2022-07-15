@@ -10,37 +10,23 @@ class Game(StateTemplate):
 
     def __init__(self,handler):
 
-        StateTemplate.__init__(self)
-
-        Assets.loadImage("inventory","res/textures/uis/inventory.png")
         Assets.loadFont()
         Element.loadElementDefinitions("res/elements.json")
 
         self.cam = Cam(0,0)
         self.player = Player(125/2,5)
 
-        self.world = World(self.player)
+        self.world = World(self.player,self.cam)
 
         baseFrame = UIFrame(self.world.tick,self.world.render)
         inventoryFrame = UIFrame(self.player.inventory.tick,self.player.inventory.render)
 
         baseFrame.addMove("OPEN_INVENTORY",inventoryFrame)
-        inventoryFrame.addMove("OPEN_INVENTORY",baseFrame)
+        inventoryFrame.addMove("CLOSE_INVENTORY",baseFrame)
 
-        self.setFrame(baseFrame)
-        baseFrame.load(handler)
-
-
-
-
-
-    def tick(self,handler):
-
-        #self.world.tick(handler)
-        self.uiFrame.tick(handler)
-
+        StateTemplate.__init__(self,baseFrame,handler)
 
     def render(self,renderer):
-
-        #self.world.render(renderer,self.cam)
-        self.uiFrame.render(renderer,self.cam)
+        if self.uiFrame != self.baseFrame:
+            self.baseFrame.render(renderer)
+        self.uiFrame.render(renderer)

@@ -24,11 +24,13 @@ class State():
 
 class StateTemplate():
 
-    def __init__(self):
-        self.uiFrame = None
+    def __init__(self,baseFrame,handler):
+        self.setFrame(baseFrame)
+        baseFrame.load(handler)
+        self.baseFrame = baseFrame
 
-    def tick(self,handler): return
-    def render(self,renderer) : return
+    def tick(self,handler): self.uiFrame.tick(handler)
+    def render(self,renderer) : self.uiFrame.render(renderer)
 
     def setFrame(self,frame):
         self.uiFrame = frame
