@@ -1,6 +1,7 @@
 {
   "name" : "Bad News",
-  "icon" : "res/icons/bad-news.png",
+  "icon" : "res/textures/icons/bad-news.png",
+  "model" : "res/models/bad-news.json",
 
   "slot" : 1,
   "element" : 5,

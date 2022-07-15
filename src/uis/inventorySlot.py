@@ -3,7 +3,7 @@ from src.items.item import Item
 
 class InventorySlot:
 
-    ITEM_SIZE = 100
+    ITEM_SIZE = 64
     ITEM_SPACING = 10
     WIDTH = 3
     HEIGHT = 3

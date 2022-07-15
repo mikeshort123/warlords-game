@@ -1,6 +1,7 @@
 {
   "name" : "Knights Blade",
-  "icon" : "res/icons/knights-blade.png",
+  "icon" : "res/textures/icons/knights-blade.png",
+  "model" : "res/models/knights-blade.json",
 
   "slot" : 2,
   "element" : 4,

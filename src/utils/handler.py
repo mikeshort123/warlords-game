@@ -7,7 +7,7 @@ class Handler():
 
     def __init__(self):
 
-        with open("res/keybinds.json") as f:
+        with open("res/keybinds.json", encoding="utf8") as f:
             self.keyMap = json.load(f)
 
         self.keyList = {

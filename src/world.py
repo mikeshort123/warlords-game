@@ -41,7 +41,7 @@ class World():
     @staticmethod
     def loadGrid(fn):
 
-        with open(fn) as f:
+        with open(fn, encoding="utf8") as f:
             d = f.read()
 
         tilepath = ""

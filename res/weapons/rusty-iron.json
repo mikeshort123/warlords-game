@@ -1,6 +1,7 @@
 {
   "name" : "Rusty Iron",
-  "icon" : "res/icons/rusty-iron.png",
+  "icon" : "res/textures/icons/rusty-iron.png",
+  "model" : "res/models/rusty-iron.json",
 
   "slot" : 0,
   "element" : 2,

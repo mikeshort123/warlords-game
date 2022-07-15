@@ -1,6 +1,7 @@
 {
   "name" : "Headsmans Axe",
-  "icon" : "res/icons/headsmans-axe.png",
+  "icon" : "res/textures/icons/headsmans-axe.png",
+  "model" : "res/models/headsmans-axe.json",
 
   "slot" : 2,
   "element" : 3,

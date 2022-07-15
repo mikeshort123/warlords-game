@@ -9,7 +9,7 @@ class WeaponModel():
 
     def __init__(self,fn):
 
-        with open(fn) as f:
+        with open(fn, encoding="utf8") as f:
             data = json.load(f)
 
         img = Assets.loadImage(data["imgname"],data["imgsrc"])

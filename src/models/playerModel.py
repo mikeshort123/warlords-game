@@ -24,7 +24,7 @@ class PlayerModel():
 
     def __init__(self,fn):
 
-        with open(fn) as f:
+        with open(fn, encoding="utf8") as f:
             data = json.load(f)
 
         modelTexture = Assets.loadImage(data["imgname"],data["imgsrc"])
@@ -55,7 +55,7 @@ class PlayerModel():
 
         self.theta = 0
 
-    def tick(self, handler, n):
+    def tick(self, handler, n, weaponModel):
 
         self.v = n * PlayerModel.headMag
         self.t += 1
@@ -64,9 +64,9 @@ class PlayerModel():
 
         self.theta = toMouse.atan() # angle gun should be moved
 
-        if self.weaponModel:
+        if weaponModel:
 
-            dw = Vector(PlayerModel.handMag,0) + self.weaponModel.ws # vector from body to barrel
+            dw = Vector(PlayerModel.handMag,0) + weaponModel.ws # vector from body to barrel
 
             self.theta -= math.asin( dw.y / max(toMouse.length(),1) ) # angle between mouse and barrel from body
 
@@ -75,7 +75,7 @@ class PlayerModel():
 
 
 
-    def render(self,renderer,pos,cam):
+    def render(self,renderer,pos,cam,weaponModel):
 
         df = self.footMove()
 
@@ -85,8 +85,8 @@ class PlayerModel():
 
         self.parts["left_hand"].render(renderer,pos,cam)
 
-        if self.weaponModel:
-            self.weaponModel.render(renderer,pos,self.parts["right_hand"].offset,cam,theta = -self.theta)
+        if weaponModel:
+            weaponModel.render(renderer,pos,self.parts["right_hand"].offset,cam,theta = -self.theta)
 
             self.parts["right_hand"].render(renderer,pos,cam,theta = -self.theta)
         else:

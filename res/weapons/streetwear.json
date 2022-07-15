@@ -1,6 +1,7 @@
 {
   "name" : "Streetwear",
-  "icon" : "res/icons/streetwear.png",
+  "icon" : "res/textures/icons/streetwear.png",
+  "model" : "res/models/streetwear.json",
 
   "slot" : 3,
   "element" : 6,

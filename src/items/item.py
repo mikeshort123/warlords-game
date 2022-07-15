@@ -1,6 +1,8 @@
 import pygame, json
 from src.element import Element
 from src.utils.assets import Assets
+from src.models.weaponModel import WeaponModel
+from src.models.playerModel import PlayerModel
 
 class Item:
 
@@ -34,36 +36,25 @@ class Item:
     def __init__(self,data):
         self.sockets = [Element.getElement(i) for i in data["sockets"]]
 
-        with open(data["src"],"r") as f:
+        with open(data["src"],"r", encoding="utf8") as f:
             weapon_data = json.load(f)
 
         self.name = weapon_data["name"]
 
         self.element = Element.getElement(weapon_data["element"])
 
-        self.img = pygame.Surface((100,100))
-        self.img.fill(self.element.colour)
-        words = Assets.font.render(self.name, True, (255,255,255))
-        self.img.blit(words, (0, 20))
+        self.img = Assets.loadImage("blah",weapon_data["icon"])
 
         frame_data = weapon_data["frame"]
-        with open(frame_data["type"],"r") as f:
+        with open(frame_data["type"],"r", encoding="utf8") as f:
             component_details = json.load(f)
 
         self.info = Item.ItemInfo(self)
 
-        return
-
-        if component_details["type"] == "gun-auto":
-            self.component = Auto(component_details,frame_data["subtype"],weapon_data)
-        elif component_details["type"] == "gun-semiauto":
-            self.component = Semiauto(component_details,frame_data["subtype"],weapon_data)
-        elif component_details["type"] == "melee":
-            self.component = Melee(component_details,frame_data["subtype"],weapon_data)
-        elif component_details["type"] == "armour":
-            self.component = Armour(component_details,frame_data["subtype"],weapon_data)
+        if weapon_data["slot"] == 3:
+            self.model = PlayerModel(weapon_data["model"])
         else:
-            print("wtf")
+            self.model = WeaponModel(weapon_data["model"])
 
 
 

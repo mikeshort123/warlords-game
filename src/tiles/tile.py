@@ -15,7 +15,7 @@ class Tile():
 
         Tile.flush()
 
-        with open(fn) as f:
+        with open(fn, encoding="utf8") as f:
             data = json.load(f)
 
         for index, tData in enumerate(data["tiles"]):

@@ -1,6 +1,7 @@
 {
   "name" : "TST-01",
-  "icon" : "res/icons/tst-01.png",
+  "icon" : "res/textures/icons/tst-01.png",
+  "model" : "res/models/tst-01.json",
 
   "slot" : 0,
   "element" : 1,

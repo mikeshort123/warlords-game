@@ -16,18 +16,11 @@ class Player():
 
         self.pos = Vector(x,y)
 
-        self.model = PlayerModel("res/models/streetwear.json")
-
-        self.primary = WeaponModel("res/models/rusty-iron.json")
-        self.special = WeaponModel("res/models/bad-news.json")
-        self.melee = WeaponModel("res/models/headsmans-axe.json")
+        self.weapon_selection = "none"
 
         self.inventory = Inventory("res/save.json")
 
     def tick(self,handler,grid):
-
-        #self.inventory.tick(handler)
-        #if self.inventory.active: return
 
         n = Vector()
 
@@ -45,18 +38,18 @@ class Player():
 
         n.normalize(m=Player.speed)
 
-        self.model.tick(handler,n)
+        self.inventory.armour.slots[0].model.tick(handler,n,self.getWeaponModel())
 
 
         if self.checkCornerCollisions(self.pos.x+n.x,self.pos.y,grid): self.pos.x += n.x
         if self.checkCornerCollisions(self.pos.x,self.pos.y+n.y,grid): self.pos.y += n.y
 
         if handler.getKey("1"):
-            self.model.weaponModel = self.primary
+            self.weapon_selection = "primary"
         if handler.getKey("2"):
-            self.model.weaponModel = self.special
+            self.weapon_selection = "special"
         if handler.getKey("3"):
-            self.model.weaponModel = self.melee
+            self.weapon_selection = "melee"
 
 
 
@@ -83,6 +76,10 @@ class Player():
 
     def render(self,renderer,cam):
 
-        self.model.render(renderer,self.pos,cam)
+        self.inventory.armour.slots[0].model.render(renderer,self.pos,cam,self.getWeaponModel())
 
-        #self.inventory.render(renderer)
+    def getWeaponModel(self):
+        if self.weapon_selection == "primary": return self.inventory.primary.slots[0].model
+        if self.weapon_selection == "special": return self.inventory.special.slots[0].model
+        if self.weapon_selection == "melee": return self.inventory.melee.slots[0].model
+        return None

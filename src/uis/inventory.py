@@ -6,7 +6,7 @@ class Inventory:
 
     def __init__(self,fn):
 
-        with open(fn,"r") as f:
+        with open(fn, "r", encoding="utf8") as f:
             data = json.load(f)
 
         self.primary = InventorySlot(data["primary"],50,50);
