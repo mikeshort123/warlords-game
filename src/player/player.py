@@ -71,8 +71,13 @@ class Player():
 
         self.inventory.armour.slots[0].model.render(renderer,self.pos,cam,self.getWeaponModel())
 
+    def getWeapon(self):
+        if self.weapon_selection == "primary": return self.inventory.primary.slots[0]
+        if self.weapon_selection == "special": return self.inventory.special.slots[0]
+        if self.weapon_selection == "melee": return self.inventory.melee.slots[0]
+        return None
+
     def getWeaponModel(self):
-        if self.weapon_selection == "primary": return self.inventory.primary.slots[0].model
-        if self.weapon_selection == "special": return self.inventory.special.slots[0].model
-        if self.weapon_selection == "melee": return self.inventory.melee.slots[0].model
+        weapon = self.getWeapon()
+        if weapon: return weapon.model
         return None
