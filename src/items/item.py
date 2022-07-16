@@ -53,23 +53,13 @@ class Item:
 
         self.img = Assets.loadImage(weapon_data["icon"])
 
-        frame_data = weapon_data["frame"]
-        with open(frame_data["type"],"r", encoding="utf8") as f:
-            component_details = json.load(f)
-
         self.info = Item.ItemInfo(self)
 
         if weapon_data["slot"] == 3:
             self.model = PlayerModel(weapon_data["model"])
         else:
             self.model = WeaponModel(weapon_data["model"])
-
-        if weapon_data["slot"] == 0:
-            self.component = Semiauto(20)
-        if weapon_data["slot"] == 1:
-            self.component = Fullauto(10)
-        if weapon_data["slot"] == 2:
-            self.component = Fullauto(20)
+            self.component = Item.generateFrame(weapon_data["frame"],weapon_data["stats"],self.element)
 
 
     def tick(self, handler, bulletGenerator):
@@ -82,3 +72,21 @@ class Item:
 
     def getInfo(self,x,y):
         return self.info.setpos(x,y)
+
+
+    @staticmethod
+    def generateFrame(frame,stats,element):
+
+        with open(frame["type"]) as f:
+            frame_data = json.load(f)
+
+        frame_ref = {
+            "gun-auto" : Fullauto,
+            "gun-semiauto" : Semiauto
+        }
+
+        component_type = frame_ref[frame_data["type"]]
+
+        subtype = frame_data["subtypes"][frame["subtype"]]
+
+        return component_type(subtype,stats,element)
