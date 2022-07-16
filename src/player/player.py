@@ -18,16 +18,16 @@ class Player():
 
         n = Vector()
 
-        if handler.getKey("UP"):
+        if handler.getKeyPressed("UP"):
             n.y -= 1
 
-        if handler.getKey("DOWN"):
+        if handler.getKeyPressed("DOWN"):
             n.y += 1
 
-        if handler.getKey("LEFT"):
+        if handler.getKeyPressed("LEFT"):
             n.x -= 1
 
-        if handler.getKey("RIGHT"):
+        if handler.getKeyPressed("RIGHT"):
             n.x += 1
 
         n.normalize(m=Player.speed)
@@ -37,11 +37,11 @@ class Player():
         if self.checkCornerCollisions(self.pos.x+n.x,self.pos.y,grid): self.pos.x += n.x
         if self.checkCornerCollisions(self.pos.x,self.pos.y+n.y,grid): self.pos.y += n.y
 
-        if handler.getKey("1"):
+        if handler.getKeyChanged("1"):
             self.weapon_selection = "primary"
-        if handler.getKey("2"):
+        if handler.getKeyChanged("2"):
             self.weapon_selection = "special"
-        if handler.getKey("3"):
+        if handler.getKeyChanged("3"):
             self.weapon_selection = "melee"
 
 

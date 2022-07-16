@@ -2,36 +2,25 @@ from src.states.state import State
 
 class UIFrame:
 
-    def __init__(self,tick,render):
+    def __init__(self,tickMethod,renderMethod):
 
-        self.tick = tick
-        self.render = render
+        self.tickMethod = tickMethod
+        self.renderMethod = renderMethod
 
         self.moves = {}
-        self.eventBinds = {}
 
-    def load(self,handler):
-
-        for key, frame in self.moves.items():
-            handler.bindButtonFunction(UIFrame.getTransferFunction(frame),key)
-
-        for key, func in self.eventBinds.items():
-            handler.bindClickFunction(func,key)
 
     def addMove(self,key,frame):
         self.moves[key] = frame
 
-    def addBind(self,key,func):
-        self.eventBinds[key] = func
 
+    def tick(self,handler):
+        for key, frame in self.moves.items():
+            if handler.getKeyChanged(key):
+                State.setFrame(frame)
+                return
 
-    @staticmethod
-    def getTransferFunction(frame):
+        self.tickMethod(handler)
 
-        def transferFunction(handler):
-
-            handler.clearBinds()
-            State.setFrame(frame)
-            frame.load(handler)
-
-        return transferFunction
+    def render(self,renderer):
+        self.renderMethod(renderer)

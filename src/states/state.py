@@ -26,7 +26,6 @@ class StateTemplate():
 
     def __init__(self,baseFrame,handler):
         self.setFrame(baseFrame)
-        baseFrame.load(handler)
         self.baseFrame = baseFrame
 
     def tick(self,handler): self.uiFrame.tick(handler)

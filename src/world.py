@@ -25,6 +25,9 @@ class World():
             if not entity.alive:
                 self.entities.remove(entity)
 
+        if handler.getKeyChanged("SHOOT"):
+            self.makeBullet(handler)
+
     def render(self,renderer):
 
         self.cam.moveTo(self.player)

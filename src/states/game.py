@@ -19,7 +19,6 @@ class Game(StateTemplate):
         self.world = World(self.player,self.cam)
 
         baseFrame = UIFrame(self.world.tick,self.world.render)
-        baseFrame.addBind(0,self.world.makeBullet)
         inventoryFrame = UIFrame(self.player.inventory.tick,self.player.inventory.render)
 
         baseFrame.addMove("OPEN_INVENTORY",inventoryFrame)

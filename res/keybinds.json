@@ -8,5 +8,7 @@
   "CLOSE_INVENTORY" : "i",
   "1" : "1",
   "2" : "2",
-  "3" : "3"
+  "3" : "3",
+  "SHOOT" : "lmb",
+  "SELECT" : "lmb"
 }

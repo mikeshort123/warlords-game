@@ -5,7 +5,15 @@ from src.utils.vector import Vector
 
 class Handler():
 
+    mouse_button_codes = [
+        "lmb",
+        "mmb",
+        "rmb"
+    ]
+
     def __init__(self):
+
+
 
         with open("res/keybinds.json", encoding="utf8") as f:
             self.keyMap = json.load(f)
@@ -13,27 +21,29 @@ class Handler():
         self.keyList = {
             self.keyMap[i] : False for i in self.keyMap
         }
-        self.keyBinds = {
-            self.keyMap[i] : None for i in self.keyMap
-        }
+
+        self.keyChanges = []
 
         self.mousepos = Vector()
 
-        self.mouseButtons = [False for i in range(3)]
-        self.mouseButtonBinds = [None for i in range(3)]
+    def reset(self):
+        self.keyChanges = []
 
 
-    def getKey(self,key):
+    def getKeyPressed(self,key):
 
         return self.keyList[self.keyMap[key]]
+
+    def getKeyChanged(self,key):
+
+        code = self.keyMap[key]
+        return code in self.keyChanges
+
 
     def getMousePos(self):
 
         return self.mousepos
 
-    def getMouseKey(self,index):
-
-        return self.mouseButtons[index]
 
     def handleEvent(self,e):
 
@@ -41,8 +51,7 @@ class Handler():
             if e.unicode in self.keyList:
                 self.keyList[e.unicode] = True
 
-                if self.keyBinds[e.unicode] != None:
-                    self.keyBinds[e.unicode](self)
+                self.keyChanges.append(e.unicode)
 
         if e.type == KEYUP:
             if e.unicode in self.keyList:
@@ -52,22 +61,13 @@ class Handler():
             self.mousepos = Vector(e.pos)
 
         if e.type == MOUSEBUTTONDOWN:
-            self.mouseButtons[e.button-1] = True
+            key = Handler.mouse_button_codes[e.button-1]
+            if key in self.keyList:
+                self.keyList[key] = True
 
-            if self.mouseButtonBinds[e.button-1] != None:
-                self.mouseButtonBinds[e.button-1](self)
+                self.keyChanges.append(key)
 
         if e.type == MOUSEBUTTONUP:
-            self.mouseButtons[e.button-1] = False
-
-    def bindClickFunction(self,f,k):
-        self.mouseButtonBinds[k] = f
-
-    def bindButtonFunction(self,f,key):
-        self.keyBinds[self.keyMap[key]] = f
-
-    def clearBinds(self):
-        self.keyBinds = {
-            self.keyMap[i] : None for i in self.keyMap
-        }
-        self.mouseButtonBinds = [None for i in range(3)]
+            key = Handler.mouse_button_codes[e.button-1]
+            if key in self.keyList:
+                self.keyList[key] = False
