@@ -18,15 +18,13 @@ class World():
 
     def tick(self,handler):
 
-        self.player.tick(handler,self.grid)
+        self.player.tick(handler,self.grid,self.makeBullet)
 
         for entity in self.entities:
             entity.tick(handler,self.grid)
             if not entity.alive:
                 self.entities.remove(entity)
 
-        if handler.getKeyChanged("SHOOT"):
-            self.makeBullet(handler)
 
     def render(self,renderer):
 

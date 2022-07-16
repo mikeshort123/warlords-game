@@ -14,7 +14,7 @@ class Player():
         self.weapon_selection = "none"
         self.inventory = Inventory("res/save.json")
 
-    def tick(self,handler,grid):
+    def tick(self,handler,grid,bulletGenerator):
 
         n = Vector()
 
@@ -43,6 +43,10 @@ class Player():
             self.weapon_selection = "special"
         if handler.getKeyChanged("3"):
             self.weapon_selection = "melee"
+
+        if weapon := self.getWeapon():
+            weapon.tick(handler, bulletGenerator)
+
 
 
 

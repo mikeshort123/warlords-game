@@ -4,6 +4,8 @@ from src.element import Element
 from src.utils.assets import Assets
 from src.models.weaponModel import WeaponModel
 from src.models.playerModel import PlayerModel
+from src.items.fullauto import Fullauto
+from src.items.semiauto import Semiauto
 
 class Item:
 
@@ -61,6 +63,17 @@ class Item:
             self.model = PlayerModel(weapon_data["model"])
         else:
             self.model = WeaponModel(weapon_data["model"])
+
+        if weapon_data["slot"] == 0:
+            self.component = Semiauto(10)
+        if weapon_data["slot"] == 1:
+            self.component = Fullauto(10)
+        if weapon_data["slot"] == 2:
+            self.component = Fullauto(20)
+
+
+    def tick(self, handler, bulletGenerator):
+        self.component.tick(handler, bulletGenerator)
 
 
 
