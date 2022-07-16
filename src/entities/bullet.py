@@ -25,4 +25,5 @@ class Bullet:
 
         dpos = (self.pos*cam.scl).int() + (renderer.windowSize / 2).int() - (cam.pos * cam.scl).int()
 
-        pygame.draw.circle(renderer.display,self.colour,dpos.list(),5)
+        pygame.draw.circle(renderer.display,(0,0,0),dpos.list(),5)
+        pygame.draw.circle(renderer.display,self.colour,dpos.list(),4)
