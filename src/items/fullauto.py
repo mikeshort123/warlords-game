@@ -13,7 +13,7 @@ class Fullauto:
         if self.count == 0:
 
             if handler.getKeyPressed("SHOOT"):
-                bulletGenerator(handler)
+                bulletGenerator(handler,(255,255,0))
                 self.count = self.rof
 
         else:

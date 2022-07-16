@@ -49,9 +49,9 @@ class World():
         for entity in self.entities:
             entity.render(renderer,self.cam)
 
-    def makeBullet(self,handler):
+    def makeBullet(self,handler,colour):
         toMouse = (handler.getMousePos() - Vector(320,240)) / 64
-        self.entities.append(Bullet(self.player.pos.copy(),toMouse.normalize()))
+        self.entities.append(Bullet(self.player.pos.copy(),toMouse.normalize(),colour))
 
 
     @staticmethod

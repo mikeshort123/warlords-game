@@ -4,10 +4,12 @@ from src.tiles.tile import Tile
 
 class Bullet:
 
-    def __init__(self,pos,dir):
+    def __init__(self,pos,dir,colour):
 
         self.pos = pos
         self.dir = dir * 0.5
+
+        self.colour = colour
 
         self.alive = True
 
@@ -23,4 +25,4 @@ class Bullet:
 
         dpos = (self.pos*cam.scl).int() + (renderer.windowSize / 2).int() - (cam.pos * cam.scl).int()
 
-        pygame.draw.circle(renderer.display,(255,255,0),dpos.list(),5)
+        pygame.draw.circle(renderer.display,self.colour,dpos.list(),5)

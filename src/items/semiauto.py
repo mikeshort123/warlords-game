@@ -13,7 +13,7 @@ class Semiauto:
         if self.count == 0:
 
             if handler.getKeyChanged("SHOOT"):
-                bulletGenerator(handler)
+                bulletGenerator(handler,(255,0,255))
                 self.count = self.rof
 
         else:

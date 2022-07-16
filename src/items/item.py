@@ -65,7 +65,7 @@ class Item:
             self.model = WeaponModel(weapon_data["model"])
 
         if weapon_data["slot"] == 0:
-            self.component = Semiauto(10)
+            self.component = Semiauto(20)
         if weapon_data["slot"] == 1:
             self.component = Fullauto(10)
         if weapon_data["slot"] == 2:
