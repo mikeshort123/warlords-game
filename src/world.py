@@ -1,5 +1,6 @@
 from src.tiles.tile import Tile
 from src.utils.vector import Vector
+from src.entities.bullet import Bullet
 
 class World():
 
@@ -13,9 +14,16 @@ class World():
         self.player = player
         self.cam = cam
 
+        self.entities = []
+
     def tick(self,handler):
 
         self.player.tick(handler,self.grid)
+
+        for entity in self.entities:
+            entity.tick(handler,self.grid)
+            if not entity.alive:
+                self.entities.remove(entity)
 
     def render(self,renderer):
 
@@ -36,6 +44,13 @@ class World():
                         renderer.drawCamImage(Tile.getTile(self.grid[x][y]).texture,Vector(x,y),Vector(1,1),self.cam)
 
         self.player.render(renderer,self.cam)
+
+        for entity in self.entities:
+            entity.render(renderer,self.cam)
+
+    def makeBullet(self,handler):
+        toMouse = (handler.getMousePos() - Vector(320,240)) / 64
+        self.entities.append(Bullet(self.player.pos.copy(),toMouse.normalize()))
 
 
     @staticmethod
