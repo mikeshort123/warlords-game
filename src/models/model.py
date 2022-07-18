@@ -1,6 +1,5 @@
 import json,pygame,math
 
-from src.utils.assets import Assets
 from src.utils.vector import Vector
 
 class Model():

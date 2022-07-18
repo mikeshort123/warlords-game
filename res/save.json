@@ -30,6 +30,10 @@
     {
       "src" : "res/weapons/streetwear.json",
       "sockets" : [1,2,3,4,5,6]
+    },
+    {
+      "src" : "res/weapons/treeman.json",
+      "sockets" : [1,2,3,4,5,6]
     }
   ]
 }

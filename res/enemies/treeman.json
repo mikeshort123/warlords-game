@@ -1,0 +1,9 @@
+{
+  "name" : "Treeman",
+  "model" : "res/models/enemies/treeman.json",
+
+  "health" : 100,
+  "hitbox" : [64,64]
+
+
+}

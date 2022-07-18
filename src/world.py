@@ -1,6 +1,7 @@
 from src.tiles.tile import Tile
 from src.utils.vector import Vector
 from src.entities.bullet import Bullet
+from src.entities.enemy import Enemy
 
 class World():
 
@@ -15,6 +16,8 @@ class World():
         self.cam = cam
 
         self.entities = []
+
+        self.entities.append(Enemy("res/enemies/treeman.json",player.pos.copy()))
 
     def tick(self,handler):
 
