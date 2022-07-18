@@ -12,8 +12,12 @@ class Model():
 
 
 
-    def render(self, renderer, pos, cam, d = None, theta = 0, override = False, untoffset = None):
+    def render(self, renderer, pos, cam, d = None, theta = 0, override = False, untoffset = None, temp = None):
 
+
+        if temp:
+            untoffset = temp.offset
+            theta = temp.theta
 
         dsize = self.size * cam.scl
         img = pygame.transform.scale(self.img, dsize.int().list())

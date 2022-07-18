@@ -1,5 +1,8 @@
 import json
 from src.utils.assets import Assets
+from src.animations.blank import Blank
+from src.animations.feet import Feet
+from src.animations.hand import Hand
 
 class Enemy:
 
@@ -16,8 +19,20 @@ class Enemy:
 
         self.alive = True
 
-    def tick(self,handler,grid): return
+        self.animations = {
+            "head" : Blank(),
+            "body" : Blank(),
+            "left_hand" : Blank(),
+            "right_hand" : Hand(),
+            "left_foot" : Feet(-3/64,4),
+            "right_foot" : Feet(3/64,4)
+        }
+
+    def tick(self,handler,grid):
+
+        for _, part in self.animations.items():
+            part.tick(handler)
 
     def render(self,renderer,cam):
 
-        self.model.render(renderer,self.pos,cam)
+        self.model.render(renderer,self.pos,cam,self.animations)

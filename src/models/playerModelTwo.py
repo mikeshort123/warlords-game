@@ -1,4 +1,4 @@
-import math,pygame,json
+import pygame
 
 from src.models.model import Model
 from src.utils.vector import Vector
@@ -38,18 +38,13 @@ class PlayerModelTwo:
             self.parts[part] = Model(img,size,offset)
 
 
+    def render(self,renderer,pos,cam,animation_set):
 
-    #def tick(self, handler):
+        self.parts["body"].render(renderer,pos,cam,temp=animation_set["body"])
+        self.parts["left_foot"].render(renderer,pos,cam,temp=animation_set["left_foot"])
+        self.parts["right_foot"].render(renderer,pos,cam,temp=animation_set["right_foot"])
 
+        self.parts["left_hand"].render(renderer,pos,cam,temp=animation_set["left_hand"])
+        self.parts["right_hand"].render(renderer,pos,cam,temp=animation_set["right_hand"])
 
-
-    def render(self,renderer,pos,cam):
-
-        self.parts["body"].render(renderer,pos,cam)
-        self.parts["left_foot"].render(renderer,pos,cam)
-        self.parts["right_foot"].render(renderer,pos,cam)
-
-        self.parts["left_hand"].render(renderer,pos,cam)
-        self.parts["right_hand"].render(renderer,pos,cam)
-
-        self.parts["head"].render(renderer,pos,cam)
+        self.parts["head"].render(renderer,pos,cam,temp=animation_set["head"])

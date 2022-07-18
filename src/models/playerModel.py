@@ -14,7 +14,7 @@ class PlayerModel():
         "left_hand" : Vector(-19,7),
         "right_hand" : Vector(25,0),
         "left_foot" : Vector(-10,22),
-        "right_foot" : Vector(10,22),
+        "right_foot" : Vector(10,22)
     }
 
     footPeriod = 4
@@ -55,6 +55,7 @@ class PlayerModel():
 
         self.theta = 0
 
+
     def tick(self, handler, n, weaponModel):
 
         self.v = n * PlayerModel.headMag
@@ -86,7 +87,7 @@ class PlayerModel():
         self.parts["left_hand"].render(renderer,pos,cam)
 
         if weaponModel:
-            weaponModel.render(renderer,pos,self.parts["right_hand"].offset,cam,theta = -self.theta)
+            weaponModel.render(renderer,pos,cam,theta = -self.theta)
 
             self.parts["right_hand"].render(renderer,pos,cam,theta = -self.theta)
         else:
