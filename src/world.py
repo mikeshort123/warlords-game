@@ -24,7 +24,7 @@ class World():
         self.player.tick(handler,self.grid,self.makeBullet)
 
         for entity in self.entities:
-            entity.tick(handler,self.grid)
+            entity.tick(handler,self.grid,self.entities,self.player)
             if not entity.alive:
                 self.entities.remove(entity)
 
@@ -47,10 +47,12 @@ class World():
 
                         renderer.drawCamImage(Tile.getTile(self.grid[x][y]).texture,Vector(x,y),Vector(1,1),self.cam)
 
-        self.player.render(renderer,self.cam)
-
         for entity in self.entities:
             entity.render(renderer,self.cam)
+
+        self.player.render(renderer,self.cam)
+
+
 
     def makeBullet(self,handler,colour):
         toMouse = (handler.getMousePos() - Vector(320,240)) / 64

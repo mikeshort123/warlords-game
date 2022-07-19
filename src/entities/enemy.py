@@ -1,8 +1,10 @@
-import json
+import json,pygame
 from src.utils.assets import Assets
+from src.utils.vector import Vector
 from src.animations.blank import Blank
 from src.animations.feet import Feet
 from src.animations.hand import Hand
+from src.entities.bullet import Bullet
 
 class Enemy:
 
@@ -19,6 +21,12 @@ class Enemy:
 
         self.alive = True
 
+        self.maxhealth = data["health"]
+        self.health = self.maxhealth
+
+        self.hitbox_size = Vector(data["hitbox_size"]) / self.model.scale
+        self.hitbox_offset = (Vector(data["hitbox_offset"]) / self.model.scale) - (self.hitbox_size / 2)
+
         self.animations = {
             "head" : Blank(),
             "body" : Blank(),
@@ -28,11 +36,36 @@ class Enemy:
             "right_foot" : Feet(3/64,4)
         }
 
-    def tick(self,handler,grid):
+    def tick(self,handler,grid,entities,player):
 
         for _, part in self.animations.items():
             part.tick(handler)
 
+        for entity in entities:
+            if isinstance(entity,Bullet):
+                if self.inHitbox(entity.pos):
+                    self.health -= 100
+                    entity.alive = False
+
+        if self.health <= 0:
+            self.alive = False
+
+
     def render(self,renderer,cam):
 
         self.model.render(renderer,self.pos,cam,self.animations)
+
+        dpos = (self.pos*cam.scl).int() + (renderer.windowSize / 2).int() - (cam.pos * cam.scl).int() - Vector(50,55)
+
+        screen = renderer.display
+        pygame.draw.rect(screen,(0,0,0),(dpos.x,dpos.y,100,10))
+        pygame.draw.rect(screen,(255,0,0),(dpos.x,dpos.y,100*self.health // self.maxhealth,10))
+
+
+    def inHitbox(self,pos):
+
+        px,py = pos.list()
+        ax,ay = (self.pos + self.hitbox_offset).list()
+        bx,by = ax + self.hitbox_size.x, ay + self.hitbox_size.y
+
+        return px >= ax and px <= bx and py >= ay and py <= by

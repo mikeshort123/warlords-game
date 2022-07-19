@@ -13,7 +13,7 @@ class Bullet:
 
         self.alive = True
 
-    def tick(self,handler,grid):
+    def tick(self,handler,grid,entities,player):
 
         self.pos += self.dir
 

@@ -2,8 +2,8 @@
   "name" : "Treeman",
   "model" : "res/models/enemies/treeman.json",
 
-  "health" : 100,
-  "hitbox" : [64,64]
-
+  "health" : 10000,
+  "hitbox_size" : [64,84],
+  "hitbox_offset" : [0,0]
 
 }
