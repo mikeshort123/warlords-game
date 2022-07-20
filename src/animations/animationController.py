@@ -11,19 +11,25 @@ class AnimationController:
             self.theta = 0
 
 
-    def __init__(self, parts):
+    def __init__(self, parts, scale):
 
-        self.parts = {part : AnimationController.Part() for part in parts}
+        self.variables = {}
+
         self.animations = []
+        self.scale = scale
 
         self.t = 0
 
     def addAnimation(self,data):
 
-        self.animations.append(Animation(data["part"],data["condition"],data["angle"],data["offset"]))
+        self.animations.append(Animation(data,self.variables))
 
     def tick(self):
         self.t += 1
+
+
+    def setVariable(self,name,value):
+        self.variables[name] = value
 
 
     def getPart(self,part_name):
@@ -36,5 +42,7 @@ class AnimationController:
 
                 part.offset += animation.offset(self.t)
                 part.theta += animation.angle(self.t)
+
+        part.offset /= self.scale
 
         return part

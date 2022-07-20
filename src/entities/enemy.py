@@ -42,6 +42,9 @@ class Enemy:
         if self.health <= 0:
             self.alive = False
 
+        s = handler.getKeyPressed("START")
+        self.animator.setVariable("walking",s)
+
 
     def render(self,renderer,cam):
 

@@ -3,32 +3,53 @@
 
     {
       "part" : "left_hand",
-      "condition" : {
-        "type" : "condition.constant",
-        "value" : true
-      },
+      "condition" : {"type" : "condition.on"},
       "angle" : {
         "type" : "movement.constant",
         "value" : 0.1
       },
-      "offset" : {
-        "type" : "movement.fixed",
-        "value" : 0
-      }
+      "x_offset" : {"type" : "movement.none"},
+      "y_offset" : {"type" : "movement.none"}
     },
+
     {
-      "part" : "right_foot",
-      "condition" : {
-        "type" : "condition.constant",
-        "value" : true
-      },
+      "part" : "right_hand",
+      "condition" : {"type" : "condition.on"},
       "angle" : {
         "type" : "movement.fixed",
         "value" : -1
       },
-      "offset" : {
-        "type" : "movement.fixed",
-        "value" : 0
+      "x_offset" : {"type" : "movement.none"},
+      "y_offset" : {"type" : "movement.none"}
+    },
+
+    {
+      "part" : "left_foot",
+      "condition" : {
+        "type" : "condition.boolean",
+        "name" : "walking"
+      },
+      "angle" : {"type" : "movement.none"},
+      "x_offset" : {"type" : "movement.none"},
+      "y_offset" : {
+        "type" : "movement.sin",
+        "magnitude" : 3,
+        "period" : 16
+      }
+    },
+
+    {
+      "part" : "right_foot",
+      "condition" : {
+        "type" : "condition.boolean",
+        "name" : "walking"
+      },
+      "angle" : {"type" : "movement.none"},
+      "x_offset" : {"type" : "movement.none"},
+      "y_offset" : {
+        "type" : "movement.sin",
+        "magnitude" : -3,
+        "period" : 16
       }
     }
 
