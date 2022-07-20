@@ -12,7 +12,7 @@
         "value" : 0.1
       },
       "offset" : {
-        "type" : "movement.constant",
+        "type" : "movement.fixed",
         "value" : 0
       }
     },
@@ -23,11 +23,11 @@
         "value" : true
       },
       "angle" : {
-        "type" : "movement.constant",
-        "value" : -0.1
+        "type" : "movement.fixed",
+        "value" : -1
       },
       "offset" : {
-        "type" : "movement.constant",
+        "type" : "movement.fixed",
         "value" : 0
       }
     }

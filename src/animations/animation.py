@@ -12,10 +12,13 @@ class Animation:
         self.offset = Animation.getMovementFunction(offset)
 
 
+
+
     @staticmethod
     def getMovementFunction(data):
 
-        if data["type"] == "movement.constant": return lambda : data["value"]
+        if data["type"] == "movement.fixed": return lambda t : data["value"]
+        elif data["type"] == "movement.constant": return lambda t : data["value"] * t
 
 
     @staticmethod
