@@ -6,6 +6,7 @@ from src.models.model import Model
 
 class WeaponModel():
 
+    weaponHandleOffset = Vector(25,0) / 64
 
     def __init__(self,fn):
 
@@ -23,11 +24,11 @@ class WeaponModel():
         self.ws = (barrel - handle).rotate(self.direction.atan()) #vector from handle to barrel
 
         size = Vector(img.get_size()) / scale
-        offset = (size / 2) - handle + Vector(25/64,0).rotate(-self.direction.atan())
+        offset = (size / 2) - handle + WeaponModel.weaponHandleOffset.rotate(-self.direction.atan())
 
         # DO STUFF WITH BODY OFFSETS AND LEFT HAND
 
-        self.model = Model(img,size,offset)
+        self.model = Model(img,size,offset,Vector())
 
 
     def render(self,renderer,pos,cam,theta = 0):

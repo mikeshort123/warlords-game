@@ -1,10 +1,8 @@
 import json,pygame
 from src.utils.assets import Assets
 from src.utils.vector import Vector
-from src.animations.blank import Blank
-from src.animations.feet import Feet
-from src.animations.hand import Hand
 from src.entities.bullet import Bullet
+from src.animations.animationController import AnimationController
 
 class Enemy:
 
@@ -27,19 +25,15 @@ class Enemy:
         self.hitbox_size = Vector(data["hitbox_size"]) / self.model.scale
         self.hitbox_offset = (Vector(data["hitbox_offset"]) / self.model.scale) - (self.hitbox_size / 2)
 
-        self.animations = {
-            "head" : Blank(),
-            "body" : Blank(),
-            "left_hand" : Blank(),
-            "right_hand" : Hand(),
-            "left_foot" : Feet(-3/64,4),
-            "right_foot" : Feet(3/64,4)
-        }
+        self.animator = AnimationController()
+
 
     def tick(self,handler,grid,entities,player):
 
-        for _, part in self.animations.items():
-            part.tick(handler)
+        #for _, part in self.animations.items():
+        #    part.tick(handler)
+
+        self.animator.tick()
 
         for entity in entities:
             if isinstance(entity,Bullet):
@@ -53,7 +47,7 @@ class Enemy:
 
     def render(self,renderer,cam):
 
-        self.model.render(renderer,self.pos,cam,self.animations)
+        self.model.render(renderer,self.pos,cam,self.animator)
 
         dpos = (self.pos*cam.scl).int() + (renderer.windowSize / 2).int() - (cam.pos * cam.scl).int() - Vector(50,55)
 

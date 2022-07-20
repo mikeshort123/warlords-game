@@ -1,0 +1,48 @@
+{
+
+  "frame" : "player",
+  "texture" : "res/textures/items/robot.png",
+  "scale" : 32,
+
+  "parts" : {
+
+    "head" : {
+      "pos" : [0,0],
+      "centre" : [16,16],
+      "size" : [32,32],
+      "offset" : [1,-37]
+    },
+    "body" : {
+      "pos" : [0,32],
+      "centre" : [31,68],
+      "size" : [64,64],
+      "offset" : [0,0]
+    },
+    "left_hand" : {
+      "pos" : [0,96],
+      "centre" : [16,111],
+      "size" : [32,80],
+      "offset" : [-36,-19]
+    },
+    "right_hand" : {
+      "pos" : [32,96],
+      "centre" : [48,112],
+      "size" : [32,80],
+      "offset" : [40,-14]
+    },
+    "left_foot" : {
+      "pos" : [0,176],
+      "centre" : [14,191],
+      "size" : [32,80],
+      "offset" : [-19,15]
+    },
+    "right_foot" : {
+      "pos" : [32,176],
+      "centre" : [48,191],
+      "size" : [32,80],
+      "offset" : [19,15]
+    }
+
+
+  }
+}

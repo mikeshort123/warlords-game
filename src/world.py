@@ -18,6 +18,7 @@ class World():
         self.entities = []
 
         self.entities.append(Enemy("res/enemies/treeman.json",player.pos.copy()))
+        self.entities.append(Enemy("res/enemies/robot.json",player.pos.copy() + Vector(2,1)))
 
     def tick(self,handler):
 

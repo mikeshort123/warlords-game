@@ -4,10 +4,11 @@ from src.utils.vector import Vector
 
 class Model():
 
-    def __init__(self,img,size,offset):
+    def __init__(self,img,size,centre,offset):
 
         self.img = img
         self.size = size
+        self.centre = centre
         self.offset = offset
 
 
@@ -21,20 +22,22 @@ class Model():
 
         dsize = self.size * cam.scl
         img = pygame.transform.scale(self.img, dsize.int().list())
-        offset = self.offset.copy()
+        centre = self.centre.copy()
         if d:
             if override:
-                offset = d.copy()
+                centre = d.copy()
             else:
-                offset += d
+                centre += d
 
         if theta != 0:
             img = pygame.transform.rotate(img, 180*theta / math.pi)
-            offset = offset.rotate(theta)
+            centre = centre.rotate(theta)
         if untoffset:
-            offset += untoffset
+            centre += untoffset
 
-        dpos = ((pos+offset)*cam.scl) + ((renderer.windowSize - Vector(img.get_size())) / 2) - (cam.pos * cam.scl)
+        centre += self.offset
+
+        dpos = ((pos+centre)*cam.scl) + ((renderer.windowSize - Vector(img.get_size())) / 2) - (cam.pos * cam.scl)
 
 
 

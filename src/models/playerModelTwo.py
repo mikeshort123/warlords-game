@@ -6,15 +6,6 @@ from src.utils.vector import Vector
 
 class PlayerModelTwo:
 
-    defaultRig = {
-        "head" : Vector(0,-12),
-        "body" : Vector(0,0),
-        "left_hand" : Vector(-19,7),
-        "right_hand" : Vector(25,0),
-        "left_foot" : Vector(-10,22),
-        "right_foot" : Vector(10,22),
-    }
-
 
     def __init__(self,model_data,modelTexture):
 
@@ -28,23 +19,24 @@ class PlayerModelTwo:
             imgPos = Vector(values["pos"])
             imgSize = Vector(values["size"])
 
-            offset = (imgPos - imgCentre + imgSize/2 + PlayerModelTwo.defaultRig[part]) / self.scale
+            centre = (imgPos - imgCentre + imgSize/2) / self.scale
+            offset = Vector(values["offset"]) / self.scale
 
             size = imgSize / self.scale
 
             img = pygame.Surface(imgSize.list(), pygame.SRCALPHA)
             img.blit(modelTexture, (0, 0), (imgPos.x, imgPos.y, imgSize.x, imgSize.y))
 
-            self.parts[part] = Model(img,size,offset)
+            self.parts[part] = Model(img,size,centre,offset)
 
 
-    def render(self,renderer,pos,cam,animation_set):
+    def render(self,renderer,pos,cam,animator):
 
-        self.parts["body"].render(renderer,pos,cam,temp=animation_set["body"])
-        self.parts["left_foot"].render(renderer,pos,cam,temp=animation_set["left_foot"])
-        self.parts["right_foot"].render(renderer,pos,cam,temp=animation_set["right_foot"])
+        self.parts["body"].render(renderer,pos,cam,temp=animator.getPart("body"))
+        self.parts["left_foot"].render(renderer,pos,cam,temp=animator.getPart("left_foot"))
+        self.parts["right_foot"].render(renderer,pos,cam,temp=animator.getPart("right_foot"))
 
-        self.parts["left_hand"].render(renderer,pos,cam,temp=animation_set["left_hand"])
-        self.parts["right_hand"].render(renderer,pos,cam,temp=animation_set["right_hand"])
+        self.parts["left_hand"].render(renderer,pos,cam,temp=animator.getPart("left_hand"))
+        self.parts["right_hand"].render(renderer,pos,cam,temp=animator.getPart("right_hand"))
 
-        self.parts["head"].render(renderer,pos,cam,temp=animation_set["head"])
+        self.parts["head"].render(renderer,pos,cam,temp=animator.getPart("head"))
