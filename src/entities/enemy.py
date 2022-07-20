@@ -13,7 +13,7 @@ class Enemy:
 
         model_path = data["model"]
 
-        self.model = Assets.loadModel(model_path)
+        self.model, self.animator = Assets.loadModel(model_path)
 
         self.pos = pos
 
@@ -24,8 +24,6 @@ class Enemy:
 
         self.hitbox_size = Vector(data["hitbox_size"]) / self.model.scale
         self.hitbox_offset = (Vector(data["hitbox_offset"]) / self.model.scale) - (self.hitbox_size / 2)
-
-        self.animator = AnimationController()
 
 
     def tick(self,handler,grid,entities,player):

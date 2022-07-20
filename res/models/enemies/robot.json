@@ -4,6 +4,8 @@
   "texture" : "res/textures/items/robot.png",
   "scale" : 32,
 
+  "animations" : "res/animations/robot.json",
+
   "parts" : {
 
     "head" : {

@@ -8,8 +8,6 @@ from src.utils.assets import Assets
 
 class PlayerModel():
 
-
-
     footPeriod = 4
     footMag = 3
     headMag = 0.5
