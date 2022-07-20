@@ -3,11 +3,33 @@
 
     {
       "part" : "left_hand",
-      "d_angle" : 0.1
+      "condition" : {
+        "type" : "condition.constant",
+        "value" : true
+      },
+      "angle" : {
+        "type" : "movement.constant",
+        "value" : 0.1
+      },
+      "offset" : {
+        "type" : "movement.constant",
+        "value" : 0
+      }
     },
     {
       "part" : "right_foot",
-      "d_angle" : -0.1
+      "condition" : {
+        "type" : "condition.constant",
+        "value" : true
+      },
+      "angle" : {
+        "type" : "movement.constant",
+        "value" : -0.1
+      },
+      "offset" : {
+        "type" : "movement.constant",
+        "value" : 0
+      }
     }
 
   ]
