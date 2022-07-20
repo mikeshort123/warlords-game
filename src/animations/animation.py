@@ -10,9 +10,9 @@ class Animation:
 
         self.condition = Animation.getConditionFunction(data["condition"],variables)
 
-        self.angle = Animation.getMovementFunction(data["angle"])
-        self.x_offset = Animation.getMovementFunction(data["x_offset"])
-        self.y_offset = Animation.getMovementFunction(data["y_offset"])
+        self.angle = Animation.getMovementFunction(data["angle"],variables)
+        self.x_offset = Animation.getMovementFunction(data["x_offset"],variables)
+        self.y_offset = Animation.getMovementFunction(data["y_offset"],variables)
 
 
     def offset(self,t):
@@ -20,11 +20,14 @@ class Animation:
 
 
     @staticmethod
-    def getMovementFunction(data):
+    def getMovementFunction(data,variables):
 
         if data["type"] == "movement.fixed": return lambda t : data["value"]
         elif data["type"] == "movement.constant": return lambda t : data["value"] * t
         elif data["type"] == "movement.none": return lambda t : 0
+        elif data["type"] == "movement.variable":
+            variables[data["name"]] = 0
+            return lambda t : variables[data["name"]]
         elif data["type"] == "movement.sin": return lambda t : data["magnitude"] * math.sin(2*math.pi*t/data["period"])
 
 

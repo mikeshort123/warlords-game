@@ -14,7 +14,7 @@ class Game(StateTemplate):
         Element.loadElementDefinitions("res/elements.json")
 
         self.cam = Cam(0,0)
-        self.player = Player(125/2,5)
+        self.player = Player(125//2,5)
 
         self.world = World(self.player,self.cam)
 

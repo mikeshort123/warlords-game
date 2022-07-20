@@ -2,22 +2,11 @@
   "animations" : [
 
     {
-      "part" : "left_hand",
-      "condition" : {"type" : "condition.on"},
-      "angle" : {
-        "type" : "movement.constant",
-        "value" : 0.1
-      },
-      "x_offset" : {"type" : "movement.none"},
-      "y_offset" : {"type" : "movement.none"}
-    },
-
-    {
       "part" : "right_hand",
       "condition" : {"type" : "condition.on"},
       "angle" : {
-        "type" : "movement.fixed",
-        "value" : -1
+        "type" : "movement.variable",
+        "name" : "pointing"
       },
       "x_offset" : {"type" : "movement.none"},
       "y_offset" : {"type" : "movement.none"}

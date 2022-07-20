@@ -1,8 +1,9 @@
-import json,pygame
+import json,pygame,math
 from src.utils.assets import Assets
 from src.utils.vector import Vector
 from src.entities.bullet import Bullet
 from src.animations.animationController import AnimationController
+from src.ais.xslider import XSlider
 
 class Enemy:
 
@@ -19,6 +20,8 @@ class Enemy:
 
         self.alive = True
 
+        self.ai = XSlider(self.pos, 3, 0.1)
+
         self.maxhealth = data["health"]
         self.health = self.maxhealth
 
@@ -28,8 +31,15 @@ class Enemy:
 
     def tick(self,handler,grid,entities,player):
 
-        #for _, part in self.animations.items():
-        #    part.tick(handler)
+
+        v = self.ai.tick(self.pos)
+        self.pos += v
+        self.animator.setVariable("walking",not v.isZero())
+
+        # point arm at player
+        theta = math.pi/2 + (self.pos - player.pos + Vector(40,-14) / 32).atan()
+
+        self.animator.setVariable("pointing", -theta)
 
         self.animator.tick()
 
@@ -42,8 +52,6 @@ class Enemy:
         if self.health <= 0:
             self.alive = False
 
-        s = handler.getKeyPressed("START")
-        self.animator.setVariable("walking",s)
 
 
     def render(self,renderer,cam):
