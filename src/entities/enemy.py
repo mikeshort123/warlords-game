@@ -9,7 +9,6 @@ class Enemy:
 
     def __init__(self,pos,generator):
 
-        self.alive = True
         self.pos = pos
         self.ai = XSlider(self.pos, 3, 0.1)
 
@@ -20,7 +19,7 @@ class Enemy:
         self.hitbox_offset = generator.hitbox_offset
 
 
-    def tick(self,handler,grid,entities,player):
+    def tick(self,grid,player):
 
 
         v = self.ai.tick(self.pos)
@@ -37,14 +36,6 @@ class Enemy:
 
         self.animator.tick()
 
-        for entity in entities:
-            if isinstance(entity,Bullet):
-                if self.inHitbox(entity.pos):
-                    self.health -= 100
-                    entity.alive = False
-
-        if self.health <= 0:
-            self.alive = False
 
 
 

@@ -18,6 +18,7 @@ class World():
         self.enemyFactory.loadEnemy("res/enemies/robot.json")
 
         self.entities = []
+        self.projectiles = []
 
         self.entities.append(self.enemyFactory.generateEnemy("Ball Guy",player.pos.copy()))
         self.entities.append(self.enemyFactory.generateEnemy("Robot",player.pos.copy() + Vector(0,2)))
@@ -27,9 +28,14 @@ class World():
 
         self.player.tick(handler,self.grid,self.makeBullet)
 
+        for projectile in self.projectiles:
+            projectile.tick(self.grid,self.entities)
+            if not projectile.alive:
+                self.projectiles.remove(projectile)
+
         for entity in self.entities:
-            entity.tick(handler,self.grid,self.entities,self.player)
-            if not entity.alive:
+            entity.tick(self.grid,self.player)
+            if entity.health <= 0:
                 self.entities.remove(entity)
 
 
@@ -44,8 +50,11 @@ class World():
 
         self.player.render(renderer,self.cam)
 
+        for projectile in self.projectiles:
+            projectile.render(renderer,self.cam)
 
 
-    def makeBullet(self,handler,colour):
+
+    def makeBullet(self,handler,source):
         toMouse = (handler.getMousePos() - Vector(320,240)) / 64
-        self.entities.append(Bullet(self.player.pos.copy(),toMouse.normalize(),colour))
+        self.projectiles.append(Bullet(self.player.pos.copy(),toMouse.normalize(),source))
