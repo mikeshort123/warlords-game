@@ -68,7 +68,7 @@ class Player():
         tx = int(px+0.5)
         ty = int(py+0.5)
 
-        return Tile.getTile(grid[tx][ty]).solid
+        return grid.getSolid(tx,ty)
 
 
     def render(self,renderer,cam):

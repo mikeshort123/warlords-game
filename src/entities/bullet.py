@@ -19,7 +19,7 @@ class Bullet:
 
         index = (self.pos + 0.5).int()
 
-        if Tile.getTile(grid[index.x][index.y]).solid: self.alive = False
+        if grid.getSolid(index.x,index.y): self.alive = False
 
     def render(self,renderer,cam):
 
