@@ -1,0 +1,15 @@
+{
+  "animations" : [
+
+    {
+      "part" : "left_arm",
+      "condition" : {"type" : "condition.on"},
+      "angle" : {
+        "type" : "movement.variable",
+        "name" : "pointing"
+      },
+      "x_offset" : {"type" : "movement.none"},
+      "y_offset" : {"type" : "movement.none"}
+    }
+  ]
+}

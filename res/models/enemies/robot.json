@@ -6,45 +6,57 @@
 
   "animations" : "res/animations/robot.json",
 
-  "parts" : {
+  "parts" : [
 
-    "head" : {
+    {
+      "name" : "head",
       "pos" : [0,0],
       "centre" : [16,16],
       "size" : [32,32],
-      "offset" : [1,-37]
+      "offset" : [1,-37],
+      "level" : 3
     },
-    "body" : {
+    {
+      "name" : "body",
       "pos" : [0,32],
       "centre" : [31,68],
       "size" : [64,64],
-      "offset" : [0,0]
+      "offset" : [0,0],
+      "level" : 0
     },
-    "left_hand" : {
+    {
+      "name" : "left_arm",
       "pos" : [0,96],
       "centre" : [16,111],
       "size" : [32,80],
-      "offset" : [-36,-19]
+      "offset" : [-36,-19],
+      "level" : 2
     },
-    "right_hand" : {
+    {
+      "name" : "right_arm",
       "pos" : [32,96],
       "centre" : [48,112],
       "size" : [32,80],
-      "offset" : [40,-14]
+      "offset" : [40,-14],
+      "level" : 2
     },
-    "left_foot" : {
+    {
+      "name" : "left_leg",
       "pos" : [0,176],
       "centre" : [14,191],
       "size" : [32,80],
-      "offset" : [-19,15]
+      "offset" : [-19,15],
+      "level" : 1
     },
-    "right_foot" : {
+    {
+      "name" : "right_leg",
       "pos" : [32,176],
       "centre" : [48,191],
       "size" : [32,80],
-      "offset" : [19,15]
+      "offset" : [19,15],
+      "level" : 1
     }
 
 
-  }
+  ]
 }

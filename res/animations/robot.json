@@ -2,7 +2,7 @@
   "animations" : [
 
     {
-      "part" : "right_hand",
+      "part" : "right_arm",
       "condition" : {"type" : "condition.on"},
       "angle" : {
         "type" : "movement.variable",
@@ -13,7 +13,7 @@
     },
 
     {
-      "part" : "left_foot",
+      "part" : "left_leg",
       "condition" : {
         "type" : "condition.boolean",
         "name" : "walking"
@@ -28,7 +28,7 @@
     },
 
     {
-      "part" : "right_foot",
+      "part" : "right_leg",
       "condition" : {
         "type" : "condition.boolean",
         "name" : "walking"

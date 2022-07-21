@@ -1,0 +1,52 @@
+{
+
+  "frame" : "player",
+  "texture" : "res/textures/items/ball_guy.png",
+  "scale" : 64,
+
+  "animations" : "res/animations/ball_guy.json",
+
+  "parts" : [
+
+    {
+      "name" : "head",
+      "pos" : [0,0],
+      "centre" : [16,16],
+      "size" : [32,32],
+      "offset" : [-4,-30],
+      "level" : 3
+    },
+    {
+      "name" : "body",
+      "pos" : [32,0],
+      "centre" : [64,34],
+      "size" : [64,64],
+      "offset" : [0,0],
+      "level" : 1
+    },
+    {
+      "name" : "left_arm",
+      "pos" : [0,64],
+      "centre" : [38,73],
+      "size" : [48,64],
+      "offset" : [-21,-9],
+      "level" : 2
+    },
+    {
+      "name" : "right_arm",
+      "pos" : [48,64],
+      "centre" : [58,68],
+      "size" : [48,64],
+      "offset" : [20,-13],
+      "level" : 2
+    },
+    {
+      "name" : "wheel",
+      "pos" : [0,128],
+      "centre" : [58,180],
+      "size" : [96,96],
+      "offset" : [13,50],
+      "level" : 0
+    }
+  ]
+}
