@@ -10,6 +10,27 @@
       },
       "x_offset" : {"type" : "movement.none"},
       "y_offset" : {"type" : "movement.none"}
+    },
+
+    {
+      "part" : "head",
+      "condition" : {"type" : "condition.on"},
+      "angle" : {"type" : "movement.none"},
+      "x_offset" : {
+        "type" : "movement.variable",
+        "name" : "x_vel"
+      },
+      "y_offset" : {"type" : "movement.none"}
+    },
+    {
+      "part" : "wheel",
+      "condition" : {"type" : "condition.on"},
+      "angle" : {"type" : "movement.none"},
+      "x_offset" : {
+        "type" : "movement.variable",
+        "name" : "-x_vel"
+      },
+      "y_offset" : {"type" : "movement.none"}
     }
   ]
 }

@@ -36,9 +36,12 @@ class Enemy:
         self.pos += v
         self.animator.setVariable("walking",not v.isZero())
 
+        # setting this variable for all enemies is bad, fix
+        self.animator.setVariable("x_vel", v.x * 64)
+        self.animator.setVariable("-x_vel", -v.x * 64)
+
         # point arm at player
         theta = math.pi/2 + (self.pos - player.pos + Vector(40,-14) / 32).atan()
-
         self.animator.setVariable("pointing", -theta)
 
         self.animator.tick()
