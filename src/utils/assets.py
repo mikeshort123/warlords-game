@@ -1,6 +1,6 @@
 import pygame,json
 
-from src.models.playerModelTwo import PlayerModelTwo
+from src.models.guyModel import GuyModel
 from src.animations.animationGenerator import AnimationGenerator
 
 class Assets():
@@ -36,7 +36,7 @@ class Assets():
         generator = AnimationGenerator(animation_data,parts,model_data["scale"])
 
         if model_data["frame"] == "player":
-            model = PlayerModelTwo(model_data,texture)
+            model = GuyModel(model_data,texture)
 
 
         Assets.models[fp] = [model,generator]

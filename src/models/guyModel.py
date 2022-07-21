@@ -4,7 +4,7 @@ from src.models.model import Model
 from src.utils.vector import Vector
 
 
-class PlayerModelTwo:
+class GuyModel:
 
 
     def __init__(self,model_data,modelTexture):
