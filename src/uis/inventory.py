@@ -26,10 +26,10 @@ class Inventory:
         else: self.active_display = None
 
         if self.active_display:
-            handler.bindClickFunction(self.active_display.pickItem,0)
+            if handler.getKeyChanged("SELECT"):
+                self.active_display.pickItem(handler)
             self.weapon_info = self.active_display.checkHoveredItem(handler)
         else:
-            handler.bindClickFunction(None,0)
             self.weapon_info = None
 
     def render(self,renderer):

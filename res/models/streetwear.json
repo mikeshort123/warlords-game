@@ -10,32 +10,38 @@
     "head" : {
       "pos" : [0,0],
       "centre" : [32,32],
-      "size" : [64,64]
+      "size" : [64,64],
+      "offset" : [0,-12]
     },
     "body" : {
       "pos" : [0,64],
       "centre" : [32,90],
-      "size" : [64,64]
+      "size" : [64,64],
+      "offset" : [0,0]
     },
     "left_hand" : {
       "pos" : [0,128],
       "centre" : [16,144],
-      "size" : [32,32]
+      "size" : [32,32],
+      "offset" : [-19,7]
     },
     "right_hand" : {
       "pos" : [32,128],
-      "centre" : [48,144],
-      "size" : [32,32]
+      "centre" : [24,144],
+      "size" : [32,32],
+      "offset" : [0,0]
     },
     "left_foot" : {
       "pos" : [0,160],
       "centre" : [16,174],
-      "size" : [32,32]
+      "size" : [32,32],
+      "offset" : [-10,22]
     },
     "right_foot" : {
       "pos" : [32,160],
       "centre" : [48,174],
-      "size" : [32,32]
+      "size" : [32,32],
+      "offset" : [10,22]
     }
 
 

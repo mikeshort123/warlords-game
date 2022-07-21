@@ -8,18 +8,8 @@ from src.utils.assets import Assets
 
 class PlayerModel():
 
-    defaultRig = {
-        "head" : Vector(0,-12),
-        "body" : Vector(0,0),
-        "left_hand" : Vector(-19,7),
-        "right_hand" : Vector(25,0),
-        "left_foot" : Vector(-10,22),
-        "right_foot" : Vector(10,22),
-    }
-
     footPeriod = 4
     footMag = 3
-    handMag = 25
     headMag = 0.5
 
     def __init__(self,fn):
@@ -39,14 +29,15 @@ class PlayerModel():
             imgPos = Vector(values["pos"])
             imgSize = Vector(values["size"])
 
-            offset = (imgPos - imgCentre + imgSize/2 + PlayerModel.defaultRig[part]) / self.scale
+            centre = (imgPos - imgCentre + imgSize/2) / self.scale
+            offset = Vector(values["offset"]) / self.scale
 
             size = imgSize / self.scale
 
             img = pygame.Surface(imgSize.list(), pygame.SRCALPHA)
             img.blit(modelTexture, (0, 0), (imgPos.x, imgPos.y, imgSize.x, imgSize.y))
 
-            self.parts[part] = Model(img,size,offset)
+            self.parts[part] = Model(img,size,centre,offset)
 
         self.v = Vector()
         self.t = 0
@@ -54,6 +45,7 @@ class PlayerModel():
         self.weaponModel = None
 
         self.theta = 0
+
 
     def tick(self, handler, n, weaponModel):
 
@@ -66,7 +58,7 @@ class PlayerModel():
 
         if weaponModel:
 
-            dw = Vector(PlayerModel.handMag,0) + weaponModel.ws # vector from body to barrel
+            dw = WeaponModel.weaponHandleOffset + weaponModel.ws # vector from body to barrel
 
             self.theta -= math.asin( dw.y / max(toMouse.length(),1) ) # angle between mouse and barrel from body
 
@@ -86,7 +78,7 @@ class PlayerModel():
         self.parts["left_hand"].render(renderer,pos,cam)
 
         if weaponModel:
-            weaponModel.render(renderer,pos,self.parts["right_hand"].offset,cam,theta = -self.theta)
+            weaponModel.render(renderer,pos,cam,theta = -self.theta)
 
             self.parts["right_hand"].render(renderer,pos,cam,theta = -self.theta)
         else:

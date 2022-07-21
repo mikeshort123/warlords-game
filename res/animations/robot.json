@@ -1,0 +1,46 @@
+{
+  "animations" : [
+
+    {
+      "part" : "right_arm",
+      "condition" : {"type" : "condition.on"},
+      "angle" : {
+        "type" : "movement.variable",
+        "name" : "pointing"
+      },
+      "x_offset" : {"type" : "movement.none"},
+      "y_offset" : {"type" : "movement.none"}
+    },
+
+    {
+      "part" : "left_leg",
+      "condition" : {
+        "type" : "condition.boolean",
+        "name" : "walking"
+      },
+      "angle" : {"type" : "movement.none"},
+      "x_offset" : {"type" : "movement.none"},
+      "y_offset" : {
+        "type" : "movement.sin",
+        "magnitude" : 3,
+        "period" : 16
+      }
+    },
+
+    {
+      "part" : "right_leg",
+      "condition" : {
+        "type" : "condition.boolean",
+        "name" : "walking"
+      },
+      "angle" : {"type" : "movement.none"},
+      "x_offset" : {"type" : "movement.none"},
+      "y_offset" : {
+        "type" : "movement.sin",
+        "magnitude" : -3,
+        "period" : 16
+      }
+    }
+
+  ]
+}

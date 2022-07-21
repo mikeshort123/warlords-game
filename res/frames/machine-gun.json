@@ -3,9 +3,9 @@
 
   "subtypes" : {
 
-    "adaptive" : {
+    "rapid-fire" : {
       "damage" : 10,
-      "firerate" : 10
+      "firerate" : 1000
     }
 
   }

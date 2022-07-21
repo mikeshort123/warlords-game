@@ -5,12 +5,12 @@
 
     "adaptive" : {
       "damage" : 100,
-      "firerate" : 1
+      "firerate" : 140
     },
 
     "rapid-fire" : {
-      "damage" : 60,
-      "firerate" : 2
+      "damage" : 70,
+      "firerate" : 200
     }
 
   }

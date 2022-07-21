@@ -7,7 +7,7 @@
   "element" : 5,
 
   "frame" : {
-      "type" : "res/frames/handcannon.json",
+      "type" : "res/frames/machine-gun.json",
       "subtype" : "rapid-fire"
   },
 

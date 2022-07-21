@@ -13,7 +13,7 @@ class Menu(StateTemplate):
 
     def tick(self,handler):
 
-        if handler.getKey("START"):
+        if handler.getKeyChanged("START"):
             State.setState(Game,handler)
 
 

@@ -1,0 +1,9 @@
+{
+  "name" : "Ball Guy",
+  "model" : "res/models/enemies/ball_guy.json",
+
+  "health" : 1000,
+  "hitbox_size" : [64,84],
+  "hitbox_offset" : [0,0]
+
+}

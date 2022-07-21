@@ -14,20 +14,20 @@ class Player():
         self.weapon_selection = "none"
         self.inventory = Inventory("res/save.json")
 
-    def tick(self,handler,grid):
+    def tick(self,handler,grid,bulletGenerator):
 
         n = Vector()
 
-        if handler.getKey("UP"):
+        if handler.getKeyPressed("UP"):
             n.y -= 1
 
-        if handler.getKey("DOWN"):
+        if handler.getKeyPressed("DOWN"):
             n.y += 1
 
-        if handler.getKey("LEFT"):
+        if handler.getKeyPressed("LEFT"):
             n.x -= 1
 
-        if handler.getKey("RIGHT"):
+        if handler.getKeyPressed("RIGHT"):
             n.x += 1
 
         n.normalize(m=Player.speed)
@@ -37,12 +37,16 @@ class Player():
         if self.checkCornerCollisions(self.pos.x+n.x,self.pos.y,grid): self.pos.x += n.x
         if self.checkCornerCollisions(self.pos.x,self.pos.y+n.y,grid): self.pos.y += n.y
 
-        if handler.getKey("1"):
+        if handler.getKeyChanged("1"):
             self.weapon_selection = "primary"
-        if handler.getKey("2"):
+        if handler.getKeyChanged("2"):
             self.weapon_selection = "special"
-        if handler.getKey("3"):
+        if handler.getKeyChanged("3"):
             self.weapon_selection = "melee"
+
+        if weapon := self.getWeapon():
+            weapon.tick(handler, bulletGenerator)
+
 
 
 
@@ -71,8 +75,13 @@ class Player():
 
         self.inventory.armour.slots[0].model.render(renderer,self.pos,cam,self.getWeaponModel())
 
+    def getWeapon(self):
+        if self.weapon_selection == "primary": return self.inventory.primary.slots[0]
+        if self.weapon_selection == "special": return self.inventory.special.slots[0]
+        if self.weapon_selection == "melee": return self.inventory.melee.slots[0]
+        return None
+
     def getWeaponModel(self):
-        if self.weapon_selection == "primary": return self.inventory.primary.slots[0].model
-        if self.weapon_selection == "special": return self.inventory.special.slots[0].model
-        if self.weapon_selection == "melee": return self.inventory.melee.slots[0].model
+        weapon = self.getWeapon()
+        if weapon: return weapon.model
         return None

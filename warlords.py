@@ -45,7 +45,7 @@ class Main():
             State.tick(handler)
             State.render(renderer)
 
-
+            handler.reset()
             pygame.display.update()
             clock.tick(60)
 
