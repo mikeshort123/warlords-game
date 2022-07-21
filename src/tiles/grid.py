@@ -1,4 +1,4 @@
-from src.tiles.tile import Tile
+from src.tiles.tileset import Tileset
 from src.utils.vector import Vector
 
 class Grid:
@@ -25,11 +25,11 @@ class Grid:
                     y = int(sy) + j + (sy >= 0)
                     if 0 <= y < len(self.grid[x]):
 
-                        renderer.drawCamImage(Tile.getTile(self.grid[x][y]).texture,Vector(x,y),Vector(1,1),cam)
+                        renderer.drawCamImage(self.grid[x][y].texture,Vector(x,y),Vector(1,1),cam)
 
 
     def getSolid(self,x,y):
-        return Tile.getTile(self.grid[x][y]).solid
+        return self.grid[x][y].solid
 
 
     @staticmethod
@@ -61,6 +61,6 @@ class Grid:
             else:
                 current += c
 
-        Tile.loadTileset(tilepath)
+        tileset = Tileset(tilepath)
 
-        return [[grid[j][i] for i in range(len(row))] for j,row in enumerate(grid)]
+        return [[tileset.getTile(grid[j][i]) for i in range(len(row))] for j,row in enumerate(grid)]

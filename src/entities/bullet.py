@@ -1,6 +1,5 @@
 import pygame
 
-from src.tiles.tile import Tile
 
 class Bullet:
 

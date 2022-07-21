@@ -1,32 +1,23 @@
 import json,pygame,math
+
 from src.utils.assets import Assets
 from src.utils.vector import Vector
 from src.entities.bullet import Bullet
-from src.animations.animationController import AnimationController
 from src.ais.xslider import XSlider
 
 class Enemy:
 
-    def __init__(self, fn, pos):
-
-        with open(fn) as f:
-            data = json.load(f)
-
-        model_path = data["model"]
-
-        self.model, self.animator = Assets.loadModel(model_path)
-
-        self.pos = pos
+    def __init__(self,pos,generator):
 
         self.alive = True
-
+        self.pos = pos
         self.ai = XSlider(self.pos, 3, 0.1)
 
-        self.maxhealth = data["health"]
-        self.health = self.maxhealth
-
-        self.hitbox_size = Vector(data["hitbox_size"]) / self.model.scale
-        self.hitbox_offset = (Vector(data["hitbox_offset"]) / self.model.scale) - (self.hitbox_size / 2)
+        self.model, self.animator = Assets.loadModel(generator.model_path)
+        self.maxhealth = generator.maxhealth
+        self.health = generator.maxhealth
+        self.hitbox_size = generator.hitbox_size
+        self.hitbox_offset = generator.hitbox_offset
 
 
     def tick(self,handler,grid,entities,player):

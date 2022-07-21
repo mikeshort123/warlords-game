@@ -1,11 +1,9 @@
-from src.tiles.tile import Tile
 from src.utils.vector import Vector
 from src.entities.bullet import Bullet
-from src.entities.enemy import Enemy
+from src.entities.enemyFactory import EnemyFactory
 from src.tiles.grid import Grid
 
 class World():
-
 
 
     def __init__(self,player,cam):
@@ -15,10 +13,15 @@ class World():
         self.player = player
         self.cam = cam
 
+        self.enemyFactory = EnemyFactory()
+        self.enemyFactory.loadEnemy("res/enemies/ball_guy.json")
+        self.enemyFactory.loadEnemy("res/enemies/robot.json")
+
         self.entities = []
 
-        self.entities.append(Enemy("res/enemies/ball_guy.json",player.pos.copy()))
-        self.entities.append(Enemy("res/enemies/robot.json",player.pos.copy() + Vector(0,2)))
+        self.entities.append(self.enemyFactory.generateEnemy("Ball Guy",player.pos.copy()))
+        self.entities.append(self.enemyFactory.generateEnemy("Robot",player.pos.copy() + Vector(0,2)))
+
 
     def tick(self,handler):
 

@@ -1,4 +1,4 @@
-from src.tiles.tile import Tile
+
 from src.uis.inventory import Inventory
 from src.utils.vector import Vector
 
