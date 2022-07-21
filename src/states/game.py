@@ -3,7 +3,7 @@ from src.utils.assets import Assets
 from src.cam import Cam
 from src.world import World
 from src.player.player import Player
-from src.element import Element
+from src.definitions.element import Element
 from src.uis.uiFrame import UIFrame
 
 class Game(StateTemplate):
@@ -11,7 +11,7 @@ class Game(StateTemplate):
     def __init__(self,handler):
 
         Assets.loadFont()
-        Element.loadElementDefinitions("res/elements.json")
+        Element.loadElementDefinitions("res/definitions/elements.json")
 
         self.cam = Cam(0,0)
         self.player = Player(125//2,5)

@@ -1,6 +1,6 @@
 import pygame, json
 
-from src.element import Element
+from src.definitions.element import Element
 from src.utils.assets import Assets
 from src.models.weaponModel import WeaponModel
 from src.models.playerModel import PlayerModel
