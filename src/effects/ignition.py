@@ -1,10 +1,15 @@
 from src.effects.effect import Effect
+from src.definitions.element import Element
 
 class Ignition(Effect):
 
     DELAY = 40
     DAMAGE = 1000
     STACK_MULTIPLIER = 1.1
+
+    COLOUR = (255,150,0)
+
+    TARGET = True
 
     def __init__(self):
 

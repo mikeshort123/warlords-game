@@ -1,4 +1,5 @@
 from src.effects.effect import Effect
+from src.definitions.element import Element
 
 class Slow(Effect):
 
@@ -6,6 +7,9 @@ class Slow(Effect):
     SPEED_MULTIPLIER = 0.7
     STACK_MULTIPLIER = 1.1
 
+    COLOUR = (100,100,255)
+
+    TARGET = True
 
     def __init__(self):
 

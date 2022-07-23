@@ -1,10 +1,15 @@
 from src.effects.effect import Effect
+from src.definitions.element import Element
 
 class Poison(Effect):
 
     TOTAL_TICKS = 10
     TICK_TIME_DELTA = 10
     DAMAGE = 100
+
+    COLOUR = (0,110,0)
+
+    TARGET = True
 
     def __init__(self):
 

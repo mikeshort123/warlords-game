@@ -61,12 +61,14 @@ class Enemy:
         pygame.draw.rect(screen,(0,0,0),(dpos.x,dpos.y,100,10))
         pygame.draw.rect(screen,(255,0,0),(dpos.x,dpos.y,100*self.health // self.maxhealth,10))
 
+        for i, effect_type in enumerate(self.effects):
+
+            pygame.draw.rect(screen,effect_type.COLOUR,(dpos.x + 25*i,dpos.y-25,20,20))
+
 
     def applyEffect(self,effect,amount):
 
         if amount == 0: return
-
-        print("ADDING :",amount,type(effect))
 
         if type(effect) not in self.effects:
             self.effects[type(effect)] = effect

@@ -1,6 +1,12 @@
 import pygame
 
+from src.definitions.element import Element
 from src.effects.slow import Slow
+from src.effects.speed import Speed
+from src.effects.heal import Heal
+from src.effects.ignition import Ignition
+from src.effects.poison import Poison
+
 class Bullet:
 
     def __init__(self,pos,dir,source):
@@ -14,6 +20,17 @@ class Bullet:
 
         self.alive = True
 
+        thingylist = [
+            Ignition,
+            Slow,
+            Heal,
+            Ignition,
+            Speed,
+            Poison
+        ]
+
+        self.tempMap = {Element.getElement(i+1) : v for i, v in enumerate(thingylist)}
+
     def tick(self,grid,entities):
 
         self.pos += self.dir # move bullet
@@ -26,7 +43,7 @@ class Bullet:
                 damage, element, procs = self.source.generateDamageProfile()
                 entity.health -= damage
 
-                entity.applyEffect(Slow(),procs)
+                entity.applyEffect(self.tempMap[element](),procs)
 
                 self.alive = False
 

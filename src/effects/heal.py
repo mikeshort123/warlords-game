@@ -1,9 +1,14 @@
 from src.effects.effect import Effect
+from src.definitions.element import Element
 
 class Heal(Effect):
 
     HEALTH = 1000
     STACK_MULTIPLIER = 1.1
+
+    COLOUR = (120,255,50)
+
+    TARGET = False
 
     def __init__(self):
 
