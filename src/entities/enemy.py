@@ -4,6 +4,7 @@ from src.utils.assets import Assets
 from src.utils.vector import Vector
 from src.entities.bullet import Bullet
 from src.ais.xslider import XSlider
+from src.definitions.element import Element
 
 class Enemy:
 
@@ -11,6 +12,8 @@ class Enemy:
 
         self.pos = pos
         self.ai = XSlider(self.pos, 3, 0.1)
+
+        self.effects = {}
 
         self.model, self.animator = Assets.loadModel(generator.model_path)
         self.maxhealth = generator.maxhealth
@@ -36,7 +39,12 @@ class Enemy:
 
         self.animator.tick()
 
+        for name, effect in list(self.effects.items()): # had to convert to list, as modifying a dict mid loop would upset python
 
+            effect.tick(self)
+
+            if effect.stacks == 0:
+                self.effects.pop(name)
 
 
     def render(self,renderer,cam):
@@ -48,6 +56,18 @@ class Enemy:
         screen = renderer.display
         pygame.draw.rect(screen,(0,0,0),(dpos.x,dpos.y,100,10))
         pygame.draw.rect(screen,(255,0,0),(dpos.x,dpos.y,100*self.health // self.maxhealth,10))
+
+
+    def applyEffect(self,effect,amount):
+
+        if amount == 0: return
+
+        print("ADDING :",amount,effect.NAME)
+
+        if effect.NAME not in self.effects:
+            self.effects[effect.NAME] = effect
+
+        self.effects[effect.NAME].addStacks(amount)
 
 
     def inHitbox(self,pos):

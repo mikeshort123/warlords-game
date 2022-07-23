@@ -1,5 +1,6 @@
 import pygame
 
+from src.effects.ignition import Ignition
 
 class Bullet:
 
@@ -25,7 +26,9 @@ class Bullet:
             if entity.inHitbox(self.pos):
                 damage, element, procs = self.source.generateDamageProfile()
                 entity.health -= damage
-                print(damage, element, procs)
+
+                entity.applyEffect(Ignition(),procs)
+
                 self.alive = False
 
     def render(self,renderer,cam):
