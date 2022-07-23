@@ -11,7 +11,8 @@ class Enemy:
     def __init__(self,pos,generator):
 
         self.pos = pos
-        self.ai = XSlider(self.pos, 3, 0.1)
+        self.speed = 0.1
+        self.ai = XSlider(self.pos, 3)
 
         self.effects = {}
 
@@ -24,8 +25,16 @@ class Enemy:
 
     def tick(self,grid,player):
 
+        self.modified_speed = self.speed
 
-        v = self.ai.tick(self.pos)
+        for name, effect in list(self.effects.items()): # had to convert to list, as modifying a dict mid loop would upset python
+
+            effect.tick(self)
+            if effect.stacks == 0:
+                self.effects.pop(name)
+
+
+        v = self.ai.tick(self.pos, self.modified_speed)
         self.pos += v
         self.animator.setVariable("walking",not v.isZero())
 
@@ -39,12 +48,7 @@ class Enemy:
 
         self.animator.tick()
 
-        for name, effect in list(self.effects.items()): # had to convert to list, as modifying a dict mid loop would upset python
 
-            effect.tick(self)
-
-            if effect.stacks == 0:
-                self.effects.pop(name)
 
 
     def render(self,renderer,cam):
@@ -62,12 +66,12 @@ class Enemy:
 
         if amount == 0: return
 
-        print("ADDING :",amount,effect.NAME)
+        print("ADDING :",amount,type(effect))
 
-        if effect.NAME not in self.effects:
-            self.effects[effect.NAME] = effect
+        if type(effect) not in self.effects:
+            self.effects[type(effect)] = effect
 
-        self.effects[effect.NAME].addStacks(amount)
+        self.effects[type(effect)].addStacks(amount)
 
 
     def inHitbox(self,pos):

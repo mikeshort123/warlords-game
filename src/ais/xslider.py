@@ -4,20 +4,19 @@ from src.utils.vector import Vector
 
 class XSlider:
 
-    def __init__(self,pos,reach,speed):
+    def __init__(self,pos,reach):
 
         self.centre = pos.x
         self.left = pos.x - reach
         self.right = pos.x + reach
 
-        self.speed = speed
         self.moving = False
 
         self.target = self.centre
-        self.allowance = 2*speed
+        self.allowance = 0.3
 
 
-    def tick(self, pos):
+    def tick(self, pos, speed):
 
         if self.atTarget(pos):
             r = random.randint(0,100)
@@ -29,7 +28,7 @@ class XSlider:
             return Vector()
 
         else:
-            d = self.speed if pos.x < self.target else -self.speed
+            d = speed if pos.x < self.target else -speed
             return Vector(d,0)
 
 

@@ -1,7 +1,6 @@
 import pygame
 
-from src.effects.ignition import Ignition
-
+from src.effects.slow import Slow
 class Bullet:
 
     def __init__(self,pos,dir,source):
@@ -27,7 +26,7 @@ class Bullet:
                 damage, element, procs = self.source.generateDamageProfile()
                 entity.health -= damage
 
-                entity.applyEffect(Ignition(),procs)
+                entity.applyEffect(Slow(),procs)
 
                 self.alive = False
 

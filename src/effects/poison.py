@@ -6,8 +6,6 @@ class Poison(Effect):
     TICK_TIME_DELTA = 10
     DAMAGE = 100
 
-    NAME = "POISON"
-
     def __init__(self):
 
         Effect.__init__(self)

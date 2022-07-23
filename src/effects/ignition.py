@@ -6,8 +6,6 @@ class Ignition(Effect):
     DAMAGE = 1000
     STACK_MULTIPLIER = 1.1
 
-    NAME = "Ignition"
-
     def __init__(self):
 
         Effect.__init__(self)
