@@ -79,6 +79,11 @@ class Enemy:
         self.effects[EffectType].addStacks(amount)
 
 
+    def getElementalEffects(self, element):
+
+        return [] # for now enemies dont need to apply effects, but that will likely change
+
+
     def inHitbox(self,pos):
 
         px,py = pos.list()

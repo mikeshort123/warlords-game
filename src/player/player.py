@@ -4,6 +4,13 @@ from src.uis.inventory import Inventory
 from src.utils.vector import Vector
 from src.definitions.inventorySlotNames import InventorySlotNames
 from src.utils.assets import Assets
+from src.definitions.element import Element
+
+from src.effects.slow import Slow
+from src.effects.speed import Speed
+from src.effects.heal import Heal
+from src.effects.ignition import Ignition
+from src.effects.poison import Poison
 
 class Player():
 
@@ -19,6 +26,17 @@ class Player():
 
         self.health = 100
         self.effects = {}
+
+        thingylist = [
+            Ignition,
+            Slow,
+            Heal,
+            Ignition,
+            Speed,
+            Poison
+        ]
+
+        self.defaultEffects = {Element.getElement(i+1) : v for i, v in enumerate(thingylist)}
 
 
     def tick(self,handler,grid,bulletGenerator):
@@ -73,6 +91,12 @@ class Player():
             self.effects[EffectType] = EffectType()
 
         self.effects[EffectType].addStacks(amount)
+
+
+    def getElementalEffects(self, element):
+
+        effects = [self.defaultEffects[element]]
+        return effects
 
 
     def checkCornerCollisions(self,x,y,grid):

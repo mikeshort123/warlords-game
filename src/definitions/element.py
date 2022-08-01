@@ -3,6 +3,7 @@ import json
 class Element:
 
     elements = []
+    defaultEffects = {}
 
     @staticmethod
     def loadElementDefinitions(fn):

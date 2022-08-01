@@ -1,5 +1,4 @@
 from src.effects.effect import Effect
-from src.definitions.element import Element
 
 class Slow(Effect):
 

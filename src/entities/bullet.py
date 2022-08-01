@@ -1,11 +1,7 @@
 import pygame
 
 from src.definitions.element import Element
-from src.effects.slow import Slow
-from src.effects.speed import Speed
-from src.effects.heal import Heal
-from src.effects.ignition import Ignition
-from src.effects.poison import Poison
+
 
 class Bullet:
 
@@ -21,16 +17,7 @@ class Bullet:
 
         self.alive = True
 
-        thingylist = [
-            Ignition,
-            Slow,
-            Heal,
-            Ignition,
-            Speed,
-            Poison
-        ]
 
-        self.tempMap = {Element.getElement(i+1) : v for i, v in enumerate(thingylist)}
 
     def tick(self,grid,entities):
 
@@ -61,10 +48,13 @@ class Bullet:
 
         if procs >= 1:
 
-            EffectType = self.tempMap[element]
-            if EffectType.TARGET:
-                entity.applyEffect(EffectType, procs) # debuff, apply to target
-            else:
-                self.source.applyEffect(EffectType, procs) # buff, apply to source
+            effects = self.source.getElementalEffects(element)
+
+            for EffectType in effects:
+
+                if EffectType.TARGET:
+                    entity.applyEffect(EffectType, procs) # debuff, apply to target
+                else:
+                    self.source.applyEffect(EffectType, procs) # buff, apply to source
 
         self.alive = False
