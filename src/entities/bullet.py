@@ -9,13 +9,13 @@ from src.effects.poison import Poison
 
 class Bullet:
 
-    def __init__(self,pos,dir,source):
+    def __init__(self,pos, dir, source, damageProfileGenerator):
 
         self.pos = pos
         self.dir = dir * 0.5
 
         self.source = source
-        self.damageProfileGenerator = self.source.generateDamageProfile
+        self.damageProfileGenerator = damageProfileGenerator
 
         self.colour = source.element.colour
 
