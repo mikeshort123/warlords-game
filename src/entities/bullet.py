@@ -9,7 +9,7 @@ from src.effects.poison import Poison
 
 class Bullet:
 
-    def __init__(self,pos, dir, source, damageProfileGenerator):
+    def __init__(self, pos, dir, colour, source, damageProfileGenerator):
 
         self.pos = pos
         self.dir = dir * 0.5
@@ -17,7 +17,7 @@ class Bullet:
         self.source = source
         self.damageProfileGenerator = damageProfileGenerator
 
-        self.colour = source.element.colour
+        self.colour = colour
 
         self.alive = True
 
@@ -46,7 +46,12 @@ class Bullet:
                 entity.applyDamage(damage,element)
 
                 if procs >= 1:
-                    entity.applyEffect(self.tempMap[element], procs)
+
+                    EffectType = self.tempMap[element]
+                    if EffectType.TARGET:
+                        entity.applyEffect(EffectType, procs)
+                    else:
+                        self.source.applyEffect(EffectType, procs)
 
                 self.alive = False
 

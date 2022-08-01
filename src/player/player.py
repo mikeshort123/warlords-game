@@ -2,6 +2,7 @@
 from src.uis.inventory import Inventory
 from src.utils.vector import Vector
 from src.definitions.inventorySlotNames import InventorySlotNames
+from src.utils.assets import Assets
 
 class Player():
 
@@ -15,8 +16,18 @@ class Player():
         self.weapon_selection = InventorySlotNames.PRIMARY
         self.inventory = Inventory(self,"res/save.json")
 
+        self.health = 100
+        self.effects = {}
+
 
     def tick(self,handler,grid,bulletGenerator):
+
+        self.modified_speed = Player.speed
+
+        for name, effect in list(self.effects.items()):
+            effect.tick(self)
+            if effect.stacks == 0:
+                self.effects.pop(name)
 
         n = Vector()
 
@@ -32,7 +43,7 @@ class Player():
         if handler.getKeyPressed("RIGHT"):
             n.x += 1
 
-        n.normalize(m=Player.speed)
+        n.normalize(m=self.modified_speed)
 
         self.inventory.armour.slots[0].model.tick(handler,n,self.getWeaponModel())
 
@@ -48,6 +59,19 @@ class Player():
 
         if weapon := self.getWeapon():
             weapon.tick(handler, bulletGenerator)
+
+
+    def applyDamage(self, damage, element):
+
+        self.health -= damage
+
+
+    def applyEffect(self, EffectType, amount):
+
+        if EffectType not in self.effects:
+            self.effects[EffectType] = EffectType()
+
+        self.effects[EffectType].addStacks(amount)
 
 
     def checkCornerCollisions(self,x,y,grid):
@@ -73,6 +97,9 @@ class Player():
     def render(self,renderer,cam):
 
         self.inventory.armour.slots[0].model.render(renderer,self.pos,cam,self.getWeaponModel())
+
+        words = Assets.font.render(str(self.health), True, (50,255,80))
+        renderer.display.blit(words, (20, 20))
 
     def getWeapon(self):
 

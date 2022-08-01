@@ -55,6 +55,6 @@ class World():
 
 
 
-    def makeBullet(self, handler, guy, damageProfileGenerator):
+    def makeBullet(self, handler, colour, guy, damageProfileGenerator):
         toMouse = (handler.getMousePos() - Vector(320,240)) / 64
-        self.projectiles.append(Bullet(self.player.pos.copy(), toMouse.normalize(), guy, damageProfileGenerator))
+        self.projectiles.append(Bullet(self.player.pos.copy(), toMouse.normalize(), colour, guy, damageProfileGenerator))

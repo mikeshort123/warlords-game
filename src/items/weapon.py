@@ -41,7 +41,7 @@ class Weapon:
 
     def tick(self, handler, bulletGenerator):
         if self.trigger.tick(handler):
-            bulletGenerator(handler, self.wielder, self.generateDamageProfile)
+            bulletGenerator(handler, self.element.colour, self.wielder, self.generateDamageProfile)
 
 
 
