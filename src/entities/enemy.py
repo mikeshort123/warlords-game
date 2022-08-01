@@ -36,7 +36,7 @@ class Enemy:
 
         v = self.ai.tick(self.pos, self.modified_speed)
         self.pos += v
-        self.animator.setVariable("walking",not v.isZero())
+        self.animator.setVariable("walking", not v.isZero())
 
         # setting this variable for all enemies is bad, fix
         self.animator.setVariable("x_vel", v.x * 64)
@@ -64,6 +64,14 @@ class Enemy:
         for i, effect_type in enumerate(self.effects):
 
             pygame.draw.rect(screen,effect_type.COLOUR,(dpos.x + 25*i,dpos.y-25,20,20))
+
+
+    def applyDamage(self,damageProfileGenerator, source, tempMap):
+
+        damage, element, procs = damageProfileGenerator()
+
+        self.health -= damage
+        self.applyEffect(tempMap[element](),procs)
 
 
     def applyEffect(self,effect,amount):

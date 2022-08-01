@@ -15,6 +15,7 @@ class Bullet:
         self.dir = dir * 0.5
 
         self.source = source
+        self.damageProfileGenerator = self.source.generateDamageProfile
 
         self.colour = source.element.colour
 
@@ -40,11 +41,8 @@ class Bullet:
 
         for entity in entities: # check entity collision
             if entity.inHitbox(self.pos):
-                damage, element, procs = self.source.generateDamageProfile()
-                entity.health -= damage
 
-                entity.applyEffect(self.tempMap[element](),procs)
-
+                entity.applyDamage(self.damageProfileGenerator, None, self.tempMap)
                 self.alive = False
 
     def render(self,renderer,cam):

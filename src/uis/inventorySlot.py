@@ -40,6 +40,13 @@ class InventorySlot:
                     renderer.drawImage(self.blankimg,x,y)
 
 
+    def getSelectedItem(self):
+
+        if len(self.slots) <= 0:
+            return None
+        return self.slots[0]
+
+
     def mouse_in_bounds(self,handler,active):
         (x,y) = handler.getMousePos().list()
         return self.selected_bound.collidepoint(x, y) or (active and self.pocket_bound.collidepoint(x, y))
