@@ -42,7 +42,14 @@ class Bullet:
         for entity in entities: # check entity collision
             if entity.inHitbox(self.pos):
 
-                entity.applyDamage(self.damageProfileGenerator, None, self.tempMap)
+                damage, element, procs = self.damageProfileGenerator()
+
+                entity.applyDamage(damage,element)
+
+                if procs >= 1:
+                    effect = self.tempMap[element]()
+                    entity.applyEffect(effect, procs)
+
                 self.alive = False
 
     def render(self,renderer,cam):

@@ -66,15 +66,12 @@ class Enemy:
             pygame.draw.rect(screen,effect_type.COLOUR,(dpos.x + 25*i,dpos.y-25,20,20))
 
 
-    def applyDamage(self,damageProfileGenerator, source, tempMap):
-
-        damage, element, procs = damageProfileGenerator()
+    def applyDamage(self, damage, element):
 
         self.health -= damage
-        self.applyEffect(tempMap[element](),procs)
 
 
-    def applyEffect(self,effect,amount):
+    def applyEffect(self,effect, amount):
 
         if amount == 0: return
 
