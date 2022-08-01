@@ -71,14 +71,12 @@ class Enemy:
         self.health -= damage
 
 
-    def applyEffect(self,effect, amount):
+    def applyEffect(self, EffectType, amount):
 
-        if amount == 0: return
+        if EffectType not in self.effects:
+            self.effects[EffectType] = EffectType()
 
-        if type(effect) not in self.effects:
-            self.effects[type(effect)] = effect
-
-        self.effects[type(effect)].addStacks(amount)
+        self.effects[EffectType].addStacks(amount)
 
 
     def inHitbox(self,pos):

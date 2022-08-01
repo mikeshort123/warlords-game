@@ -43,12 +43,10 @@ class Bullet:
             if entity.inHitbox(self.pos):
 
                 damage, element, procs = self.damageProfileGenerator()
-
                 entity.applyDamage(damage,element)
 
                 if procs >= 1:
-                    effect = self.tempMap[element]()
-                    entity.applyEffect(effect, procs)
+                    entity.applyEffect(self.tempMap[element], procs)
 
                 self.alive = False
 
