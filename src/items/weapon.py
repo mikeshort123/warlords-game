@@ -9,28 +9,47 @@ class Weapon:
     def __init__(self, wielder, item):
 
         self.wielder = wielder
-
         self.model = WeaponModel(item.model_path)
-        self.component = Weapon.generateFrame(item.frame_data,item.stats,item.element)
 
+        # unpack weapon stats and data
+            # maybe ill get rid of the file read at some point who knows
+        weapon_type_filepath = item.frame_data["type"]
+        weapon_subtype_name = item.frame_data["subtype"]
 
-    def tick(self, handler, bulletGenerator):
-        self.component.tick(handler, bulletGenerator)
+        with open(weapon_type_filepath) as f:
+            weapon_type_data = json.load(f)
 
-
-    @staticmethod
-    def generateFrame(frame,stats,element):
-
-        with open(frame["type"]) as f:
-            frame_data = json.load(f)
-
-        frame_ref = {
+        frame_name_reference = {
             "gun-auto" : Fullauto,
             "gun-semiauto" : Semiauto
         }
 
-        component_type = frame_ref[frame_data["type"]]
+        Trigger_type = frame_name_reference[weapon_type_data["type"]]
+        weapon_subtype_stats = weapon_type_data["subtypes"][weapon_subtype_name]
 
-        subtype = frame_data["subtypes"][frame["subtype"]]
+        firerate = 3600 // weapon_subtype_stats["firerate"] # convert rounds per minute into frames per round
 
-        return component_type(subtype,stats,element)
+        # use stats to set up weapons
+        self.trigger = Trigger_type(firerate)
+
+        self.damage = weapon_subtype_stats["damage"]
+        self.status_chance = item.stats["element_chance"]
+        self.element = item.element
+
+        self.status_counter = 0
+
+
+    def tick(self, handler, bulletGenerator):
+        if self.trigger.tick(handler):
+            bulletGenerator(handler,self)
+
+
+
+
+    def generateDamageProfile(self):
+
+        self.status_counter += self.status_chance
+        procs = int(self.status_counter)
+        self.status_counter %= 1
+
+        return self.damage, self.element, procs
