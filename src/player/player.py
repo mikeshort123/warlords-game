@@ -1,6 +1,16 @@
-from src.tiles.tile import Tile
+import pygame
+
 from src.uis.inventory import Inventory
 from src.utils.vector import Vector
+from src.definitions.inventorySlotNames import InventorySlotNames
+from src.utils.assets import Assets
+from src.definitions.element import Element
+
+from src.effects.slow import Slow
+from src.effects.speed import Speed
+from src.effects.heal import Heal
+from src.effects.ignition import Ignition
+from src.effects.poison import Poison
 
 class Player():
 
@@ -11,10 +21,32 @@ class Player():
     def __init__(self,x,y):
 
         self.pos = Vector(x,y)
-        self.weapon_selection = "none"
-        self.inventory = Inventory("res/save.json")
+        self.weapon_selection = InventorySlotNames.PRIMARY
+        self.inventory = Inventory(self,"res/save.json")
+
+        self.health = 100
+        self.effects = {}
+
+        thingylist = [
+            Ignition,
+            Slow,
+            Heal,
+            Ignition,
+            Speed,
+            Poison
+        ]
+
+        self.defaultEffects = {Element.getElement(i+1) : v for i, v in enumerate(thingylist)}
+
 
     def tick(self,handler,grid,bulletGenerator):
+
+        self.modified_speed = Player.speed
+
+        for name, effect in list(self.effects.items()):
+            effect.tick(self)
+            if effect.stacks <= 0:
+                self.effects.pop(name)
 
         n = Vector()
 
@@ -30,7 +62,7 @@ class Player():
         if handler.getKeyPressed("RIGHT"):
             n.x += 1
 
-        n.normalize(m=Player.speed)
+        n.normalize(m=self.modified_speed)
 
         self.inventory.armour.slots[0].model.tick(handler,n,self.getWeaponModel())
 
@@ -38,17 +70,33 @@ class Player():
         if self.checkCornerCollisions(self.pos.x,self.pos.y+n.y,grid): self.pos.y += n.y
 
         if handler.getKeyChanged("1"):
-            self.weapon_selection = "primary"
+            self.weapon_selection = InventorySlotNames.PRIMARY
         if handler.getKeyChanged("2"):
-            self.weapon_selection = "special"
+            self.weapon_selection = InventorySlotNames.SPECIAL
         if handler.getKeyChanged("3"):
-            self.weapon_selection = "melee"
+            self.weapon_selection = InventorySlotNames.MELEE
 
         if weapon := self.getWeapon():
             weapon.tick(handler, bulletGenerator)
 
 
+    def applyDamage(self, damage, element):
 
+        self.health -= damage
+
+
+    def applyEffect(self, EffectType, amount):
+
+        if EffectType not in self.effects:
+            self.effects[EffectType] = EffectType()
+
+        self.effects[EffectType].addStacks(amount)
+
+
+    def getElementalEffects(self, element):
+
+        effects = [self.defaultEffects[element]]
+        return effects
 
 
     def checkCornerCollisions(self,x,y,grid):
@@ -68,18 +116,23 @@ class Player():
         tx = int(px+0.5)
         ty = int(py+0.5)
 
-        return Tile.getTile(grid[tx][ty]).solid
+        return grid.getSolid(tx,ty)
 
 
     def render(self,renderer,cam):
 
         self.inventory.armour.slots[0].model.render(renderer,self.pos,cam,self.getWeaponModel())
 
+        words = Assets.font.render(str(self.health), True, (50,255,80))
+        renderer.display.blit(words, (20, 20))
+
+        for i, effect_type in enumerate(self.effects):
+
+            pygame.draw.rect(renderer.display,effect_type.COLOUR,(5 + 25*i,45,20,20))
+
     def getWeapon(self):
-        if self.weapon_selection == "primary": return self.inventory.primary.slots[0]
-        if self.weapon_selection == "special": return self.inventory.special.slots[0]
-        if self.weapon_selection == "melee": return self.inventory.melee.slots[0]
-        return None
+
+        return self.inventory.getActiveItem(self.weapon_selection)
 
     def getWeaponModel(self):
         weapon = self.getWeapon()

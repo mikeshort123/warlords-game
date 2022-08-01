@@ -4,7 +4,7 @@
   "model" : "res/models/knights-blade.json",
 
   "slot" : 2,
-  "element" : 4,
+  "element" : 1,
 
   "frame" : {
       "type" : "res/frames/handcannon.json",

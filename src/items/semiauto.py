@@ -4,18 +4,17 @@ class Semiauto:
 
 
 
-    def __init__(self,subtype,stats,element):
+    def __init__(self,firerate):
 
-        self.firerate = 3600 // subtype["firerate"]
+        self.firerate = firerate
         self.prefire_delta = self.firerate // 3
         self.count = self.firerate
 
-
         self.prefire = False
 
-        self.element = element
 
-    def tick(self,handler,bulletGenerator):
+
+    def tick(self,handler):
 
         if self.count <= self.prefire_delta and handler.getKeyChanged("SHOOT"):
             self.prefire = True
@@ -23,10 +22,12 @@ class Semiauto:
         if self.count == 0:
 
             if self.prefire:
-                bulletGenerator(handler,self.element.colour)
                 self.count = self.firerate
                 self.prefire = False
+                return True
 
         else:
 
             self.count -= 1
+
+        return False

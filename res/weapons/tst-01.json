@@ -4,7 +4,7 @@
   "model" : "res/models/tst-01.json",
 
   "slot" : 0,
-  "element" : 1,
+  "element" : 6,
 
   "frame" : {
       "type" : "res/frames/handcannon.json",
