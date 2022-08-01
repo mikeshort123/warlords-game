@@ -4,8 +4,8 @@ from src.definitions.element import Element
 class Speed(Effect):
 
     TIME = 100
-    SPEED_MULTIPLIER = 1.4
-    STACK_MULTIPLIER = 1.1
+    MAX_SPEED_MULTIPLIER = 2
+    STACK_INCREASE_RATE = 4
 
     COLOUR = (100,50,180)
 
@@ -22,8 +22,9 @@ class Speed(Effect):
     def tick(self, guy):
 
         if self.timer >= Speed.TIME:
+            self.timer = 0
             self.stacks -= 1
             return
 
         self.timer += 1
-        guy.modified_speed *= Speed.SPEED_MULTIPLIER ** (self.stacks ** Speed.STACK_MULTIPLIER)
+        guy.modified_speed *= Speed.MAX_SPEED_MULTIPLIER * (1 - Speed.STACK_INCREASE_RATE**(-self.stacks))

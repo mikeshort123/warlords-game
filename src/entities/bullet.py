@@ -42,18 +42,9 @@ class Bullet:
         for entity in entities: # check entity collision
             if entity.inHitbox(self.pos):
 
-                damage, element, procs = self.damageProfileGenerator()
-                entity.applyDamage(damage,element)
+                self.registerHit(entity)
+                return
 
-                if procs >= 1:
-
-                    EffectType = self.tempMap[element]
-                    if EffectType.TARGET:
-                        entity.applyEffect(EffectType, procs)
-                    else:
-                        self.source.applyEffect(EffectType, procs)
-
-                self.alive = False
 
     def render(self,renderer,cam):
 
@@ -61,3 +52,19 @@ class Bullet:
 
         pygame.draw.circle(renderer.display,(0,0,0),dpos.list(),5)
         pygame.draw.circle(renderer.display,self.colour,dpos.list(),4)
+
+
+    def registerHit(self, entity):
+
+        damage, element, procs = self.damageProfileGenerator()
+        entity.applyDamage(damage,element)
+
+        if procs >= 1:
+
+            EffectType = self.tempMap[element]
+            if EffectType.TARGET:
+                entity.applyEffect(EffectType, procs) # debuff, apply to target
+            else:
+                self.source.applyEffect(EffectType, procs) # buff, apply to source
+
+        self.alive = False

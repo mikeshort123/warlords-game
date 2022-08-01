@@ -1,3 +1,4 @@
+import pygame
 
 from src.uis.inventory import Inventory
 from src.utils.vector import Vector
@@ -26,7 +27,7 @@ class Player():
 
         for name, effect in list(self.effects.items()):
             effect.tick(self)
-            if effect.stacks == 0:
+            if effect.stacks <= 0:
                 self.effects.pop(name)
 
         n = Vector()
@@ -100,6 +101,10 @@ class Player():
 
         words = Assets.font.render(str(self.health), True, (50,255,80))
         renderer.display.blit(words, (20, 20))
+
+        for i, effect_type in enumerate(self.effects):
+
+            pygame.draw.rect(renderer.display,effect_type.COLOUR,(5 + 25*i,45,20,20))
 
     def getWeapon(self):
 
