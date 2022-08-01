@@ -2,6 +2,7 @@ import pygame
 
 from src.items.item import Item
 from src.utils.assets import Assets
+from src.items.weapon import Weapon
 
 class InventorySlot:
 
@@ -10,7 +11,7 @@ class InventorySlot:
     WIDTH = 3
     HEIGHT = 3
 
-    def __init__(self,data,x,y):
+    def __init__(self,player,data,x,y,isWeaponSlot):
 
         self.blankimg = Assets.loadImage("res/textures/uis/itemslot.png")
 
@@ -21,6 +22,11 @@ class InventorySlot:
         self.pocket_bound = pygame.Rect(self.x,self.y+InventorySlot.ITEM_SIZE,(InventorySlot.ITEM_SIZE+InventorySlot.ITEM_SPACING)*InventorySlot.WIDTH,(InventorySlot.ITEM_SIZE+InventorySlot.ITEM_SPACING)*InventorySlot.HEIGHT)
 
         self.slots = [Item(item_data) for item_data in data]
+
+        self.player = player
+
+        if isWeaponSlot:
+            self.active = self.tempGenerateGunObject()
 
 
     def render(self,renderer,active):
@@ -45,6 +51,12 @@ class InventorySlot:
         if len(self.slots) <= 0:
             return None
         return self.slots[0]
+
+
+    def tempGenerateGunObject(self):
+
+        item = self.getSelectedItem()
+        return Weapon(self.player,item)
 
 
     def mouse_in_bounds(self,handler,active):

@@ -2,7 +2,6 @@
 from src.uis.inventory import Inventory
 from src.utils.vector import Vector
 from src.definitions.inventorySlotNames import InventorySlotNames
-from src.items.weapon import Weapon
 
 class Player():
 
@@ -14,11 +13,8 @@ class Player():
 
         self.pos = Vector(x,y)
         self.weapon_selection = InventorySlotNames.PRIMARY
-        self.inventory = Inventory("res/save.json")
+        self.inventory = Inventory(self,"res/save.json")
 
-        self.primary_weapon = self.tempGenerateGunObject(InventorySlotNames.PRIMARY)
-        self.special_weapon = self.tempGenerateGunObject(InventorySlotNames.SPECIAL)
-        self.melee_weapon = self.tempGenerateGunObject(InventorySlotNames.MELEE)
 
     def tick(self,handler,grid,bulletGenerator):
 
@@ -54,13 +50,6 @@ class Player():
             weapon.tick(handler, bulletGenerator)
 
 
-    def tempGenerateGunObject(self,slot):
-
-        item = self.inventory.getSelectedItem(slot)
-        return Weapon(self,item)
-
-
-
     def checkCornerCollisions(self,x,y,grid):
 
         ax,ay = x - Player.width/2, y - Player.height/2
@@ -87,13 +76,7 @@ class Player():
 
     def getWeapon(self):
 
-        mapping = {
-            InventorySlotNames.PRIMARY : self.primary_weapon,
-            InventorySlotNames.SPECIAL : self.special_weapon,
-            InventorySlotNames.MELEE : self.melee_weapon
-        }
-
-        return mapping[self.weapon_selection]
+        return self.inventory.getActiveItem(self.weapon_selection)
 
     def getWeaponModel(self):
         weapon = self.getWeapon()

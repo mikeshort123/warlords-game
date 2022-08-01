@@ -5,15 +5,15 @@ from src.definitions.inventorySlotNames import InventorySlotNames
 
 class Inventory:
 
-    def __init__(self,fn):
+    def __init__(self,player,fn):
 
         with open(fn, "r", encoding="utf8") as f:
             data = json.load(f)
 
-        self.primary = InventorySlot(data["primary"],50,50);
-        self.special = InventorySlot(data["special"],160,50);
-        self.melee = InventorySlot(data["melee"],270,50);
-        self.armour = InventorySlot(data["armour"],380,50);
+        self.primary = InventorySlot(player,data["primary"],50,50,True);
+        self.special = InventorySlot(player,data["special"],160,50,True);
+        self.melee = InventorySlot(player,data["melee"],270,50,True);
+        self.armour = InventorySlot(player,data["armour"],380,50,False);
 
         self.active_display = None
         self.weapon_info = None
@@ -45,7 +45,7 @@ class Inventory:
         if self.weapon_info: self.weapon_info.draw(renderer)
 
 
-    def getSelectedItem(self,slot):
+    def getActiveItem(self,slot):
 
         mapping = {
             InventorySlotNames.PRIMARY : self.primary,
@@ -54,4 +54,4 @@ class Inventory:
             InventorySlotNames.ARMOUR : self.armour
         }
 
-        return mapping[slot].getSelectedItem()
+        return mapping[slot].active
