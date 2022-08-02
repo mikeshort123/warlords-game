@@ -3,6 +3,9 @@ import pygame, json
 from src.definitions.element import Element
 from src.utils.assets import Assets
 from src.models.playerModel import PlayerModel
+from src.items.weapon import Weapon
+from src.items.armour import Armour
+from src.definitions.inventorySlotNames import InventorySlotNames
 
 
 class Item:
@@ -55,17 +58,21 @@ class Item:
 
         self.info = Item.ItemInfo(self)
 
+        self.model_path = weapon_data["model"]
 
+        self.slot = InventorySlotNames(weapon_data["slot"])
 
-        if weapon_data["slot"] == 3:
-            self.model = PlayerModel(weapon_data["model"])
-        else:
-            self.model_path = weapon_data["model"]
+        if self.slot is not InventorySlotNames.ARMOUR:
+
             self.frame_data = weapon_data["frame"]
             self.stats = weapon_data["stats"]
 
 
-
+    def generateActiveObject(self,player):
+        if self.slot is InventorySlotNames.ARMOUR:
+            return Armour(player,self)
+        else:
+            return Weapon(player,self)
 
 
     def drawIcon(self,renderer,x,y):

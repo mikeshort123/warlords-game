@@ -71,7 +71,7 @@ class Player():
 
         n.normalize(m=self.modified_speed)
 
-        self.inventory.slots[InventorySlotNames.ARMOUR].getSelectedItem().model.tick(handler,n,self.getWeaponModel())
+        self.inventory.getActiveItem(InventorySlotNames.ARMOUR).model.tick(handler,n,self.getWeaponModel())
 
         if self.checkCornerCollisions(self.pos.x+n.x,self.pos.y,grid): self.pos.x += n.x
         if self.checkCornerCollisions(self.pos.x,self.pos.y+n.y,grid): self.pos.y += n.y
@@ -128,7 +128,7 @@ class Player():
 
     def render(self,renderer,cam):
 
-        self.inventory.slots[InventorySlotNames.ARMOUR].getSelectedItem().model.render(renderer,self.pos,cam,self.getWeaponModel())
+        self.inventory.getActiveItem(InventorySlotNames.ARMOUR).model.render(renderer,self.pos,cam,self.getWeaponModel())
 
         words = Assets.font.render(str(self.health), True, (50,255,80))
         renderer.display.blit(words, (20, 20))

@@ -1,8 +1,8 @@
-from enum import Enum, auto
+from enum import Enum
 
 class InventorySlotNames(Enum):
 
-    PRIMARY = auto()
-    SPECIAL = auto()
-    MELEE = auto()
-    ARMOUR = auto()
+    PRIMARY = 0
+    SPECIAL = 1
+    MELEE = 2
+    ARMOUR = 3

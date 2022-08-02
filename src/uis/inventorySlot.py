@@ -1,5 +1,3 @@
-import pygame
-
 from src.items.item import Item
 from src.utils.assets import Assets
 from src.items.weapon import Weapon
@@ -29,8 +27,9 @@ class InventorySlot:
 
         self.player = player
 
-        if isWeaponSlot:
-            self.active = self.tempGenerateGunObject()
+        self.isWeaponSlot = isWeaponSlot # temporary to tell difference between weapon and armour
+
+        self.active = self.getSelectedItem().generateActiveObject(self.player)
 
 
     def render(self,renderer,active):
@@ -57,12 +56,6 @@ class InventorySlot:
         return self.slots[0]
 
 
-    def tempGenerateGunObject(self):
-
-        item = self.getSelectedItem()
-        return Weapon(self.player,item)
-
-
     def mouse_in_bounds(self,pos,active):
         return self.selected_bound.isInside(pos) or (active and self.pocket_bound.isInside(pos))
 
@@ -73,7 +66,8 @@ class InventorySlot:
         if index <= 0: return
 
         self.slots[0],self.slots[index] = self.slots[index],self.slots[0]
-        self.active = self.tempGenerateGunObject() # generate new weapon object
+
+        self.active = self.getSelectedItem().generateActiveObject(self.player)
 
 
     def openModScreen(self,pos): # if an item is clicked, swap it to be active
