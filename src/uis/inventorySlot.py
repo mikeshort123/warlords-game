@@ -85,7 +85,7 @@ class InventorySlot:
             index = self.mousePosToItem(x,y)
             if index == -1: return
 
-        mod_menu = ModScreen()
+        mod_menu = ModScreen(self.slots[index])
 
         mod_frame = UIFrame(mod_menu.tick,mod_menu.render)
         State.state.addFrame(mod_frame)

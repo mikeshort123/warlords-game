@@ -1,11 +1,15 @@
+import pygame
+
 from src.utils.assets import Assets
 from src.states.state import State
 
 class ModScreen:
 
-    def __init__(self):
+    def __init__(self, item):
 
         self.img = Assets.loadImage("res/textures/uis/itemslot.png")
+
+        self.item = item
 
     def tick(self,handler):
 
@@ -16,4 +20,6 @@ class ModScreen:
 
     def render(self,renderer):
 
-        renderer.drawImage(self.img,30,50)
+        renderer.drawAlphaBackground((0,0,0),180)
+
+        pygame.draw.rect(renderer.display,self.item.element.colour,(100,100,100,100))
