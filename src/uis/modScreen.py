@@ -20,4 +20,4 @@ class ModScreen:
 
         renderer.drawAlphaBackground((0,0,0),200)
 
-        pygame.draw.rect(renderer.display,self.item.element.colour,(100,100,100,100))
+        pygame.draw.rect(renderer.display,self.item.element.colour,(100,100,144,96))

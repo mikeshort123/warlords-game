@@ -1,0 +1,16 @@
+{
+  "mods" : [
+    {
+      "name" : "Apply Burn",
+      "image" : "res/textures/mods/apply_burn.png",
+      "element" : 1,
+      "slot" : 3,
+      "function" : {
+        "type" : "ADD_ELEMENTAL_EFFECT",
+        "element" : 1,
+        "add" : "BURN"
+      }
+    }
+  ]
+
+}
