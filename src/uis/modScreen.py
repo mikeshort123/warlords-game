@@ -14,10 +14,10 @@ class ModScreen(UIFrame):
 
         self.blankslot = Assets.loadImage("res/textures/uis/modslot.png")
 
-        self.slots = [None for i in range(6)]
+        self.slots = self.item.mods
         self.slotHitboxes = [Hitbox(56 + 192*(i%3), 56 + 128*(i//3), 144, 96) for i in range(6)]
 
-        self.mod_list = Mod.loadMods("res/mods/mods.json")
+        self.mod_list = Mod.mod_list
         self.modHitboxes = [Hitbox(56 + 150*i, 360, 144, 96) for i in range(len(self.mod_list))]
 
     def tick(self,handler):

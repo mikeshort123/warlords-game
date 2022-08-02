@@ -3,7 +3,7 @@ from src.cam import Cam
 from src.world import World
 from src.player.player import Player
 from src.definitions.element import Element
-from src.uis.uiFrame import UIFrame
+from src.mods.mod import Mod
 
 class Game:
 
@@ -11,6 +11,7 @@ class Game:
 
         Assets.loadFont()
         Element.loadElementDefinitions("res/definitions/elements.json")
+        Mod.loadMods("res/mods/mods.json")
 
         self.cam = Cam(0,0)
         self.player = Player(125//2,5)

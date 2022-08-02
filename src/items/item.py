@@ -51,13 +51,10 @@ class Item:
             weapon_data = json.load(f)
 
         self.name = weapon_data["name"]
-
         self.element = Element.getElement(weapon_data["element"])
 
         self.img = Assets.loadImage(weapon_data["icon"])
-
         self.info = Item.ItemInfo(self)
-
         self.model_path = weapon_data["model"]
 
         self.slot = InventorySlotNames(weapon_data["slot"])
@@ -66,6 +63,8 @@ class Item:
 
             self.frame_data = weapon_data["frame"]
             self.stats = weapon_data["stats"]
+
+        self.mods = [None for i in range(6)]
 
 
     def generateActiveObject(self,player):
