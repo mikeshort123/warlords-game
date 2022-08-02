@@ -8,14 +8,14 @@ from src.uis.uiFrame import UIFrame
 
 class ModScreen(UIFrame):
 
-    def __init__(self, item):
+    DISPLAY_WIDTH = 3
 
-        self.item = item
+    def __init__(self, item):
 
         self.blankslot = Assets.loadImage("res/textures/uis/modslot.png")
 
-        self.slots = self.item.mods
-        self.slotHitboxes = [Hitbox(56 + 192*(i%3), 56 + 128*(i//3), 144, 96) for i in range(6)]
+        self.slots = item.mods
+        self.slotHitboxes = [Hitbox(56 + 192*(i%ModScreen.DISPLAY_WIDTH), 56 + 128*(i//ModScreen.DISPLAY_WIDTH), 144, 96) for i in range(len(self.slots))]
 
         self.mod_list = Mod.mod_list
         self.modHitboxes = [Hitbox(56 + 150*i, 360, 144, 96) for i in range(len(self.mod_list))]
@@ -24,6 +24,7 @@ class ModScreen(UIFrame):
 
         if handler.getKeyChanged("CLOSE_INVENTORY"):
             State.state.dropFrame()
+            return
 
         if handler.getKeyChanged("SELECT"):
             pos = handler.getMousePos()
@@ -34,6 +35,8 @@ class ModScreen(UIFrame):
 
             for mod, hitbox in zip(self.mod_list, self.modHitboxes):
                 if hitbox.isInside(pos):
+
+                    if mod in self.slots: continue # dont put duplicate mods in
 
                     index = self.getFirstEmptySlot()
                     if index != None:
