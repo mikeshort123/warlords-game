@@ -22,3 +22,5 @@ class Mod:
 
         self.name = data["name"]
         self.img = Assets.loadImage(data["image"])
+
+        self.function = data["function"]

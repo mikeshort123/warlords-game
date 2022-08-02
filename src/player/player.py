@@ -7,12 +7,7 @@ from src.utils.assets import Assets
 from src.definitions.element import Element
 from src.states.state import State
 from src.uis.uiFrame import UIFrame
-
-from src.effects.slow import Slow
-from src.effects.speed import Speed
-from src.effects.heal import Heal
-from src.effects.ignition import Ignition
-from src.effects.poison import Poison
+from src.definitions.effects import Effects
 
 class Player():
 
@@ -30,12 +25,12 @@ class Player():
         self.effects = {}
 
         thingylist = [
-            Ignition,
-            Slow,
-            Heal,
-            Ignition,
-            Speed,
-            Poison
+            Effects.getEffectFromName("Ignition"),
+            Effects.getEffectFromName("Slow"),
+            Effects.getEffectFromName("Heal"),
+            Effects.getEffectFromName("Ignition"),
+            Effects.getEffectFromName("Speed"),
+            Effects.getEffectFromName("Poison")
         ]
 
         self.defaultEffects = {Element.getElement(i+1) : v for i, v in enumerate(thingylist)}
@@ -102,6 +97,14 @@ class Player():
     def getElementalEffects(self, element):
 
         effects = [self.defaultEffects[element]]
+
+        for mod in self.inventory.slots[InventorySlotNames.ARMOUR].getSelectedItem().mods:
+
+            if mod and mod.function["type"] == "ADD_ELEMENTAL_EFFECT" and element == Element.getElement(mod.function["element"]):
+
+                effects.append(Effects.getEffectFromName(mod.function["add"]))
+
+
         return effects
 
 

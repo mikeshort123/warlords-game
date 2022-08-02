@@ -8,7 +8,7 @@
       "function" : {
         "type" : "ADD_ELEMENTAL_EFFECT",
         "element" : 1,
-        "add" : "BURN"
+        "add" : "Burn"
       }
     }
   ]
