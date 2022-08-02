@@ -6,6 +6,7 @@ from src.items.weapon import Weapon
 from src.states.state import State
 from src.uis.modScreen import ModScreen
 from src.uis.uiFrame import UIFrame
+from src.utils.hitbox import Hitbox
 
 class InventorySlot:
 
@@ -21,8 +22,8 @@ class InventorySlot:
         self.x = x
         self.y = y
 
-        self.selected_bound = pygame.Rect(self.x,self.y,InventorySlot.ITEM_SIZE,InventorySlot.ITEM_SIZE)
-        self.pocket_bound = pygame.Rect(self.x,self.y+InventorySlot.ITEM_SIZE,(InventorySlot.ITEM_SIZE+InventorySlot.ITEM_SPACING)*InventorySlot.WIDTH,(InventorySlot.ITEM_SIZE+InventorySlot.ITEM_SPACING)*InventorySlot.HEIGHT)
+        self.selected_bound = Hitbox(self.x,self.y,InventorySlot.ITEM_SIZE,InventorySlot.ITEM_SIZE)
+        self.pocket_bound = Hitbox(self.x,self.y+InventorySlot.ITEM_SIZE,(InventorySlot.ITEM_SIZE+InventorySlot.ITEM_SPACING)*InventorySlot.WIDTH,(InventorySlot.ITEM_SIZE+InventorySlot.ITEM_SPACING)*InventorySlot.HEIGHT)
 
         self.slots = [Item(item_data) for item_data in data]
 
@@ -62,28 +63,23 @@ class InventorySlot:
         return Weapon(self.player,item)
 
 
-    def mouse_in_bounds(self,handler,active):
-        (x,y) = handler.getMousePos().list()
-        return self.selected_bound.collidepoint(x, y) or (active and self.pocket_bound.collidepoint(x, y))
+    def mouse_in_bounds(self,pos,active):
+        return self.selected_bound.isInside(pos) or (active and self.pocket_bound.isInside(pos))
 
 
-    def pickItem(self,handler): # if an item is clicked, swap it to be active
-        (x,y) = handler.getMousePos().list()
-        index = self.mousePosToItem(x,y)
-        if index == -1: return
+    def pickItem(self,pos): # if an item is clicked, swap it to be active
+
+        index = self.mousePosToItem(pos)
+        if index <= 0: return
+
         self.slots[0],self.slots[index] = self.slots[index],self.slots[0]
-
         self.active = self.tempGenerateGunObject() # generate new weapon object
 
 
-    def openModScreen(self,handler): # if an item is clicked, swap it to be active
-        (x,y) = handler.getMousePos().list()
+    def openModScreen(self,pos): # if an item is clicked, swap it to be active
 
-        if self.selected_bound.collidepoint(x, y):
-            index = 0
-        else:
-            index = self.mousePosToItem(x,y)
-            if index == -1: return
+        index = self.mousePosToItem(pos)
+        if index == -1: return
 
         mod_menu = ModScreen(self.slots[index])
 
@@ -92,21 +88,20 @@ class InventorySlot:
 
 
 
-    def checkHoveredItem(self,handler): # get item mouse is hovering over
-        (x,y) = handler.getMousePos().list()
+    def checkHoveredItem(self,pos): # get item mouse is hovering over
 
-        if self.selected_bound.collidepoint(x, y):
-            index = 0
-        else:
-            index = self.mousePosToItem(x,y)
-            if index == -1: return None
+        index = self.mousePosToItem(pos)
+        if index == -1: return None
 
-        return self.slots[index].getInfo(x,y)
+        return self.slots[index].getInfo(pos.x,pos.y)
 
 
-    def mousePosToItem(self,x,y): # turn a mouse pos into an item index if hovering over an item
-        i = (x-self.x) // (InventorySlot.ITEM_SIZE+InventorySlot.ITEM_SPACING)
-        j = (y-self.y) // (InventorySlot.ITEM_SIZE+InventorySlot.ITEM_SPACING) - 1
+    def mousePosToItem(self,pos): # turn a mouse pos into an item index if hovering over an item
+
+        if self.selected_bound.isInside(pos): return 0
+
+        i = (pos.x-self.x) // (InventorySlot.ITEM_SIZE+InventorySlot.ITEM_SPACING)
+        j = (pos.y-self.y) // (InventorySlot.ITEM_SIZE+InventorySlot.ITEM_SPACING) - 1
 
         if 0 <= i < InventorySlot.WIDTH and 0 <= j < InventorySlot.HEIGHT:
             index = i + j*InventorySlot.WIDTH + 1
