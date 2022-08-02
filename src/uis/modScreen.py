@@ -52,15 +52,13 @@ class ModScreen:
 
         renderer.drawAlphaBackground((0,0,0),200)
 
-        for i in range(3):
-            for j in range(2):
+        for slot, hitbox in zip(self.slots, self.slotHitboxes):
 
-                index = i + j*3
+            if slot:
+                renderer.drawImage(slot.img,hitbox.ax,hitbox.ay)
+            else:
+                renderer.drawImage(self.blankslot,hitbox.ax,hitbox.ay)
 
-                if self.slots[index]:
-                    renderer.drawImage(self.slots[index].img, 56 + 192*i, 56 + 128*j)
-                else:
-                    renderer.drawImage(self.blankslot, 56 + 192*i, 56 + 128*j)
+        for mod, hitbox in zip(self.mod_list, self.modHitboxes):
 
-        for i, mod in enumerate(self.mod_list):
-            renderer.drawImage(mod.img, 56 + 150*i, 360)
+            renderer.drawImage(mod.img,hitbox.ax,hitbox.ay)
