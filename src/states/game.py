@@ -17,9 +17,7 @@ class Game:
 
         self.world = World(self.player,self.cam)
 
-        baseFrame = UIFrame(self.world.tick,self.world.render)
-
-        self.frame_stack = [baseFrame]
+        self.frame_stack = [self.world]
 
     def tick(self,handler):
 

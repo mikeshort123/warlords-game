@@ -4,8 +4,9 @@ from src.utils.assets import Assets
 from src.states.state import State
 from src.mods.mod import Mod
 from src.utils.hitbox import Hitbox
+from src.uis.uiFrame import UIFrame
 
-class ModScreen:
+class ModScreen(UIFrame):
 
     def __init__(self, item):
 

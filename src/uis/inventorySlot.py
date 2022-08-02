@@ -76,9 +76,7 @@ class InventorySlot:
         if index == -1: return
 
         mod_menu = ModScreen(self.slots[index])
-
-        mod_frame = UIFrame(mod_menu.tick,mod_menu.render)
-        State.state.addFrame(mod_frame)
+        State.state.addFrame(mod_menu)
 
 
 

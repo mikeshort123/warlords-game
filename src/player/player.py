@@ -44,8 +44,7 @@ class Player():
     def tick(self,handler,grid,bulletGenerator):
 
         if handler.getKeyChanged("OPEN_INVENTORY"):
-            inventoryFrame = UIFrame(self.inventory.tick,self.inventory.render)
-            State.state.addFrame(inventoryFrame)
+            State.state.addFrame(self.inventory)
             return
 
         self.modified_speed = Player.speed

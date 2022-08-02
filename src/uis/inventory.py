@@ -3,8 +3,9 @@ import json
 from src.uis.inventorySlot import InventorySlot
 from src.definitions.inventorySlotNames import InventorySlotNames
 from src.states.state import State
+from src.uis.uiFrame import UIFrame
 
-class Inventory:
+class Inventory(UIFrame):
 
     def __init__(self,player,fn):
 

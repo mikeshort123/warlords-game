@@ -2,8 +2,9 @@ from src.utils.vector import Vector
 from src.entities.bullet import Bullet
 from src.entities.enemyFactory import EnemyFactory
 from src.tiles.grid import Grid
+from src.uis.uiFrame import UIFrame
 
-class World():
+class World(UIFrame):
 
 
     def __init__(self,player,cam):
