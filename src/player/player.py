@@ -5,6 +5,8 @@ from src.utils.vector import Vector
 from src.definitions.inventorySlotNames import InventorySlotNames
 from src.utils.assets import Assets
 from src.definitions.element import Element
+from src.states.state import State
+from src.uis.uiFrame import UIFrame
 
 from src.effects.slow import Slow
 from src.effects.speed import Speed
@@ -40,6 +42,11 @@ class Player():
 
 
     def tick(self,handler,grid,bulletGenerator):
+
+        if handler.getKeyChanged("OPEN_INVENTORY"):
+            inventoryFrame = UIFrame(self.inventory.tick,self.inventory.render)
+            State.state.addFrame(inventoryFrame)
+            return
 
         self.modified_speed = Player.speed
 

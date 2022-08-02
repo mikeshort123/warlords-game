@@ -1,4 +1,3 @@
-from src.states.state import StateTemplate
 from src.utils.assets import Assets
 from src.cam import Cam
 from src.world import World
@@ -6,7 +5,7 @@ from src.player.player import Player
 from src.definitions.element import Element
 from src.uis.uiFrame import UIFrame
 
-class Game(StateTemplate):
+class Game:
 
     def __init__(self,handler):
 
@@ -19,14 +18,21 @@ class Game(StateTemplate):
         self.world = World(self.player,self.cam)
 
         baseFrame = UIFrame(self.world.tick,self.world.render)
-        inventoryFrame = UIFrame(self.player.inventory.tick,self.player.inventory.render)
 
-        baseFrame.addMove("OPEN_INVENTORY",inventoryFrame)
-        inventoryFrame.addMove("CLOSE_INVENTORY",baseFrame)
+        self.frame_stack = [baseFrame]
 
-        StateTemplate.__init__(self,baseFrame,handler)
+    def tick(self,handler):
+
+        self.frame_stack[-1].tick(handler)
 
     def render(self,renderer):
-        if self.uiFrame != self.baseFrame:
-            self.baseFrame.render(renderer)
-        self.uiFrame.render(renderer)
+
+        self.frame_stack[0].render(renderer)
+        if len(self.frame_stack) > 1:
+            self.frame_stack[-1].render(renderer)
+
+    def dropFrame(self):
+        self.frame_stack.pop()
+
+    def addFrame(self,frame):
+        self.frame_stack.append(frame)

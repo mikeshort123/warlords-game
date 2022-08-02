@@ -1,9 +1,8 @@
-from src.states.state import StateTemplate
 from src.states.state import State
 from src.states.game import Game
 from src.utils.assets import Assets
 
-class Menu(StateTemplate):
+class Menu:
 
     def __init__(self,handler):
 

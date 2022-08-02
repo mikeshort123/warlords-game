@@ -2,6 +2,7 @@ import json
 
 from src.uis.inventorySlot import InventorySlot
 from src.definitions.inventorySlotNames import InventorySlotNames
+from src.states.state import State
 
 class Inventory:
 
@@ -19,6 +20,10 @@ class Inventory:
         self.weapon_info = None
 
     def tick(self,handler):
+
+        if handler.getKeyChanged("CLOSE_INVENTORY"):
+            State.state.dropFrame()
+            return
 
         if self.primary.mouse_in_bounds(handler,self.active_display == self.primary): self.active_display = self.primary
         elif self.special.mouse_in_bounds(handler,self.active_display == self.special): self.active_display = self.special
