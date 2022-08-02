@@ -3,6 +3,9 @@ import pygame
 from src.items.item import Item
 from src.utils.assets import Assets
 from src.items.weapon import Weapon
+from src.states.state import State
+from src.uis.modScreen import ModScreen
+from src.uis.uiFrame import UIFrame
 
 class InventorySlot:
 
@@ -71,6 +74,22 @@ class InventorySlot:
         self.slots[0],self.slots[index] = self.slots[index],self.slots[0]
 
         self.active = self.tempGenerateGunObject() # generate new weapon object
+
+
+    def openModScreen(self,handler): # if an item is clicked, swap it to be active
+        (x,y) = handler.getMousePos().list()
+
+        if self.selected_bound.collidepoint(x, y):
+            index = 0
+        else:
+            index = self.mousePosToItem(x,y)
+            if index == -1: return
+
+        mod_menu = ModScreen()
+
+        mod_frame = UIFrame(mod_menu.tick,mod_menu.render)
+        State.state.addFrame(mod_frame)
+
 
 
     def checkHoveredItem(self,handler): # get item mouse is hovering over

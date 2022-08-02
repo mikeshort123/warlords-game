@@ -32,6 +32,9 @@ class Inventory:
         else: self.active_display = None
 
         if self.active_display:
+            if handler.getKeyChanged("MODIFY"):
+                self.active_display.openModScreen(handler)
+                return
             if handler.getKeyChanged("SELECT"):
                 self.active_display.pickItem(handler)
             self.weapon_info = self.active_display.checkHoveredItem(handler)

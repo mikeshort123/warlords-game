@@ -10,5 +10,6 @@
   "2" : "2",
   "3" : "3",
   "SHOOT" : "lmb",
-  "SELECT" : "lmb"
+  "SELECT" : "lmb",
+  "MODIFY" : "rmb"
 }
