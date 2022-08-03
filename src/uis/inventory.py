@@ -2,34 +2,53 @@ import json
 
 from src.uis.inventorySlot import InventorySlot
 from src.definitions.inventorySlotNames import InventorySlotNames
+from src.states.state import State
+from src.uis.uiFrame import UIFrame
 
-class Inventory:
+class Inventory(UIFrame):
 
     def __init__(self,player,fn):
 
         with open(fn, "r", encoding="utf8") as f:
             data = json.load(f)
 
-        self.primary = InventorySlot(player,data["primary"],50,50,True);
-        self.special = InventorySlot(player,data["special"],160,50,True);
-        self.melee = InventorySlot(player,data["melee"],270,50,True);
-        self.armour = InventorySlot(player,data["armour"],380,50,False);
+        self.slots = {
+            InventorySlotNames.PRIMARY : InventorySlot(player,data["primary"],50,50,True),
+            InventorySlotNames.SPECIAL : InventorySlot(player,data["special"],160,50,True),
+            InventorySlotNames.MELEE : InventorySlot(player,data["melee"],270,50,True),
+            InventorySlotNames.ARMOUR : InventorySlot(player,data["armour"],380,50,False)
+        }
 
         self.active_display = None
         self.weapon_info = None
 
     def tick(self,handler):
 
-        if self.primary.mouse_in_bounds(handler,self.active_display == self.primary): self.active_display = self.primary
-        elif self.special.mouse_in_bounds(handler,self.active_display == self.special): self.active_display = self.special
-        elif self.melee.mouse_in_bounds(handler,self.active_display == self.melee): self.active_display = self.melee
-        elif self.armour.mouse_in_bounds(handler,self.active_display == self.armour): self.active_display = self.armour
-        else: self.active_display = None
+        if handler.getKeyChanged("CLOSE_INVENTORY"):
+            State.state.dropFrame()
+            return
+
+        pos = handler.getMousePos()
+
+
+        set = False
+
+        for slot in self.slots.values():
+
+            if slot.mouse_in_bounds(pos, self.active_display == slot):
+                self.active_display = slot
+                set = True
+
+        if not set:
+            self.active_display = None
 
         if self.active_display:
+            if handler.getKeyChanged("MODIFY"):
+                self.active_display.openModScreen(pos)
+                return
             if handler.getKeyChanged("SELECT"):
-                self.active_display.pickItem(handler)
-            self.weapon_info = self.active_display.checkHoveredItem(handler)
+                self.active_display.pickItem(pos)
+            self.weapon_info = self.active_display.checkHoveredItem(pos)
         else:
             self.weapon_info = None
 
@@ -37,21 +56,13 @@ class Inventory:
 
         renderer.drawAlphaBackground((0,0,0),180)
 
-        self.primary.render(renderer,self.active_display == self.primary)
-        self.special.render(renderer,self.active_display == self.special)
-        self.melee.render(renderer,self.active_display == self.melee)
-        self.armour.render(renderer,self.active_display == self.armour)
+        for slot in self.slots.values():
+
+            slot.render(renderer, self.active_display == slot)
 
         if self.weapon_info: self.weapon_info.draw(renderer)
 
 
     def getActiveItem(self,slot):
 
-        mapping = {
-            InventorySlotNames.PRIMARY : self.primary,
-            InventorySlotNames.SPECIAL : self.special,
-            InventorySlotNames.MELEE : self.melee,
-            InventorySlotNames.ARMOUR : self.armour
-        }
-
-        return mapping[slot].active
+        return self.slots[slot].active

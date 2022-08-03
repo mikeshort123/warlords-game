@@ -2,32 +2,30 @@
 
 class Semiauto:
 
+    PREFIRE_RATIO = 0.7
 
+    def __init__(self):
 
-    def __init__(self,firerate):
-
-        self.firerate = firerate
-        self.prefire_delta = self.firerate // 3
-        self.count = self.firerate
+        self.count = 0
 
         self.prefire = False
 
 
 
-    def tick(self,handler):
+    def tick(self, handler, firerate):
 
-        if self.count <= self.prefire_delta and handler.getKeyChanged("SHOOT"):
+        if self.count >= firerate * Semiauto.PREFIRE_RATIO and handler.getKeyChanged("SHOOT"):
             self.prefire = True
 
-        if self.count == 0:
+        if self.count >= firerate:
 
             if self.prefire:
-                self.count = self.firerate
+                self.count = 0
                 self.prefire = False
                 return True
 
         else:
 
-            self.count -= 1
+            self.count += 1
 
         return False

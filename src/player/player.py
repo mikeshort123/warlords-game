@@ -5,12 +5,9 @@ from src.utils.vector import Vector
 from src.definitions.inventorySlotNames import InventorySlotNames
 from src.utils.assets import Assets
 from src.definitions.element import Element
-
-from src.effects.slow import Slow
-from src.effects.speed import Speed
-from src.effects.heal import Heal
-from src.effects.ignition import Ignition
-from src.effects.poison import Poison
+from src.states.state import State
+from src.uis.uiFrame import UIFrame
+from src.definitions.effects import Effects
 
 class Player():
 
@@ -27,19 +24,13 @@ class Player():
         self.health = 100
         self.effects = {}
 
-        thingylist = [
-            Ignition,
-            Slow,
-            Heal,
-            Ignition,
-            Speed,
-            Poison
-        ]
-
-        self.defaultEffects = {Element.getElement(i+1) : v for i, v in enumerate(thingylist)}
 
 
     def tick(self,handler,grid,bulletGenerator):
+
+        if handler.getKeyChanged("OPEN_INVENTORY"):
+            State.state.addFrame(self.inventory)
+            return
 
         self.modified_speed = Player.speed
 
@@ -64,7 +55,7 @@ class Player():
 
         n.normalize(m=self.modified_speed)
 
-        self.inventory.armour.slots[0].model.tick(handler,n,self.getWeaponModel())
+        self.inventory.getActiveItem(InventorySlotNames.ARMOUR).model.tick(handler,n,self.getWeaponModel())
 
         if self.checkCornerCollisions(self.pos.x+n.x,self.pos.y,grid): self.pos.x += n.x
         if self.checkCornerCollisions(self.pos.x,self.pos.y+n.y,grid): self.pos.y += n.y
@@ -95,7 +86,15 @@ class Player():
 
     def getElementalEffects(self, element):
 
-        effects = [self.defaultEffects[element]]
+        effects = []
+
+        for mod in self.inventory.slots[InventorySlotNames.ARMOUR].getSelectedItem().mods:
+
+            if mod and mod.function["type"] == "ADD_ELEMENTAL_EFFECT" and element == Element.getElement(mod.function["element"]):
+
+                effects.append(Effects.getEffectFromName(mod.function["add"]))
+
+
         return effects
 
 
@@ -121,7 +120,7 @@ class Player():
 
     def render(self,renderer,cam):
 
-        self.inventory.armour.slots[0].model.render(renderer,self.pos,cam,self.getWeaponModel())
+        self.inventory.getActiveItem(InventorySlotNames.ARMOUR).model.render(renderer,self.pos,cam,self.getWeaponModel())
 
         words = Assets.font.render(str(self.health), True, (50,255,80))
         renderer.display.blit(words, (20, 20))

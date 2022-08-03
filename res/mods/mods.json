@@ -1,0 +1,112 @@
+{
+  "mods" : [
+    {
+      "name" : "Apply Burn",
+      "image" : "res/textures/mods/apply_burn.png",
+      "element" : 1,
+      "slot" : 3,
+      "function" : {
+        "type" : "ADD_ELEMENTAL_EFFECT",
+        "element" : 1,
+        "add" : "Burn"
+      }
+    },
+
+    {
+      "name" : "Apply Ignition",
+      "image" : "res/textures/mods/apply_ignition.png",
+      "element" : 1,
+      "slot" : 3,
+      "function" : {
+        "type" : "ADD_ELEMENTAL_EFFECT",
+        "element" : 1,
+        "add" : "Ignition"
+      }
+    },
+
+    {
+      "name" : "Apply Slow",
+      "image" : "res/textures/mods/apply_slow.png",
+      "element" : 2,
+      "slot" : 3,
+      "function" : {
+        "type" : "ADD_ELEMENTAL_EFFECT",
+        "element" : 2,
+        "add" : "Slow"
+      }
+    },
+
+    {
+      "name" : "Apply Heal",
+      "image" : "res/textures/mods/apply_heal.png",
+      "element" : 3,
+      "slot" : 3,
+      "function" : {
+        "type" : "ADD_ELEMENTAL_EFFECT",
+        "element" : 3,
+        "add" : "Heal"
+      }
+    },
+
+    {
+      "name" : "Apply Speed",
+      "image" : "res/textures/mods/apply_speed.png",
+      "element" : 5,
+      "slot" : 3,
+      "function" : {
+        "type" : "ADD_ELEMENTAL_EFFECT",
+        "element" : 5,
+        "add" : "Speed"
+      }
+    },
+
+    {
+      "name" : "Apply Poison",
+      "image" : "res/textures/mods/apply_poison.png",
+      "element" : 6,
+      "slot" : 3,
+      "function" : {
+        "type" : "ADD_ELEMENTAL_EFFECT",
+        "element" : 6,
+        "add" : "Poison"
+      }
+    },
+
+    {
+      "name" : "Increase Damage",
+      "image" : "res/textures/mods/increase_damage.png",
+      "element" : 1,
+      "slot" : 0,
+      "function" : {
+        "type" : "INCREASE_STAT",
+        "stat" : "damage",
+        "scalar" : 1.15
+      }
+    },
+
+    {
+      "name" : "Increase Firerate",
+      "image" : "res/textures/mods/increase_firerate.png",
+      "element" : 5,
+      "slot" : 0,
+      "function" : {
+        "type" : "INCREASE_STAT",
+        "stat" : "firerate",
+        "scalar" : 0.6
+      }
+    },
+
+    {
+      "name" : "Increase Elemental Chance",
+      "image" : "res/textures/mods/increase_elemental_chance.png",
+      "element" : 3,
+      "slot" : 0,
+      "function" : {
+        "type" : "INCREASE_STAT",
+        "stat" : "elemental_chance",
+        "scalar" : 2
+      }
+    }
+  ]
+
+}

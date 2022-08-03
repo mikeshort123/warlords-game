@@ -2,22 +2,21 @@
 
 class Fullauto:
 
-    def __init__(self,firerate):
+    def __init__(self):
 
-        self.firerate = firerate
-        self.count = self.firerate
+        self.count = 0
 
 
-    def tick(self,handler):
+    def tick(self,handler,firerate):
 
-        if self.count == 0:
+        if self.count >= firerate:
 
             if handler.getKeyPressed("SHOOT"):
-                self.count = self.firerate
+                self.count = 0
                 return True
 
         else:
 
-            self.count -= 1
+            self.count += 1
 
         return False

@@ -5,6 +5,7 @@ from src.utils.vector import Vector
 from src.entities.bullet import Bullet
 from src.ais.xslider import XSlider
 from src.definitions.element import Element
+from src.utils.hitbox import Hitbox
 
 class Enemy:
 
@@ -21,6 +22,8 @@ class Enemy:
         self.health = generator.maxhealth
         self.hitbox_size = generator.hitbox_size
         self.hitbox_offset = generator.hitbox_offset
+
+        self.hitbox = Hitbox.fromVectors(self.hitbox_offset, self.hitbox_size)
 
 
     def tick(self,grid,player):
@@ -86,8 +89,4 @@ class Enemy:
 
     def inHitbox(self,pos):
 
-        px,py = pos.list()
-        ax,ay = (self.pos + self.hitbox_offset).list()
-        bx,by = ax + self.hitbox_size.x, ay + self.hitbox_size.y
-
-        return px >= ax and px <= bx and py >= ay and py <= by
+        return self.hitbox.isInside(pos - self.pos)
