@@ -72,7 +72,6 @@ class Enemy:
     def applyDamage(self, damage, element):
 
         self.health -= damage
-        print(damage)
 
 
     def applyEffect(self, EffectType, amount):
