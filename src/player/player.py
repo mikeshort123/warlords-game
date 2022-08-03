@@ -24,16 +24,6 @@ class Player():
         self.health = 100
         self.effects = {}
 
-        thingylist = [
-            Effects.getEffectFromName("Ignition"),
-            Effects.getEffectFromName("Slow"),
-            Effects.getEffectFromName("Heal"),
-            Effects.getEffectFromName("Ignition"),
-            Effects.getEffectFromName("Speed"),
-            Effects.getEffectFromName("Poison")
-        ]
-
-        self.defaultEffects = {Element.getElement(i+1) : v for i, v in enumerate(thingylist)}
 
 
     def tick(self,handler,grid,bulletGenerator):
@@ -96,7 +86,7 @@ class Player():
 
     def getElementalEffects(self, element):
 
-        effects = [self.defaultEffects[element]]
+        effects = []
 
         for mod in self.inventory.slots[InventorySlotNames.ARMOUR].getSelectedItem().mods:
 
