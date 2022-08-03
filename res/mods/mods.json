@@ -92,7 +92,7 @@
       "function" : {
         "type" : "INCREASE_STAT",
         "stat" : "firerate",
-        "scalar" : 1.15
+        "scalar" : 0.6
       }
     },
 
@@ -103,7 +103,7 @@
       "slot" : 0,
       "function" : {
         "type" : "INCREASE_STAT",
-        "stat" : "element_chance",
+        "stat" : "elemental_chance",
         "scalar" : 2
       }
     }
