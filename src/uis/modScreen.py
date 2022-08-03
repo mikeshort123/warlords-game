@@ -6,6 +6,7 @@ from src.mods.mod import Mod
 from src.utils.hitbox import Hitbox
 from src.uis.uiFrame import UIFrame
 from src.utils.vector import Vector
+from src.definitions.inventorySlotNames import InventorySlotNames
 
 class ModScreen(UIFrame):
 
@@ -52,7 +53,8 @@ class ModScreen(UIFrame):
             ) for i in range(len(self.slots))
         ]
 
-        self.mod_list = Mod.mod_list
+        self.mod_list = Mod.getMods(item.slot is InventorySlotNames.ARMOUR)
+
         self.modHitboxes = [
             Hitbox(
                 ModScreen.MOD_BAR_HORIZONTAL_OFFSET + ModScreen.MOD_SPACING*i,
