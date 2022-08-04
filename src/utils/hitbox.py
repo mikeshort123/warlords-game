@@ -15,6 +15,10 @@ class Hitbox:
         return pos.x >= self.ax and pos.x <= self.bx and pos.y >= self.ay and pos.y <= self.by
 
 
+    def drawImage(self,renderer,image):
+        renderer.drawImage(image,self.ax,self.ay)
+
+
     @staticmethod
     def fromVectors(pos,size):
         return Hitbox(pos.x,pos.y,size.x,size.y)

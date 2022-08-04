@@ -71,18 +71,20 @@ class ModScreen(UIFrame):
             ModScreen.MOD_BAR_HEIGHT
         )
 
-        self.leftscroll_hitbox = Hitbox(
+        self.left_scroll_hitbox = Hitbox(
             ModScreen.LEFT_SCROLL_BUTTON_OFFSET,
             ModScreen.MOD_BAR_VERTICAL_OFFSET,
             ModScreen.SCROLL_BUTTON_WIDTH,
             ModScreen.MOD_BAR_HEIGHT
         )
-        self.rightscroll_hitbox = Hitbox(
+        self.left_scroll_image = Assets.loadImage("res/textures/uis/left_scroll.png")
+        self.right_scroll_hitbox = Hitbox(
             ModScreen.RIGHT_SCROLL_BUTTON_OFFSET,
             ModScreen.MOD_BAR_VERTICAL_OFFSET,
             ModScreen.SCROLL_BUTTON_WIDTH,
             ModScreen.MOD_BAR_HEIGHT
         )
+        self.right_scroll_image = Assets.loadImage("res/textures/uis/right_scroll.png")
 
         self.mod_pixel_offset = 0
         self.max_scroll = len(self.mod_list)*ModScreen.MOD_SPACING - ModScreen.MOD_BAR_WIDTH - ModScreen.MOD_GAP
@@ -96,11 +98,11 @@ class ModScreen(UIFrame):
         if handler.getKeyPressed("SELECT"):
             pos = handler.getMousePos()
 
-            if self.leftscroll_hitbox.isInside(pos) and self.mod_pixel_offset > 0:
+            if self.left_scroll_hitbox.isInside(pos) and self.mod_pixel_offset > 0:
                 self.mod_pixel_offset -= ModScreen.SCROLL_SPEED
                 return
 
-            if self.rightscroll_hitbox.isInside(pos) and self.mod_pixel_offset < self.max_scroll:
+            if self.right_scroll_hitbox.isInside(pos) and self.mod_pixel_offset < self.max_scroll:
                 self.mod_pixel_offset += ModScreen.SCROLL_SPEED
                 return
 
@@ -139,15 +141,12 @@ class ModScreen(UIFrame):
 
         renderer.drawAlphaBackground((0,0,0),200)
 
-        pygame.draw.rect(renderer.display,(80,80,80),(ModScreen.LEFT_SCROLL_BUTTON_OFFSET,ModScreen.MOD_BAR_VERTICAL_OFFSET,ModScreen.SCROLL_BUTTON_WIDTH,ModScreen.MOD_BAR_HEIGHT))
-        pygame.draw.rect(renderer.display,(80,80,80),(ModScreen.RIGHT_SCROLL_BUTTON_OFFSET,ModScreen.MOD_BAR_VERTICAL_OFFSET,ModScreen.SCROLL_BUTTON_WIDTH,ModScreen.MOD_BAR_HEIGHT))
-
         for slot, hitbox in zip(self.slots, self.slotHitboxes):
 
             if slot:
-                renderer.drawImage(slot.img,hitbox.ax,hitbox.ay)
+                hitbox.drawImage(renderer,slot.img)
             else:
-                renderer.drawImage(self.blankslot,hitbox.ax,hitbox.ay)
+                hitbox.drawImage(renderer,self.blankslot)
 
         mod_bar = pygame.Surface((ModScreen.MOD_BAR_WIDTH, ModScreen.MOD_BAR_HEIGHT), pygame.SRCALPHA)
 
@@ -156,3 +155,6 @@ class ModScreen(UIFrame):
             mod_bar.blit(mod.img, (i*ModScreen.MOD_SPACING - self.mod_pixel_offset, 0))
 
         renderer.drawImage(mod_bar, ModScreen.MOD_BAR_HORIZONTAL_OFFSET, ModScreen.MOD_BAR_VERTICAL_OFFSET)
+
+        self.left_scroll_hitbox.drawImage(renderer,self.left_scroll_image)
+        self.right_scroll_hitbox.drawImage(renderer,self.right_scroll_image)
