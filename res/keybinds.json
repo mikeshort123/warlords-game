@@ -9,7 +9,7 @@
   "1" : "1",
   "2" : "2",
   "3" : "3",
-  "SHOOT" : "lmb",
-  "SELECT" : "lmb",
-  "MODIFY" : "rmb"
+  "SHOOT" : "mb1",
+  "SELECT" : "mb1",
+  "MODIFY" : "mb3"
 }

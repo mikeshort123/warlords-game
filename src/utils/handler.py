@@ -4,11 +4,6 @@ from src.utils.vector import Vector
 
 class Handler():
 
-    mouse_button_codes = [
-        "lmb",
-        "mmb",
-        "rmb"
-    ]
 
     def __init__(self):
 
@@ -60,13 +55,13 @@ class Handler():
             self.mousepos = Vector(e.pos)
 
         if e.type == pygame.MOUSEBUTTONDOWN:
-            key = Handler.mouse_button_codes[e.button-1]
+            key = "mb" + str(e.button)
             if key in self.keyList:
                 self.keyList[key] = True
 
                 self.keyChanges.append(key)
 
         if e.type == pygame.MOUSEBUTTONUP:
-            key = Handler.mouse_button_codes[e.button-1]
+            key = "mb" + str(e.button)
             if key in self.keyList:
                 self.keyList[key] = False
