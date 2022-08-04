@@ -1,21 +1,21 @@
 from src.states.state import State
 from src.states.game import Game
 from src.utils.assets import Assets
+from src.uis.menu.mainMenu import MainMenu
+from src.uis.frameManager import FrameManager
 
 class Menu:
 
-    def __init__(self,handler):
+    def __init__(self):
 
-        self.title = Assets.loadImage("res/textures/menu/titlescreen.png")
-
+        self.frameManager = FrameManager(MainMenu())
 
 
     def tick(self,handler):
 
-        if handler.getKeyChanged("START"):
-            State.setState(Game,handler)
+        self.frameManager.getActiveFrame().tick(handler)
 
 
     def render(self,renderer):
 
-        renderer.drawImage(self.title,0,0)
+        self.frameManager.getActiveFrame().render(renderer)

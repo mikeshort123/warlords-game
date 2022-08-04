@@ -5,9 +5,9 @@ class State():
     state = None
 
     @staticmethod
-    def setState(StateType,handler):
+    def setState(StateType):
         Assets.flush()
-        State.state = StateType(handler)
+        State.state = StateType()
 
     @staticmethod
     def tick(handler):
@@ -16,3 +16,11 @@ class State():
     @staticmethod
     def render(renderer):
         State.state.render(renderer)
+
+    @staticmethod
+    def addFrame(frame):
+        State.state.frameManager.addFrame(frame)
+
+    @staticmethod
+    def dropFrame():
+        State.state.frameManager.dropFrame()

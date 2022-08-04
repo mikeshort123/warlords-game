@@ -4,10 +4,11 @@ from src.world import World
 from src.player.player import Player
 from src.definitions.element import Element
 from src.mods.mod import Mod
+from src.uis.frameManager import FrameManager
 
 class Game:
 
-    def __init__(self,handler):
+    def __init__(self):
 
         Assets.loadFont()
         Element.loadElementDefinitions("res/definitions/elements.json")
@@ -18,20 +19,15 @@ class Game:
 
         self.world = World(self.player,self.cam)
 
-        self.frame_stack = [self.world]
+        self.frameManager = FrameManager(self.world)
 
     def tick(self,handler):
 
-        self.frame_stack[-1].tick(handler)
+        self.frameManager.getActiveFrame().tick(handler)
 
     def render(self,renderer):
 
-        self.frame_stack[0].render(renderer)
-        if len(self.frame_stack) > 1:
-            self.frame_stack[-1].render(renderer)
+        if self.frameManager.getFrameCount() > 1:
+            self.frameManager.getFrameAt(0).render(renderer)
 
-    def dropFrame(self):
-        self.frame_stack.pop()
-
-    def addFrame(self,frame):
-        self.frame_stack.append(frame)
+        self.frameManager.getActiveFrame().render(renderer)

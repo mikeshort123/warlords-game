@@ -3,7 +3,6 @@ from src.utils.assets import Assets
 from src.items.weapon import Weapon
 from src.states.state import State
 from src.uis.modScreen import ModScreen
-from src.uis.uiFrame import UIFrame
 from src.utils.hitbox import Hitbox
 
 class InventorySlot:
@@ -76,7 +75,7 @@ class InventorySlot:
         if index == -1: return
 
         mod_menu = ModScreen(self.slots[index])
-        State.state.addFrame(mod_menu)
+        State.addFrame(mod_menu)
 
 
 

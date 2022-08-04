@@ -29,7 +29,7 @@ class Player():
     def tick(self,handler,grid,bulletGenerator):
 
         if handler.getKeyChanged("OPEN_INVENTORY"):
-            State.state.addFrame(self.inventory)
+            State.addFrame(self.inventory)
             return
 
         self.modified_speed = Player.speed

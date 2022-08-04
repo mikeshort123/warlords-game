@@ -25,7 +25,7 @@ class Inventory(UIFrame):
     def tick(self,handler):
 
         if handler.getKeyChanged("CLOSE_INVENTORY"):
-            State.state.dropFrame()
+            State.dropFrame()
             return
 
         pos = handler.getMousePos()
