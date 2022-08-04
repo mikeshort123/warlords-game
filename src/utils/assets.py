@@ -7,6 +7,7 @@ class Assets():
 
     assets = {}
     models = {}
+    sounds = {}
 
     @staticmethod
     def loadImage(fp):
@@ -44,10 +45,21 @@ class Assets():
 
 
     @staticmethod
+    def loadSound(fp):
+
+        if fp in Assets.sounds: return Assets.sounds[fp]
+
+        sound = pygame.mixer.Sound(fp)
+        Assets.sounds[fp] = sound
+        return sound
+
+
+    @staticmethod
     def flush():
 
         Assets.assets.clear()
         Assets.models.clear()
+        Assets.sounds.clear()
 
     font = None
 

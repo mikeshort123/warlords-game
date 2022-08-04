@@ -1,5 +1,4 @@
-from pygame.locals import *
-import json
+import pygame, json
 
 from src.utils.vector import Vector
 
@@ -47,27 +46,27 @@ class Handler():
 
     def handleEvent(self,e):
 
-        if e.type == KEYDOWN:
+        if e.type == pygame.KEYDOWN:
             if e.unicode in self.keyList:
                 self.keyList[e.unicode] = True
 
                 self.keyChanges.append(e.unicode)
 
-        if e.type == KEYUP:
+        if e.type == pygame.KEYUP:
             if e.unicode in self.keyList:
                 self.keyList[e.unicode] = False
 
-        if e.type == MOUSEMOTION:
+        if e.type == pygame.MOUSEMOTION:
             self.mousepos = Vector(e.pos)
 
-        if e.type == MOUSEBUTTONDOWN:
+        if e.type == pygame.MOUSEBUTTONDOWN:
             key = Handler.mouse_button_codes[e.button-1]
             if key in self.keyList:
                 self.keyList[key] = True
 
                 self.keyChanges.append(key)
 
-        if e.type == MOUSEBUTTONUP:
+        if e.type == pygame.MOUSEBUTTONUP:
             key = Handler.mouse_button_codes[e.button-1]
             if key in self.keyList:
                 self.keyList[key] = False

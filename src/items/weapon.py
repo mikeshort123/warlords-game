@@ -1,5 +1,7 @@
-import json
+import json, pygame
 
+from src.utils.assets import Assets
+from src.utils.soundManager import SoundManager
 from src.items.fullauto import Fullauto
 from src.items.semiauto import Semiauto
 from src.models.weaponModel import WeaponModel
@@ -43,10 +45,14 @@ class Weapon:
 
         self.status_counter = 0
 
+        self.sound = Assets.loadSound("res/sounds/thud.wav")
+
 
     def tick(self, handler, bulletGenerator):
         if self.trigger.tick(handler, self.getStat(WeaponStats.FIRERATE)):
             bulletGenerator(handler, self.element.colour, self.wielder, self.generateDamageProfile)
+            SoundManager.playSound(self.sound)
+
 
 
     def getStat(self,stat):

@@ -28,7 +28,7 @@ class Poison(Effect):
         self.tick_timer = 0
         self.tick_counter += 1
 
-        guy.health -= Poison.DAMAGE * self.stacks
+        guy.applyDamage(Poison.DAMAGE * self.stacks, None)
 
         if self.tick_counter >= Poison.TOTAL_TICKS:
             self.stacks -= 1
