@@ -42,26 +42,23 @@ class Handler():
     def handleEvent(self,e):
 
         if e.type == pygame.KEYDOWN:
-            if e.unicode in self.keyList:
-                self.keyList[e.unicode] = True
-
-                self.keyChanges.append(e.unicode)
+            self.setKey(e.unicode, True)
 
         if e.type == pygame.KEYUP:
-            if e.unicode in self.keyList:
-                self.keyList[e.unicode] = False
+            self.setKey(e.unicode, False)
+
+        if e.type == pygame.MOUSEBUTTONDOWN:
+            self.setKey("mb" + str(e.button), True)
+
+        if e.type == pygame.MOUSEBUTTONUP:
+            self.setKey("mb" + str(e.button), False)
 
         if e.type == pygame.MOUSEMOTION:
             self.mousepos = Vector(e.pos)
 
-        if e.type == pygame.MOUSEBUTTONDOWN:
-            key = "mb" + str(e.button)
-            if key in self.keyList:
-                self.keyList[key] = True
 
-                self.keyChanges.append(key)
+    def setKey(self, key, mode):
+        if key in self.keyList:
+            self.keyList[key] = mode
 
-        if e.type == pygame.MOUSEBUTTONUP:
-            key = "mb" + str(e.button)
-            if key in self.keyList:
-                self.keyList[key] = False
+            if mode: self.keyChanges.append(key)
