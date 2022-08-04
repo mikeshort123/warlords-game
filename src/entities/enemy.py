@@ -1,6 +1,7 @@
 import json,pygame,math
 
 from src.utils.assets import Assets
+from src.utils.soundManager import SoundManager
 from src.utils.vector import Vector
 from src.entities.bullet import Bullet
 from src.ais.xslider import XSlider
@@ -24,6 +25,8 @@ class Enemy:
         self.hitbox_offset = generator.hitbox_offset
 
         self.hitbox = Hitbox.fromVectors(self.hitbox_offset, self.hitbox_size)
+
+        self.damage_sound = Assets.loadSound("res/sounds/pop.wav")
 
 
     def tick(self,grid,player):
@@ -72,6 +75,8 @@ class Enemy:
     def applyDamage(self, damage, element):
 
         self.health -= damage
+
+        SoundManager.playSound(self.damage_sound)
 
 
     def applyEffect(self, EffectType, amount):

@@ -23,6 +23,6 @@ class Ignition(Effect):
             self.delay_timer += 1
             return
 
-        guy.health -= int(Ignition.DAMAGE * (self.stacks) ** Ignition.STACK_MULTIPLIER)
+        guy.applyDamage(Ignition.DAMAGE * (self.stacks) ** Ignition.STACK_MULTIPLIER, None)
 
         self.stacks = 0

@@ -70,7 +70,3 @@ class Handler():
             key = Handler.mouse_button_codes[e.button-1]
             if key in self.keyList:
                 self.keyList[key] = False
-
-
-    def playSound(self,sound):
-        pygame.mixer.Sound.play(sound)
