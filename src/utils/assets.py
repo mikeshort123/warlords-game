@@ -5,17 +5,17 @@ from src.animations.animationGenerator import AnimationGenerator
 
 class Assets():
 
-    assets = {}
+    images = {}
     models = {}
     sounds = {}
 
     @staticmethod
     def loadImage(fp):
 
-        if fp in Assets.assets: return Assets.assets[fp]
+        if fp in Assets.images: return Assets.images[fp]
 
         img = pygame.image.load(fp)
-        Assets.assets[fp] = img
+        Assets.images[fp] = img
         return img
 
     @staticmethod
@@ -57,7 +57,7 @@ class Assets():
     @staticmethod
     def flush():
 
-        Assets.assets.clear()
+        Assets.images.clear()
         Assets.models.clear()
         Assets.sounds.clear()
 
