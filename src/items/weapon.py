@@ -46,7 +46,6 @@ class Weapon:
         self.status_counter = 0
 
         self.sound = Assets.loadSound("res/sounds/thud.wav")
-        #self.sound.set_volume(0.1)
 
 
     def tick(self, handler, bulletGenerator):
