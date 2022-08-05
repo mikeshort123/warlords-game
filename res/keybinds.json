@@ -6,6 +6,8 @@
   "START" : " ",
   "OPEN_INVENTORY" : "i",
   "CLOSE_INVENTORY" : "i",
+  "PAUSE_GAME" : "\u001B",
+  "CLOSE_MENU" : "\u001B",
   "1" : "1",
   "2" : "2",
   "3" : "3",

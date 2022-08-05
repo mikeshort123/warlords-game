@@ -1,4 +1,3 @@
-from src.states.state import State
 from src.states.game import Game
 from src.utils.assets import Assets
 from src.uis.menu.mainMenu import MainMenu

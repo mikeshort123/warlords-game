@@ -4,10 +4,12 @@ class State():
 
     state = None
 
+    states = {}
+
     @staticmethod
-    def setState(StateType):
+    def setState(name):
         Assets.flush()
-        State.state = StateType()
+        State.state = State.states[name]()
 
     @staticmethod
     def tick(handler):
@@ -24,3 +26,7 @@ class State():
     @staticmethod
     def dropFrame():
         State.state.frameManager.dropFrame()
+
+    @staticmethod
+    def registerState(state, name):
+        State.states[name] = state

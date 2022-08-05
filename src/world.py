@@ -3,6 +3,8 @@ from src.entities.bullet import Bullet
 from src.entities.enemyFactory import EnemyFactory
 from src.tiles.grid import Grid
 from src.uis.uiFrame import UIFrame
+from src.uis.pauseMenu import PauseMenu
+from src.states.state import State
 
 class World(UIFrame):
 
@@ -26,6 +28,10 @@ class World(UIFrame):
 
 
     def tick(self,handler):
+
+        if handler.getKeyChanged("PAUSE_GAME"):
+            State.addFrame(PauseMenu())
+            return
 
         self.player.tick(handler,self.grid,self.makeBullet)
 

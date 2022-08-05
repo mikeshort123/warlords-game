@@ -91,7 +91,7 @@ class ModScreen(UIFrame):
 
     def tick(self,handler):
 
-        if handler.getKeyChanged("CLOSE_INVENTORY"):
+        if handler.getKeyChanged("CLOSE_INVENTORY") or handler.getKeyChanged("CLOSE_MENU"):
             State.dropFrame()
             return
 

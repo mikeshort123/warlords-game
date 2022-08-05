@@ -1,10 +1,13 @@
 import pygame, sys
-from pygame.locals import *
 
 from src.utils.handler import Handler
 from src.utils.renderer import Renderer
 from src.states.state import State
 from src.states.menu import Menu
+from src.states.game import Game
+from src.utils.assets import Assets
+from src.definitions.element import Element
+from src.mods.mod import Mod
 
 def main():
     game = Main(640,480)
@@ -28,13 +31,21 @@ class Main():
         handler = Handler()
         renderer = Renderer(display)
 
-        State.setState(Menu)
+        State.registerState(Menu,"MENU")
+        State.registerState(Game,"GAME")
+
+        State.setState("MENU")
+
+
+        Assets.loadFont()
+        Element.loadElementDefinitions("res/definitions/elements.json")
+        Mod.loadMods("res/mods/mods.json")
 
 
 
         while True:
             for event in pygame.event.get():
-                if event.type == QUIT:
+                if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
 
