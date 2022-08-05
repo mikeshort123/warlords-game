@@ -1,4 +1,5 @@
 from src.effects.effect import Effect
+from src.definitions.armourStats import ArmourStats
 
 class Slow(Effect):
 
@@ -25,4 +26,6 @@ class Slow(Effect):
             return
 
         self.timer += 1
-        guy.modified_speed *= Slow.STACK_INCREASE_RATE ** (-self.stacks)
+        #guy.modified_speed *= Slow.STACK_INCREASE_RATE ** (-self.stacks)
+
+        guy.modded_stats[ArmourStats.SPEED] *= Slow.STACK_INCREASE_RATE ** (-self.stacks)

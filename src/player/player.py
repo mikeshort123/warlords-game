@@ -8,10 +8,10 @@ from src.definitions.element import Element
 from src.states.state import State
 from src.definitions.effects import Effects
 from src.entities.dude import Dude
+from src.definitions.armourStats import ArmourStats
 
 class Player(Dude):
 
-    speed = 0.1
     width = 0.7
     height = 0.9
 
@@ -22,6 +22,7 @@ class Player(Dude):
         self.inventory = Inventory(self,"res/save.json")
 
         self.health = 100
+        self.speed = 0.1
 
 
 
@@ -31,12 +32,7 @@ class Player(Dude):
             State.addFrame(self.inventory)
             return
 
-        self.modified_speed = Player.speed
-
-        for name, effect in list(self.effects.items()):
-            effect.tick(self)
-            if effect.stacks <= 0:
-                self.effects.pop(name)
+        Dude.tick(self)
 
         n = Vector()
 
@@ -52,7 +48,7 @@ class Player(Dude):
         if handler.getKeyPressed("RIGHT"):
             n.x += 1
 
-        n.normalize(m=self.modified_speed)
+        n.normalize(m=self.getStat(ArmourStats.SPEED))
 
         self.inventory.getActiveItem(InventorySlotNames.ARMOUR).model.tick(handler,n,self.getWeaponModel())
 
@@ -68,6 +64,17 @@ class Player(Dude):
 
         if weapon := self.getWeapon():
             weapon.tick(handler, bulletGenerator)
+
+
+    def getStat(self, stat):
+
+        val = self.modded_stats[stat]
+
+        for mod in self.inventory.slots[InventorySlotNames.ARMOUR].getSelectedItem().mods:
+            if mod and mod.function["type"] == "INCREASE_STAT" and stat == ArmourStats(mod.function["stat"]):
+                val *= mod.function["scalar"]
+
+        return val
 
 
     def applyDamage(self, damage, element):

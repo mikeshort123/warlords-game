@@ -5,6 +5,7 @@ from src.ais.xslider import XSlider
 from src.utils.hitbox import Hitbox
 from src.entities.dude import Dude
 from src.utils.vector import Vector
+from src.definitions.armourStats import ArmourStats
 
 class Enemy(Dude):
 
@@ -26,16 +27,9 @@ class Enemy(Dude):
 
     def tick(self, grid, player):
 
-        self.modified_speed = self.speed
+        Dude.tick(self)
 
-        for name, effect in list(self.effects.items()): # had to convert to list, as modifying a dict mid loop would upset python
-
-            effect.tick(self)
-            if effect.stacks == 0:
-                self.effects.pop(name)
-
-
-        v = self.ai.tick(self.pos, self.modified_speed)
+        v = self.ai.tick(self.pos, self.modded_stats[ArmourStats.SPEED])
         self.pos += v
         self.animator.setVariable("walking", not v.isZero())
 

@@ -106,6 +106,18 @@
         "stat" : "elemental_chance",
         "scalar" : 2
       }
+    },
+
+    {
+      "name" : "Increase Speed",
+      "image" : "res/textures/mods/increase_speed.png",
+      "element" : 5,
+      "slot" : 3,
+      "function" : {
+        "type" : "INCREASE_STAT",
+        "stat" : "speed",
+        "scalar" : 1.15
+      }
     }
   ]
 

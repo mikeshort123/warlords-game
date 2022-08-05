@@ -1,5 +1,6 @@
 from src.utils.assets import Assets
 from src.utils.soundManager import SoundManager
+from src.definitions.armourStats import ArmourStats
 
 class Dude:
 
@@ -12,7 +13,19 @@ class Dude:
         self.effects = {}
         self.damage_sound = Assets.loadSound("res/sounds/pop.wav")
 
-    def tick(self, handler): return
+    def tick(self):
+
+        self.modded_stats = {
+            ArmourStats.SPEED : self.speed
+        }
+
+        for name, effect in list(self.effects.items()):
+
+            effect.tick(self)
+            if effect.stacks == 0:
+                self.effects.pop(name)
+
+
     def render(self, renderer): return
 
     def applyDamage(self, damage, element):
