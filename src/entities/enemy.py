@@ -4,12 +4,13 @@ from src.utils.assets import Assets
 from src.ais.xslider import XSlider
 from src.utils.hitbox import Hitbox
 from src.entities.dude import Dude
+from src.utils.vector import Vector
 
 class Enemy(Dude):
 
     def __init__(self, pos, generator):
 
-        Dude.__init__(pos)
+        Dude.__init__(self,pos)
 
         self.speed = 0.1
         self.ai = XSlider(self.pos, 3)

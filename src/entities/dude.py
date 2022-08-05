@@ -7,8 +7,8 @@ class Dude:
 
         self.pos = pos
 
-        self.maxhealth
-        self.health
+        self.maxhealth : float
+        self.health : float
         self.effects = {}
         self.damage_sound = Assets.loadSound("res/sounds/pop.wav")
 

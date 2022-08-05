@@ -17,7 +17,7 @@ class Player(Dude):
 
     def __init__(self, x, y):
 
-        Dude.__init__(Vector(x,y))
+        Dude.__init__(self,Vector(x,y))
         self.weapon_selection = InventorySlotNames.PRIMARY
         self.inventory = Inventory(self,"res/save.json")
 
