@@ -1,4 +1,4 @@
-from src.cam import Cam
+from src.utils.cam import Cam
 from src.world import World
 from src.player.player import Player
 from src.uis.frameManager import FrameManager

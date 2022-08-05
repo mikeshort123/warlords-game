@@ -6,23 +6,22 @@ from src.definitions.inventorySlotNames import InventorySlotNames
 from src.utils.assets import Assets
 from src.definitions.element import Element
 from src.states.state import State
-from src.uis.uiFrame import UIFrame
 from src.definitions.effects import Effects
+from src.entities.dude import Dude
 
-class Player():
+class Player(Dude):
 
     speed = 0.1
     width = 0.7
     height = 0.9
 
-    def __init__(self,x,y):
+    def __init__(self, x, y):
 
-        self.pos = Vector(x,y)
+        Dude.__init__(Vector(x,y))
         self.weapon_selection = InventorySlotNames.PRIMARY
         self.inventory = Inventory(self,"res/save.json")
 
         self.health = 100
-        self.effects = {}
 
 
 

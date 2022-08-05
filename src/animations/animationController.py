@@ -11,7 +11,7 @@ class AnimationController:
             self.theta = 0
 
 
-    def __init__(self, parts, scale):
+    def __init__(self, scale):
 
         self.variables = {}
 

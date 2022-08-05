@@ -33,8 +33,7 @@ class Assets():
         with open(model_data["animations"]) as f:
             animation_data = json.load(f)
 
-        parts = ["head","body","left_foot","right_foot","left_hand","right_hand"]
-        generator = AnimationGenerator(animation_data,parts,model_data["scale"])
+        generator = AnimationGenerator(animation_data,model_data["scale"])
 
         if model_data["frame"] == "player":
             model = GuyModel(model_data,texture)

@@ -1,22 +1,18 @@
-import json,pygame,math
+import json, pygame, math
 
 from src.utils.assets import Assets
-from src.utils.soundManager import SoundManager
-from src.utils.vector import Vector
-from src.entities.bullet import Bullet
 from src.ais.xslider import XSlider
-from src.definitions.element import Element
 from src.utils.hitbox import Hitbox
+from src.entities.dude import Dude
 
-class Enemy:
+class Enemy(Dude):
 
-    def __init__(self,pos,generator):
+    def __init__(self, pos, generator):
 
-        self.pos = pos
+        Dude.__init__(pos)
+
         self.speed = 0.1
         self.ai = XSlider(self.pos, 3)
-
-        self.effects = {}
 
         self.model, self.animator = Assets.loadModel(generator.model_path)
         self.maxhealth = generator.maxhealth
@@ -26,10 +22,8 @@ class Enemy:
 
         self.hitbox = Hitbox.fromVectors(self.hitbox_offset, self.hitbox_size)
 
-        self.damage_sound = Assets.loadSound("res/sounds/pop.wav")
 
-
-    def tick(self,grid,player):
+    def tick(self, grid, player):
 
         self.modified_speed = self.speed
 
@@ -57,7 +51,7 @@ class Enemy:
 
 
 
-    def render(self,renderer,cam):
+    def render(self, renderer, cam):
 
         self.model.render(renderer,self.pos,cam,self.animator)
 
@@ -72,26 +66,6 @@ class Enemy:
             pygame.draw.rect(screen,effect_type.COLOUR,(dpos.x + 25*i,dpos.y-25,20,20))
 
 
-    def applyDamage(self, damage, element):
-
-        self.health -= damage
-
-        SoundManager.playSound(self.damage_sound)
-
-
-    def applyEffect(self, EffectType, amount):
-
-        if EffectType not in self.effects:
-            self.effects[EffectType] = EffectType()
-
-        self.effects[EffectType].addStacks(amount)
-
-
-    def getElementalEffects(self, element):
-
-        return [] # for now enemies dont need to apply effects, but that will likely change
-
-
-    def inHitbox(self,pos):
+    def inHitbox(self, pos):
 
         return self.hitbox.isInside(pos - self.pos)
