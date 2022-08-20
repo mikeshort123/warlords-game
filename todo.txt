@@ -1,0 +1,155 @@
+STUFF TO DO
+
+- ART
+  - More weapons, armour
+    - different weapon types
+  - make mods look less trash
+    - seperate mod from background for consistency
+    - highlight overlay for more info
+      - maybe click for more info
+  - make ui less trash
+    - main menu screens
+  - icons for elements and effects
+
+- RESIZE SCREEN
+  - redo art for 1920x1080 ratio
+  - scalable screen
+    - renderer methods to translate to resized screen
+      - UIs add blank space
+      - game world loses blank space
+
+- ENEMIES / PLAYER / DUDE
+  - more enemy types
+    - tree boss
+    - wolves
+    - shooty robots
+  - more AI types
+    - chasing to punch
+    - walk up and shoot
+  - teams
+    - enemies attack other teams
+    - summons on your team
+  - better stats system
+  - sync player and enemy class more
+
+- EFFECTS
+  - FIRE
+    - burn
+      - damage over time
+    - ignition
+      - once activated, a timer starts
+      - when the timer reaches 0, the target detonates, dealing damage in an area
+      - the more stack of ignition you can apply before the detonation, the higher the damage
+    - radiant
+      - damage boost
+  - ICE
+    - slow
+      - target is slowed
+    - freeze/shatter
+      - like ignition but they cant move/shoot
+      - the damage is applied to the enemy directly, not in an explosion
+    - bolstered
+      - damage resist
+
+  - LIFE
+    - heal
+      - instant boost of health
+    - restoration
+      - heal over time
+    - empowering
+      - damage boost
+  - REAPER
+    - life steal
+      - heal based on damage
+    - marked
+      - when killed, become a summon
+      - summon strength scaled by amount of procs
+    - target
+      - summons attack enemy affected and do more damage
+  - LIGHTNING
+    - speed
+      - increase movement speed
+    - chain lightning
+      - damage chains from enemy to enemy
+    - blinding
+      - target is stunned
+  - POISON
+    - miasma
+      - damage over time
+    - weakened
+      - target takes more damage
+    - impaired
+      - target deals less damage
+
+- ABILITIES
+  - get 3? abilities based off selected element
+
+  - FIRE
+    - fireball
+      - ranged
+      - apply burn to target
+    - immolation
+      - melee hits do more damage and proc burn/ignition
+      - more melee hits in a row increase effects
+    - radiance
+      - apply radiant to you and all allies around you
+      - apply burn to all enemies around you
+    - ???
+      - all burning targets in a large area ignite
+      - more burn procs mean more ignite procs
+
+  - ICE
+    - ice-ball
+      - ranged
+      - apply slow to target
+    - frostpulse
+      - apply bolster to you and all allies around you
+      - apply SLOW to all nearby enemies
+    - coldsnap
+      - all SLOWED enemies nearby become FROZEN
+      - more SLOW stacks makes more FREEZE stacks
+
+  - LIFE
+    - ascendant
+      - apply higher power RESTORATION and EMPOWERING buffs
+    - life link
+      - chain to any enemies nearby
+      - while linked you gain EMPOWERING
+      - the more links, the higher the effect
+    - sentry
+      - summons a stationary guy
+      - being near applies RESTORATION
+
+  - REAPER
+    - forsake
+      - ranged
+      - apply MARKED to targets in area
+    - summon
+      - summons a small group of guys
+    - enthrall
+      - all MARKED and TARGETED enemies take a large amount of damage
+
+
+
+- ARMOUR MODS
+
+  - FIRE
+    - fire effects do more damage to slowed enemies
+    - killing BURNING or TARGETED enemies decreases the cooldown of FIRE abilities
+    - kills while RADIANT, BOLSTERED or RESTORING decrease the cooldown of FIRE abilities
+  - ICE
+    - "apply" slow/freeze to you or allies to bolster them
+    - kills while SPEED or BOLSTERED are active decrease the cooldown of ICE abilities
+    - kills while RADIANT, BOLSTERED or RESTORING decrease the cooldown of ICE abilities
+  - LIFE
+    - killing WEAKENED targets, or killing targets while EMPOWERED decreases the cooldown of LIFE abilities
+    - kills while RADIANT, BOLSTERED or RESTORING decrease the cooldown of LIFE abilities
+  - REAPER
+    - killing BURNING or TARGETED enemies decreases the cooldown of REAPER abilities
+    - killing MARKED, BLINDED or IMPAIRED enemies decreases the cooldown of REAPER abilities
+  - LIGHTNING
+    - kills while SPEED or BOLSTERED are active decrease the cooldown of LIGHTNING abilities
+    - killing MARKED, BLINDED or IMPAIRED enemies decreases the cooldown of LIGHTNING abilities
+  - POISON
+    - killing WEAKENED targets, or killing targets while EMPOWERED decreases the cooldown of POISON abilities
+    - killing MARKED, BLINDED or IMPAIRED enemies decreases the cooldown of POISON abilities
