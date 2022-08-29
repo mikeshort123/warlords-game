@@ -1,6 +1,7 @@
 import pygame
 
 from src.definitions.element import Element
+from src.definitions.armourStats import ArmourStats
 
 
 class Bullet:
@@ -44,7 +45,7 @@ class Bullet:
     def registerHit(self, entity):
 
         damage, element, procs = self.damageProfileGenerator()
-        entity.applyDamage(damage,element)
+        entity.applyDamage(damage * self.source.modded_stats[ArmourStats.DAMAGE], element)
 
         if procs >= 1:
 

@@ -77,18 +77,6 @@ class Player(Dude):
         return val
 
 
-    def applyDamage(self, damage, element):
-
-        self.health -= damage
-
-
-    def applyEffect(self, EffectType, amount):
-
-        if EffectType not in self.effects:
-            self.effects[EffectType] = EffectType()
-
-        self.effects[EffectType].addStacks(amount)
-
 
     def getElementalEffects(self, element):
 

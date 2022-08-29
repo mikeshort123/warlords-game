@@ -34,29 +34,29 @@ STUFF TO DO
 
 - EFFECTS
   - FIRE
-    - burn
+    - burn\
       - damage over time
-    - ignition
+    - ignition\
       - once activated, a timer starts
       - when the timer reaches 0, the target detonates, dealing damage in an area
       - the more stack of ignition you can apply before the detonation, the higher the damage
-    - radiant
+    - radiant\
       - damage boost
   - ICE
-    - slow
+    - slow\
       - target is slowed
     - freeze/shatter
       - like ignition but they cant move/shoot
       - the damage is applied to the enemy directly, not in an explosion
-    - bolstered
+    - bolstered\
       - damage resist
 
   - LIFE
-    - heal
+    - heal\
       - instant boost of health
     - restoration
       - heal over time
-    - empowering
+    - empowering\
       - damage boost
   - REAPER
     - life steal
@@ -67,14 +67,14 @@ STUFF TO DO
     - target
       - summons attack enemy affected and do more damage
   - LIGHTNING
-    - speed
+    - speed\
       - increase movement speed
     - chain lightning
       - damage chains from enemy to enemy
     - blinding
       - target is stunned
   - POISON
-    - miasma
+    - miasma\
       - damage over time
     - weakened
       - target takes more damage

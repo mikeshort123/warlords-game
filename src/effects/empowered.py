@@ -1,13 +1,13 @@
 from src.effects.effect import Effect
 from src.definitions.armourStats import ArmourStats
 
-class Speed(Effect):
+class Empowered(Effect):
 
     TIME = 100
-    MAX_SPEED_MULTIPLIER = 2
+    MAX_DAMAGE_MULTIPLIER = 2
     STACK_INCREASE_RATE = 4
 
-    COLOUR = (100,50,180)
+    COLOUR = (255,150,0)
 
     TARGET = False
 
@@ -21,11 +21,11 @@ class Speed(Effect):
 
     def tick(self, guy):
 
-        if self.timer >= Speed.TIME:
+        if self.timer >= Empowered.TIME:
             self.timer = 0
             self.stacks -= 1
             return
 
         self.timer += 1
 
-        guy.modded_stats[ArmourStats.SPEED] *= Speed.MAX_SPEED_MULTIPLIER * (1 - Speed.STACK_INCREASE_RATE**(-self.stacks))
+        guy.modded_stats[ArmourStats.DAMAGE] *= Empowered.MAX_DAMAGE_MULTIPLIER * (1 - Empowered.STACK_INCREASE_RATE**(-self.stacks))

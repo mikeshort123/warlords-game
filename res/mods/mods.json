@@ -25,6 +25,18 @@
     },
 
     {
+      "name" : "Apply Radiant",
+      "image" : "res/textures/mods/apply_radiant.png",
+      "element" : 1,
+      "slot" : 3,
+      "function" : {
+        "type" : "ADD_ELEMENTAL_EFFECT",
+        "element" : 1,
+        "add" : "Radiant"
+      }
+    },
+
+    {
       "name" : "Apply Slow",
       "image" : "res/textures/mods/apply_slow.png",
       "element" : 2,
@@ -33,6 +45,18 @@
         "type" : "ADD_ELEMENTAL_EFFECT",
         "element" : 2,
         "add" : "Slow"
+      }
+    },
+
+    {
+      "name" : "Apply Bolster",
+      "image" : "res/textures/mods/apply_bolster.png",
+      "element" : 2,
+      "slot" : 3,
+      "function" : {
+        "type" : "ADD_ELEMENTAL_EFFECT",
+        "element" : 2,
+        "add" : "Bolstered"
       }
     },
 
@@ -49,6 +73,18 @@
     },
 
     {
+      "name" : "Apply Empowering",
+      "image" : "res/textures/mods/apply_empowering.png",
+      "element" : 3,
+      "slot" : 3,
+      "function" : {
+        "type" : "ADD_ELEMENTAL_EFFECT",
+        "element" : 3,
+        "add" : "Empowered"
+      }
+    },
+
+    {
       "name" : "Apply Speed",
       "image" : "res/textures/mods/apply_speed.png",
       "element" : 5,
@@ -61,14 +97,14 @@
     },
 
     {
-      "name" : "Apply Poison",
-      "image" : "res/textures/mods/apply_poison.png",
+      "name" : "Apply Miasma",
+      "image" : "res/textures/mods/apply_miasma.png",
       "element" : 6,
       "slot" : 3,
       "function" : {
         "type" : "ADD_ELEMENTAL_EFFECT",
         "element" : 6,
-        "add" : "Poison"
+        "add" : "Miasma"
       }
     },
 

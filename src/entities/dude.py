@@ -16,7 +16,9 @@ class Dude:
     def tick(self):
 
         self.modded_stats = {
-            ArmourStats.SPEED : self.speed
+            ArmourStats.SPEED : self.speed,
+            ArmourStats.DAMAGE : 1,
+            ArmourStats.DEFENCE : 1
         }
 
         for name, effect in list(self.effects.items()):
@@ -30,7 +32,9 @@ class Dude:
 
     def applyDamage(self, damage, element):
 
-        self.health -= damage
+        print(damage / self.modded_stats[ArmourStats.DEFENCE])
+
+        self.health -= damage / self.modded_stats[ArmourStats.DEFENCE]
 
         SoundManager.playSound(self.damage_sound)
 
