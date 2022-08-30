@@ -36,10 +36,9 @@ class Bullet:
 
     def render(self,renderer,cam):
 
-        #dpos = (self.pos*cam.scl).int() + (renderer.windowSize / 2).int() - (cam.pos * cam.scl).int()
         w_pos = renderer.getWorldPos(self.pos, cam)
-        pygame.draw.circle(renderer.display,(0,0,0),w_pos.list(), 5 * renderer.max_ratio)
-        pygame.draw.circle(renderer.display,self.colour,w_pos.list(), 4 * renderer.max_ratio)
+        pygame.draw.circle(renderer.display,(0,0,0),w_pos.list(), 0.08 * renderer.max_ratio * cam.scl)
+        pygame.draw.circle(renderer.display,self.colour,w_pos.list(), 0.06 * renderer.max_ratio * cam.scl)
 
 
     def registerHit(self, entity):
