@@ -20,7 +20,7 @@ class Model():
             untoffset = temp.offset
             theta = temp.theta
 
-        dsize = self.size * cam.scl
+        dsize = renderer.getWorldSize(self.size, cam)
         img = pygame.transform.scale(self.img, dsize.int().list())
         centre = self.centre.copy()
         if d:
@@ -37,8 +37,6 @@ class Model():
 
         centre += self.offset
 
-        dpos = ((pos+centre)*cam.scl) + ((renderer.windowSize - Vector(img.get_size())) / 2) - (cam.pos * cam.scl)
-
-
+        dpos = renderer.getWorldPos(pos+centre, cam) - Vector(img.get_size()) / 2
 
         renderer.drawImage(img, int(dpos.x), int(dpos.y))

@@ -50,15 +50,16 @@ class Enemy(Dude):
 
         self.model.render(renderer,self.pos,cam,self.animator)
 
-        dpos = (self.pos*cam.scl).int() + (renderer.windowSize / 2).int() - (cam.pos * cam.scl).int() - Vector(50,55)
+        #dpos = (self.pos*cam.scl).int() + (renderer.windowSize / 2).int() - (cam.pos * cam.scl).int() - Vector(50,55)
+        w_pos = renderer.getWorldPos(self.pos, cam) - Vector(50,55)
 
         screen = renderer.display
-        pygame.draw.rect(screen,(0,0,0),(dpos.x,dpos.y,100,10))
-        pygame.draw.rect(screen,(255,0,0),(dpos.x,dpos.y,100*self.health // self.maxhealth,10))
+        pygame.draw.rect(screen,(0,0,0),(w_pos.x,w_pos.y,100,10))
+        pygame.draw.rect(screen,(255,0,0),(w_pos.x,w_pos.y,100*self.health // self.maxhealth,10))
 
         for i, effect_type in enumerate(self.effects):
 
-            pygame.draw.rect(screen,effect_type.COLOUR,(dpos.x + 25*i,dpos.y-25,20,20))
+            pygame.draw.rect(screen,effect_type.COLOUR,(w_pos.x + 25*i,w_pos.y-25,20,20))
 
 
     def inHitbox(self, pos):

@@ -28,7 +28,7 @@ class Renderer():
     def drawWorldImage(self, img, pos, size, cam):
 
         w_pos = self.getWorldPos(pos, cam)
-        w_size = size * self.max_ratio * cam.scl + 1
+        w_size = self.getWorldSize(size, cam)
 
         t_img = pygame.transform.scale(img, w_size.list())
 
@@ -36,6 +36,9 @@ class Renderer():
 
     def getWorldPos(self, pos, cam):
         return (pos - cam.pos) * self.max_ratio * cam.scl + self.windowSize / 2
+
+    def getWorldSize(self, size, cam):
+        return size * self.max_ratio * cam.scl + 1
 
     def drawCamImage(self,img,pos,size,cam):
 

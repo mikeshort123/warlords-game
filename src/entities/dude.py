@@ -32,8 +32,6 @@ class Dude:
 
     def applyDamage(self, damage, element):
 
-        print(damage / self.modded_stats[ArmourStats.DEFENCE])
-
         self.health -= damage / self.modded_stats[ArmourStats.DEFENCE]
 
         SoundManager.playSound(self.damage_sound)

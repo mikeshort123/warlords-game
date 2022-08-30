@@ -154,7 +154,7 @@ class ModScreen(UIFrame):
 
             mod_bar.blit(mod.img, (i*ModScreen.MOD_SPACING - self.mod_pixel_offset, 0))
 
-        renderer.drawImage(mod_bar, ModScreen.MOD_BAR_HORIZONTAL_OFFSET, ModScreen.MOD_BAR_VERTICAL_OFFSET)
+        renderer.drawUIImage(mod_bar, ModScreen.MOD_BAR_HORIZONTAL_OFFSET, ModScreen.MOD_BAR_VERTICAL_OFFSET)
 
         self.left_scroll_hitbox.drawImage(renderer,self.left_scroll_image)
         self.right_scroll_hitbox.drawImage(renderer,self.right_scroll_image)

@@ -75,7 +75,7 @@ class Item:
 
 
     def drawIcon(self,renderer,x,y):
-        renderer.drawImage(self.img,x,y)
+        renderer.drawUIImage(self.img,x,y)
 
     def getInfo(self,x,y):
         return self.info.setpos(x,y)

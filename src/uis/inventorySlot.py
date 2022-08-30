@@ -45,7 +45,7 @@ class InventorySlot:
                 if len(self.slots) > index:
                     self.slots[index].drawIcon(renderer,x,y)
                 else:
-                    renderer.drawImage(self.blankimg,x,y)
+                    renderer.drawUIImage(self.blankimg,x,y)
 
 
     def getSelectedItem(self):

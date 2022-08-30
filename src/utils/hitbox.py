@@ -16,7 +16,7 @@ class Hitbox:
 
 
     def drawImage(self,renderer,image):
-        renderer.drawImage(image,self.ax,self.ay)
+        renderer.drawUIImage(image,self.ax,self.ay)
 
 
     @staticmethod
