@@ -1,10 +1,12 @@
+import math 
+
 from src.tiles.tileset import Tileset
 from src.utils.vector import Vector
 
 class Grid:
 
-    width = 11 # temporary
-    height = 9
+    width = 11 # temporary 640 / 64 = 10
+    height = 9           # 480 / 64 = 7.5 -> 8
 
     def __init__(self):
 
@@ -13,15 +15,18 @@ class Grid:
 
     def render(self,renderer,cam):
 
-        for i in range(Grid.width):
+        width = math.ceil(renderer.w / cam.scl) + 1
+        height = math.ceil(renderer.w / cam.scl) + 1
 
-            sx = cam.pos.x - Grid.width/2
+        for i in range(width):
+
+            sx = cam.pos.x - width/2
             x = int(sx) + i + (sx >= 0)
             if 0 <= x < len(self.grid):
 
-                for j in range(Grid.height):
+                for j in range(height):
 
-                    sy = cam.pos.y - Grid.height/2
+                    sy = cam.pos.y - height/2
                     y = int(sy) + j + (sy >= 0)
                     if 0 <= y < len(self.grid[x]):
 

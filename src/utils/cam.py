@@ -5,7 +5,7 @@ class Cam():
     def __init__(self,x,y):
 
         self.pos = Vector(x,y)
-        self.scl = 64
+        self.scl = 32
 
 
     def moveTo(self,e):
