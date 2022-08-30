@@ -18,4 +18,4 @@ class MainMenu(UIFrame):
 
     def render(self,renderer):
 
-        renderer.drawImage(self.title,0,0)
+        renderer.drawUIImage(self.title,0,0)

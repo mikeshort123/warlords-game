@@ -25,7 +25,8 @@ class Grid:
                     y = int(sy) + j + (sy >= 0)
                     if 0 <= y < len(self.grid[x]):
 
-                        renderer.drawCamImage(self.grid[x][y].texture,Vector(x,y),Vector(1,1),cam)
+                        #renderer.drawCamImage(self.grid[x][y].texture,Vector(x,y),Vector(1,1),cam)
+                        renderer.drawWorldImage(self.grid[x][y].texture,Vector(x,y),Vector(1,1),cam)
 
 
     def getSolid(self,x,y):
