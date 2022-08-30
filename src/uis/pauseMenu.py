@@ -12,7 +12,7 @@ class PauseMenu(UIFrame):
 
     def tick(self, handler):
 
-        if handler.getKeyChanged("SELECT") and self.quit_hitbox.isInside(handler.getMousePos()):
+        if handler.getKeyChanged("SELECT") and self.quit_hitbox.isInside(handler.getUIMousePos()):
             State.setState("MENU")
             return
 

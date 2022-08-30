@@ -1,13 +1,12 @@
 import pygame, json
 
 from src.utils.vector import Vector
+from src.utils.renderer import Renderer
 
 class Handler():
 
 
     def __init__(self):
-
-
 
         with open("res/keybinds.json", encoding="utf8") as f:
             self.keyMap = json.load(f)
@@ -37,6 +36,14 @@ class Handler():
     def getMousePos(self):
 
         return self.mousepos
+
+    def getUIMousePos(self):
+
+        return (self.mousepos / Renderer.renderer.min_ratio).int()
+
+    def getGameMousePos(self):
+
+        return (self.mousepos - Renderer.renderer.windowSize / 2) / Renderer.renderer.max_ratio
 
 
     def handleEvent(self,e):

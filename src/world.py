@@ -63,5 +63,4 @@ class World(UIFrame):
 
 
     def makeBullet(self, handler, colour, guy, damageProfileGenerator):
-        toMouse = (handler.getMousePos() - Vector(320,240)) / 64
-        self.projectiles.append(Bullet(self.player.pos.copy(), toMouse.normalize(), colour, guy, damageProfileGenerator))
+        self.projectiles.append(Bullet(self.player.pos.copy(), handler.getGameMousePos().normalize(), colour, guy, damageProfileGenerator))

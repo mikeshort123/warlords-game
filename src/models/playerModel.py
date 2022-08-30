@@ -52,7 +52,7 @@ class PlayerModel():
         self.v = n * PlayerModel.headMag
         self.t += 1
 
-        toMouse = (handler.getMousePos() - Vector(320,240)) / 64 # vector from body to mouse
+        toMouse = handler.getGameMousePos()
 
         self.theta = toMouse.atan() # angle gun should be moved
 

@@ -3,11 +3,15 @@ from src.utils.vector import Vector
 
 class Renderer():
 
+    renderer = None
+
     def __init__(self, w, h):
 
         self.w = w
         self.h = h
         self.resize_screen(w, h)
+
+        Renderer.renderer = self
 
     def resize_screen(self, w, h):
         self.display = pygame.display.set_mode((w, h), pygame.RESIZABLE)

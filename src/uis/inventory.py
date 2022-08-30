@@ -28,7 +28,7 @@ class Inventory(UIFrame):
             State.dropFrame()
             return
 
-        pos = handler.getMousePos()
+        pos = handler.getUIMousePos()
 
 
         set = False

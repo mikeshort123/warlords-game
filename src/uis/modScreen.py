@@ -96,7 +96,7 @@ class ModScreen(UIFrame):
             return
 
         if handler.getKeyPressed("SELECT"):
-            pos = handler.getMousePos()
+            pos = handler.getUIMousePos()
 
             if self.left_scroll_hitbox.isInside(pos) and self.mod_pixel_offset > 0:
                 self.mod_pixel_offset -= ModScreen.SCROLL_SPEED
@@ -107,7 +107,7 @@ class ModScreen(UIFrame):
                 return
 
         if handler.getKeyChanged("SELECT"):
-            pos = handler.getMousePos()
+            pos = handler.getUIMousePos()
 
             for i, hitbox in enumerate(self.slotHitboxes):
                 if hitbox.isInside(pos):
