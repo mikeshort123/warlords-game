@@ -25,11 +25,10 @@ class Main():
 
     def run(self):
 
-        display = pygame.display.set_mode((self.MAXX,self.MAXY))
         clock = pygame.time.Clock()
 
         handler = Handler()
-        renderer = Renderer(display)
+        renderer = Renderer(self.MAXX, self.MAXY)
 
         State.registerState(Menu,"MENU")
         State.registerState(Game,"GAME")
@@ -49,9 +48,12 @@ class Main():
                     pygame.quit()
                     sys.exit()
 
+                if event.type == pygame.VIDEORESIZE:
+
+                    renderer.resize_screen(event.w, event.h)
+
                 handler.handleEvent(event)
 
-            display.fill((0,0,0))
 
             State.tick(handler)
             State.render(renderer)

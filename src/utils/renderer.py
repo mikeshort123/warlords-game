@@ -3,9 +3,13 @@ from src.utils.vector import Vector
 
 class Renderer():
 
-    def __init__(self,display):
+    def __init__(self, w, h):
 
-        self.display = display
+        self.display = pygame.display.set_mode((w, h), pygame.RESIZABLE)
+        self.windowSize = Vector(self.display.get_width(),self.display.get_height())
+
+    def resize_screen(self, w, h):
+        self.display = pygame.display.set_mode((w, h), pygame.RESIZABLE)
         self.windowSize = Vector(self.display.get_width(),self.display.get_height())
 
     def drawImage(self, img, x, y):
