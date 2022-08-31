@@ -33,13 +33,9 @@ class Handler():
         return code in self.keyChanges
 
 
-    def getMousePos(self):
-
-        return self.mousepos
-
     def getUIMousePos(self):
 
-        return (self.mousepos / Renderer.renderer.min_ratio - Vector(Renderer.renderer.x_offset, Renderer.renderer.y_offset)).int()
+        return ((self.mousepos - Vector(Renderer.renderer.x_offset, Renderer.renderer.y_offset)) / Renderer.renderer.min_ratio).int()
 
     def getGameMousePos(self):
 

@@ -51,14 +51,6 @@ class Renderer():
     def getWorldSize(self, size, cam):
         return size * self.max_ratio * cam.scl + 1
 
-    def drawCamImage(self,img,pos,size,cam):
-
-        dsize = size * cam.scl
-        dpos = (pos*cam.scl).int() + ((self.windowSize - dsize) / 2).int() - (cam.pos * cam.scl).int()
-
-        img = pygame.transform.scale(img, dsize.int().list())
-
-        self.display.blit(img, dpos.list())
 
     def drawAlphaBackground(self,colour,alpha):
 
