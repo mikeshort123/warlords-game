@@ -5,6 +5,7 @@ from src.tiles.grid import Grid
 from src.uis.uiFrame import UIFrame
 from src.uis.pauseMenu import PauseMenu
 from src.states.state import State
+from src.utils.particleManager import ParticleManager
 
 class World(UIFrame):
 
@@ -15,6 +16,8 @@ class World(UIFrame):
 
         self.player = player
         self.cam = cam
+
+        self.particles = ParticleManager()
 
         self.enemyFactory = EnemyFactory()
         self.enemyFactory.loadEnemy("res/enemies/ball_guy.json")
@@ -32,6 +35,11 @@ class World(UIFrame):
         if handler.getKeyChanged("PAUSE_GAME"):
             State.addFrame(PauseMenu())
             return
+
+        self.particles.tick()
+
+        if handler.getKeyChanged("MODIFY"):
+            self.particles.burst(self.player.pos, (255, 200, 0), 20, 2)
 
         self.player.tick(handler,self.grid,self.makeBullet)
 
@@ -59,6 +67,8 @@ class World(UIFrame):
 
         for projectile in self.projectiles:
             projectile.render(renderer,self.cam)
+
+        self.particles.render(renderer, self.cam)
 
 
 
