@@ -1,12 +1,9 @@
-import math 
+import math
 
 from src.tiles.tileset import Tileset
 from src.utils.vector import Vector
 
 class Grid:
-
-    width = 11 # temporary 640 / 64 = 10
-    height = 9           # 480 / 64 = 7.5 -> 8
 
     def __init__(self):
 
@@ -16,7 +13,7 @@ class Grid:
     def render(self,renderer,cam):
 
         width = math.ceil(renderer.w / cam.scl) + 1
-        height = math.ceil(renderer.w / cam.scl) + 1
+        height = math.ceil(renderer.h / cam.scl) + 1
 
         for i in range(width):
 
@@ -30,7 +27,6 @@ class Grid:
                     y = int(sy) + j + (sy >= 0)
                     if 0 <= y < len(self.grid[x]):
 
-                        #renderer.drawCamImage(self.grid[x][y].texture,Vector(x,y),Vector(1,1),cam)
                         renderer.drawWorldImage(self.grid[x][y].texture,Vector(x,y),Vector(1,1),cam)
 
 
