@@ -37,7 +37,7 @@ class Item:
         def draw(self,renderer):
             x = min(renderer.display.get_width()-Item.ItemInfo.WIDTH,self.x)
             y = min(renderer.display.get_height()-Item.ItemInfo.HEIGHT,self.y)
-            renderer.drawImage(self.img,x,y)
+            renderer.drawUIImage(self.img,x,y)
 
         def setpos(self,x,y):
             self.x = x

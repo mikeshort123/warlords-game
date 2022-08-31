@@ -39,7 +39,7 @@ class World(UIFrame):
         self.particles.tick()
 
         if handler.getKeyChanged("MODIFY"):
-            self.particles.burst(self.player.pos, (255, 200, 0), 20, 2)
+            self.particles.burst(self.player.pos, (255, 100, 0), 40, 2)
 
         self.player.tick(handler,self.grid,self.makeBullet)
 

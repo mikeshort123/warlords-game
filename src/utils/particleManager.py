@@ -21,7 +21,7 @@ class ParticleManager:
         def render(self, renderer, cam):
 
             w_pos = renderer.getWorldPos(self.pos, cam)
-            w_size = renderer.getWorldSize(0.008 * self.l, cam)
+            w_size = renderer.getWorldSize(0.016 * self.l, cam)
             pygame.draw.circle(renderer.display, self.c, w_pos.list(), w_size)
 
     def __init__(self):

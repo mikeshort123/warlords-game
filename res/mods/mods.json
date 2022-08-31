@@ -61,6 +61,18 @@
     },
 
     {
+      "name" : "Apply Freeze",
+      "image" : "res/textures/mods/apply_freeze.png",
+      "element" : 2,
+      "slot" : 3,
+      "function" : {
+        "type" : "ADD_ELEMENTAL_EFFECT",
+        "element" : 2,
+        "add" : "Freeze"
+      }
+    },
+
+    {
       "name" : "Apply Heal",
       "image" : "res/textures/mods/apply_heal.png",
       "element" : 3,

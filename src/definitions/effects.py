@@ -2,6 +2,7 @@ from src.effects.burn import Burn
 from src.effects.ignition import Ignition
 from src.effects.radiant import Radiant
 from src.effects.slow import Slow
+from src.effects.freeze import Freeze
 from src.effects.bolstered import Bolstered
 from src.effects.heal import Heal
 from src.effects.empowered import Empowered
@@ -16,13 +17,14 @@ class Effects:
         "Radiant" : Radiant,
 
         "Slow" : Slow,
+        "Freeze" : Freeze,
         "Bolstered" : Bolstered,
 
         "Heal" : Heal,
         "Empowered" : Empowered,
 
         "Speed" : Speed,
-        
+
         "Miasma" : Miasma
     }
 
