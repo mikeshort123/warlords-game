@@ -6,6 +6,7 @@ from src.uis.uiFrame import UIFrame
 from src.uis.pauseMenu import PauseMenu
 from src.states.state import State
 from src.utils.particleManager import ParticleManager
+from src.events.eventManager import EventManager
 
 class World(UIFrame):
 
@@ -38,10 +39,7 @@ class World(UIFrame):
 
         self.particles.tick()
 
-        if handler.getKeyChanged("MODIFY"):
-            self.particles.burst(self.player.pos, (255, 100, 0), 40, 2)
-
-        self.player.tick(handler,self.grid,self.makeBullet)
+        self.player.tick(handler,self.grid)
 
         for projectile in self.projectiles:
             projectile.tick(self.grid,self.entities)
@@ -52,6 +50,15 @@ class World(UIFrame):
             entity.tick(self.grid,self.player)
             if entity.health <= 0:
                 self.entities.remove(entity)
+
+        for event in EventManager.get():
+            if event.type == "BULLET":
+                self.projectiles.append(event.package)
+
+            if event.type == "EXPLOSION":
+                event.package.genEffect(self.particles)
+                event.package.applyDamage(self.entities)
+
 
 
     def render(self,renderer):
@@ -69,8 +76,3 @@ class World(UIFrame):
             projectile.render(renderer,self.cam)
 
         self.particles.render(renderer, self.cam)
-
-
-
-    def makeBullet(self, handler, colour, guy, damageProfileGenerator):
-        self.projectiles.append(Bullet(self.player.pos.copy(), handler.getGameMousePos().normalize(), colour, guy, damageProfileGenerator))

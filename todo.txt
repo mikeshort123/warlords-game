@@ -41,7 +41,7 @@ STUFF TO DO
   - ICE
     - slow\
       - target is slowed
-    - freeze/shatter
+    - freeze/shatter\
       - like ignition but they cant move/shoot
       - the damage is applied to the enemy directly, not in an explosion
     - bolstered\

@@ -6,6 +6,8 @@ from src.items.fullauto import Fullauto
 from src.items.semiauto import Semiauto
 from src.models.weaponModel import WeaponModel
 from src.definitions.weaponStats import WeaponStats
+from src.events.eventManager import EventManager
+from src.entities.bullet import Bullet
 
 class Weapon:
 
@@ -48,9 +50,20 @@ class Weapon:
         self.sound = Assets.loadSound("res/sounds/thud.wav")
 
 
-    def tick(self, handler, bulletGenerator):
+    def tick(self, handler):
         if self.trigger.tick(handler, self.getStat(WeaponStats.FIRERATE)):
-            bulletGenerator(handler, self.element.colour, self.wielder, self.generateDamageProfile)
+
+            EventManager.addEvent(
+                "BULLET",
+                Bullet(
+                    self.wielder.pos.copy(),
+                    handler.getGameMousePos().normalize(),
+                    self.element.colour,
+                    self.wielder,
+                    self.generateDamageProfile
+                )
+            )
+
             SoundManager.playSound(self.sound)
 
 

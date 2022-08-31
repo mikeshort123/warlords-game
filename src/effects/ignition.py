@@ -1,4 +1,6 @@
 from src.effects.effect import Effect
+from src.events.eventManager import EventManager
+from src.events.explosion import Explosion
 
 class Ignition(Effect):
 
@@ -23,6 +25,16 @@ class Ignition(Effect):
             self.delay_timer += 1
             return
 
-        guy.applyDamage(Ignition.DAMAGE * (self.stacks) ** Ignition.STACK_MULTIPLIER, None)
+
+        EventManager.addEvent(
+            "EXPLOSION",
+            Explosion(
+                guy.pos.copy(),
+                5,
+                Ignition.COLOUR,
+                Ignition.DAMAGE * (self.stacks) ** Ignition.STACK_MULTIPLIER,
+                None
+            )
+        )
 
         self.stacks = 0

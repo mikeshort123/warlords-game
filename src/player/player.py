@@ -26,7 +26,7 @@ class Player(Dude):
 
 
 
-    def tick(self,handler,grid,bulletGenerator):
+    def tick(self,handler,grid):
 
         if handler.getKeyChanged("OPEN_INVENTORY"):
             State.addFrame(self.inventory)
@@ -63,7 +63,7 @@ class Player(Dude):
             self.weapon_selection = InventorySlotNames.MELEE
 
         if weapon := self.getWeapon():
-            weapon.tick(handler, bulletGenerator)
+            weapon.tick(handler)
 
 
     def getStat(self, stat):
