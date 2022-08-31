@@ -20,6 +20,9 @@ class Renderer():
         self.min_ratio = min(w / self.w, h / self.h)
         self.max_ratio = max(w / self.w, h / self.h)
 
+        self.x_offset = (w - self.w * self.min_ratio) / 2
+        self.y_offset = (h - self.h * self.min_ratio) / 2
+
     def drawImage(self, img, x, y):
 
         self.display.blit(img, (x,y))
@@ -27,7 +30,11 @@ class Renderer():
     def drawUIImage(self, img, x, y):
 
         t_img = pygame.transform.scale(img, (img.get_width() * self.min_ratio, img.get_height() * self.min_ratio))
-        self.display.blit(t_img, (x * self.min_ratio, y * self.min_ratio))
+        t_pos = (
+            self.x_offset + x * self.min_ratio,
+            self.y_offset + y * self.min_ratio
+        )
+        self.display.blit(t_img, t_pos)
 
     def drawWorldImage(self, img, pos, size, cam):
 

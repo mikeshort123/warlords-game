@@ -39,7 +39,7 @@ class Handler():
 
     def getUIMousePos(self):
 
-        return (self.mousepos / Renderer.renderer.min_ratio).int()
+        return (self.mousepos / Renderer.renderer.min_ratio - Vector(Renderer.renderer.x_offset, Renderer.renderer.y_offset)).int()
 
     def getGameMousePos(self):
 

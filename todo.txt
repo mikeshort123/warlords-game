@@ -13,10 +13,6 @@ STUFF TO DO
 
 - RESIZE SCREEN
   - redo art for 1920x1080 ratio
-  - scalable screen
-    - renderer methods to translate to resized screen
-      - UIs add blank space
-      - game world loses blank space
 
 - ENEMIES / PLAYER / DUDE
   - more enemy types
