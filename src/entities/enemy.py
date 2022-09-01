@@ -2,6 +2,7 @@ import json, pygame, math
 
 from src.utils.assets import Assets
 from src.ais.xslider import XSlider
+from src.ais.chaser import Chaser
 from src.utils.hitbox import Hitbox
 from src.entities.dude import Dude
 from src.utils.vector import Vector
@@ -14,7 +15,8 @@ class Enemy(Dude):
         Dude.__init__(self,pos)
 
         self.speed = 0.1
-        self.ai = XSlider(self.pos, 3)
+
+        self.ai = Chaser(self.pos)
 
         self.model, self.animator = Assets.loadModel(generator.model_path)
         self.maxhealth = generator.maxhealth
@@ -29,7 +31,7 @@ class Enemy(Dude):
 
         Dude.tick(self)
 
-        v = self.ai.tick(self.pos, self.modded_stats[ArmourStats.SPEED])
+        v = self.ai.tick(self.pos, self.modded_stats[ArmourStats.SPEED], player, grid)
         self.pos += v
         self.animator.setVariable("walking", not v.isZero())
 

@@ -34,6 +34,20 @@ class Grid:
         return self.grid[x][y].solid
 
 
+    def traceRay(self, start, end):
+
+        d = end - start
+        l = d.length()
+
+        for i in range(int(10 * l)):
+
+            p = start + (d * i) / (l * 10)
+            if self.getSolid(int(p.x), int(p.y)) == True:
+                return False
+
+        return True
+
+
     @staticmethod
     def loadGrid(fn):
 
