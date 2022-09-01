@@ -19,7 +19,7 @@ class EnemyFactory:
 
 
     def __init__(self):
-        
+
         self.generators = {}
 
 
@@ -32,6 +32,6 @@ class EnemyFactory:
         self.generators[name] = EnemyFactory.Generator(data)
 
 
-    def generateEnemy(self,name,pos):
+    def generateEnemy(self,name,pos,ai=False):
 
-        return Enemy(pos,self.generators[name])
+        return Enemy(pos,self.generators[name],ai=ai)

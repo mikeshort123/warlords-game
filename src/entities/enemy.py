@@ -19,7 +19,7 @@ class Enemy(Dude):
         if ai:
             self.ai = Chaser(self.pos)
         else:
-            self.ai = 
+            self.ai = XSlider(self.pos, 3)
 
         self.model, self.animator = Assets.loadModel(generator.model_path)
         self.maxhealth = generator.maxhealth

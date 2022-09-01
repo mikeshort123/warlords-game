@@ -27,7 +27,7 @@ class World(UIFrame):
         self.entities = []
         self.projectiles = []
 
-        self.entities.append(self.enemyFactory.generateEnemy("Ball Guy",player.pos.copy()))
+        self.entities.append(self.enemyFactory.generateEnemy("Ball Guy",player.pos.copy(), ai=True))
         self.entities.append(self.enemyFactory.generateEnemy("Robot",player.pos.copy() + Vector(0,2)))
 
 
