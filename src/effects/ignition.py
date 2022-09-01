@@ -1,5 +1,6 @@
 from src.effects.effect import Effect
 from src.events.eventManager import EventManager
+from src.events.eventType import EventType
 from src.events.explosion import Explosion
 
 class Ignition(Effect):
@@ -26,8 +27,8 @@ class Ignition(Effect):
             return
 
 
-        EventManager.addEvent(
-            "EXPLOSION",
+        EventManager.trigger_event(
+            EventType.EXPLOSION,
             Explosion(
                 guy.pos.copy(),
                 5,

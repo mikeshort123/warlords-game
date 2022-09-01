@@ -7,6 +7,7 @@ from src.uis.pauseMenu import PauseMenu
 from src.states.state import State
 from src.utils.particleManager import ParticleManager
 from src.events.eventManager import EventManager
+from src.events.eventType import EventType
 
 class World(UIFrame):
 
@@ -30,6 +31,10 @@ class World(UIFrame):
         self.entities.append(self.enemyFactory.generateEnemy("Ball Guy",player.pos.copy(), ai=True))
         self.entities.append(self.enemyFactory.generateEnemy("Robot",player.pos.copy() + Vector(0,2)))
 
+        EventManager.register_events({
+            EventType.PROJECTILE : self.add_projectile,
+            EventType.EXPLOSION : self.activate_explosion
+        })
 
     def tick(self,handler):
 
@@ -51,13 +56,6 @@ class World(UIFrame):
             if entity.health <= 0:
                 self.entities.remove(entity)
 
-        for event in EventManager.get():
-            if event.type == "PROJECTILE":
-                self.projectiles.append(event.package)
-
-            if event.type == "EXPLOSION":
-                event.package.genEffect(self.particles)
-                event.package.applyDamage(self.entities)
 
 
 
@@ -76,3 +74,11 @@ class World(UIFrame):
             projectile.render(renderer,self.cam)
 
         self.particles.render(renderer, self.cam)
+
+
+    def add_projectile(self, projectile):
+        self.projectiles.append(projectile)
+
+    def activate_explosion(self, explosion):
+        explosion.genEffect(self.particles)
+        explosion.applyDamage(self.entities)

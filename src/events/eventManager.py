@@ -2,22 +2,14 @@
 
 class EventManager:
 
-    events = []
-
-    class Event:
-
-        def __init__(self, type, package):
-            self.type = type
-            self.package = package
+    events = {}
 
     @staticmethod
-    def addEvent(type, package):
+    def register_events(events):
 
-        EventManager.events.append(EventManager.Event(type, package))
+        EventManager.events = events
 
     @staticmethod
-    def get():
+    def trigger_event(type, package):
 
-        e = EventManager.events
-        EventManager.events = []
-        return e
+        EventManager.events[type](package)

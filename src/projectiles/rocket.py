@@ -2,6 +2,7 @@ import pygame
 
 from src.projectiles.projectile import Projectile
 from src.events.eventManager import EventManager
+from src.events.eventType import EventType
 from src.events.explosion import Explosion
 
 class Rocket(Projectile):
@@ -18,8 +19,8 @@ class Rocket(Projectile):
 
     def explode(self):
 
-        EventManager.addEvent(
-            "EXPLOSION",
+        EventManager.trigger_event(
+            EventType.EXPLOSION,
             Explosion(
                 self.pos,
                 5,

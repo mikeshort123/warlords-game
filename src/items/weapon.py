@@ -8,8 +8,10 @@ from src.models.weaponModel import WeaponModel
 from src.definitions.weaponStats import WeaponStats
 from src.definitions.armourStats import ArmourStats
 from src.events.eventManager import EventManager
+from src.events.eventType import EventType
 from src.projectiles.bullet import Bullet
 from src.projectiles.rocket import Rocket
+
 
 class Weapon:
 
@@ -64,8 +66,8 @@ class Weapon:
 
             damage = self.getStat(WeaponStats.DAMAGE) * self.wielder.modded_stats[ArmourStats.DAMAGE]
 
-            EventManager.addEvent(
-                "PROJECTILE",
+            EventManager.trigger_event(
+                EventType.PROJECTILE,
                 self.projectile_type(
                     self.wielder.pos.copy(),
                     handler.getGameMousePos().normalize(),
