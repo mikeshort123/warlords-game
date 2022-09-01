@@ -12,9 +12,9 @@ class Ignition(Effect):
 
     TARGET = True
 
-    def __init__(self):
+    def __init__(self, source):
 
-        Effect.__init__(self)
+        Effect.__init__(self, source)
 
         self.delay_timer = 0
 
@@ -33,8 +33,13 @@ class Ignition(Effect):
                 5,
                 Ignition.COLOUR,
                 Ignition.DAMAGE * (self.stacks) ** Ignition.STACK_MULTIPLIER,
-                None
+                None,
+                self.source,
+                self.genEffects
             )
         )
 
         self.stacks = 0
+
+    def genEffects(self):
+        return []

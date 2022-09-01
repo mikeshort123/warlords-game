@@ -37,10 +37,10 @@ class Dude:
         SoundManager.playSound(self.damage_sound)
 
 
-    def applyEffect(self, EffectType, amount):
+    def applyEffect(self, EffectType, amount, source):
 
         if EffectType not in self.effects:
-            self.effects[EffectType] = EffectType()
+            self.effects[EffectType] = EffectType(source)
 
         self.effects[EffectType].addStacks(amount)
 

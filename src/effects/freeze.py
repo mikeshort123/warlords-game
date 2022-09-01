@@ -11,9 +11,9 @@ class Freeze(Effect):
 
     TARGET = True
 
-    def __init__(self):
+    def __init__(self, source):
 
-        Effect.__init__(self)
+        Effect.__init__(self, source)
 
         self.delay_timer = 0
 

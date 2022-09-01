@@ -1,35 +1,10 @@
 import pygame
 
-class Rocket:
+from src.projectiles.projectile import Projectile
+from src.events.eventManager import EventManager
+from src.events.explosion import Explosion
 
-    def __init__(self, pos, dir, element, source, damage, effects):
-
-        self.pos = pos
-        self.dir = dir * 0.5
-
-        self.element = element
-
-        self.source = source
-        self.damage = damage
-        self.effects = effects
-
-        self.alive = True
-
-
-
-    def tick(self,grid,entities):
-
-        self.pos += self.dir # move bullet
-
-        index = (self.pos + 0.5).int() # check wall collision
-        if grid.getSolid(index.x,index.y): self.alive = False
-
-        for entity in entities: # check entity collision
-            if entity.inHitbox(self.pos):
-
-                self.registerHit(entity)
-                return
-
+class Rocket(Projectile):
 
     def render(self,renderer,cam):
 
@@ -37,16 +12,23 @@ class Rocket:
         pygame.draw.circle(renderer.display,(0,0,0),w_pos.list(), 0.16 * renderer.max_ratio * cam.scl)
         pygame.draw.circle(renderer.display,self.element.colour,w_pos.list(), 0.14 * renderer.max_ratio * cam.scl)
 
+    def hit_wall(self): self.explode()
+    def hit_guy(self, guy): self.explode()
 
-    def registerHit(self, entity):
 
-        entity.applyDamage(self.damage, self.element)
+    def explode(self):
 
-        for (EffectType, procs) in self.effects:
-
-            if EffectType.TARGET:
-                entity.applyEffect(EffectType, procs) # debuff, apply to target
-            else:
-                self.source.applyEffect(EffectType, procs) # buff, apply to source
+        EventManager.addEvent(
+            "EXPLOSION",
+            Explosion(
+                self.pos,
+                5,
+                self.element.colour,
+                self.damage,
+                self.element,
+                self.source,
+                self.effects
+            )
+        )
 
         self.alive = False

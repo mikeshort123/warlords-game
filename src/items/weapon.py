@@ -62,16 +62,6 @@ class Weapon:
     def tick(self, handler):
         if self.trigger.tick(handler, self.getStat(WeaponStats.FIRERATE)):
 
-            effects = []
-
-            self.status_counter += self.getStat(WeaponStats.ELEMENTAL_CHANCE)
-            procs = int(self.status_counter)
-            self.status_counter %= 1
-
-            if procs > 0:
-                for effect in self.wielder.getElementalEffects(self.element):
-                    effects.append((effect, procs))
-
             damage = self.getStat(WeaponStats.DAMAGE) * self.wielder.modded_stats[ArmourStats.DAMAGE]
 
             EventManager.addEvent(
@@ -82,7 +72,7 @@ class Weapon:
                     self.element,
                     self.wielder,
                     damage,
-                    effects
+                    self.generateEffects
                 )
             )
 
@@ -101,10 +91,16 @@ class Weapon:
         return val
 
 
-    def generateDamageProfile(self):
+    def generateEffects(self):
+
+        effects = []
 
         self.status_counter += self.getStat(WeaponStats.ELEMENTAL_CHANCE)
         procs = int(self.status_counter)
         self.status_counter %= 1
 
-        return self.getStat(WeaponStats.DAMAGE), self.element, procs
+        if procs > 0:
+            for effect in self.wielder.getElementalEffects(self.element):
+                effects.append((effect, procs))
+
+        return effects

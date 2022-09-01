@@ -10,9 +10,9 @@ class Burn(Effect):
 
     TARGET = True
 
-    def __init__(self):
+    def __init__(self, source):
 
-        Effect.__init__(self)
+        Effect.__init__(self, source)
 
         self.tick_timer = 0
         self.tick_counter = 0

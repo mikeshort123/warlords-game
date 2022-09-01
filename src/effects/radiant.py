@@ -11,9 +11,9 @@ class Radiant(Effect):
 
     TARGET = False
 
-    def __init__(self):
+    def __init__(self, source):
 
-        Effect.__init__(self)
+        Effect.__init__(self, source)
 
         self.timer = 0
 
