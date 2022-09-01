@@ -20,5 +20,3 @@ class Bullet(Projectile):
                 guy.applyEffect(EffectType, procs, self.source) # debuff, apply to target
             else:
                 self.source.applyEffect(EffectType, procs, self.source) # buff, apply to source
-
-        self.alive = False

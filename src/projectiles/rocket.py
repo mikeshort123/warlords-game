@@ -31,5 +31,3 @@ class Rocket(Projectile):
                 self.effects
             )
         )
-
-        self.alive = False
