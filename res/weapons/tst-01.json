@@ -14,7 +14,7 @@
   "stats" : {
     "range" : 10,
     "handling" : 5,
-    "crit_chance" : 0.1,
-    "element_chance" : 0.5
+    "crit_chance" : 0.5,
+    "crit_damage" : 1.1
   }
 }

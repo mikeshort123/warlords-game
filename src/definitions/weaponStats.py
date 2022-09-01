@@ -4,4 +4,5 @@ class WeaponStats(Enum):
 
     DAMAGE = "damage"
     FIRERATE = "firerate"
-    ELEMENTAL_CHANCE = "elemental_chance"
+    CRIT_CHANCE = "crit_chance"
+    CRIT_DAMAGE = "crit_damage"

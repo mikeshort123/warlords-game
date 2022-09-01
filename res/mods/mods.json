@@ -151,7 +151,7 @@
       "slot" : 0,
       "function" : {
         "type" : "INCREASE_STAT",
-        "stat" : "elemental_chance",
+        "stat" : "crit_chance",
         "scalar" : 2
       }
     },

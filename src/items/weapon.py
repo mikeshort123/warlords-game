@@ -53,7 +53,7 @@ class Weapon:
         self.stats = {
             WeaponStats.DAMAGE : weapon_subtype_stats["damage"],
             WeaponStats.FIRERATE : 3600 // weapon_subtype_stats["firerate"],
-            WeaponStats.ELEMENTAL_CHANCE : item.stats["element_chance"]
+            WeaponStats.CRIT_CHANCE : item.stats["crit_chance"]
         }
 
         self.status_counter = 0
@@ -97,7 +97,7 @@ class Weapon:
 
         effects = []
 
-        self.status_counter += self.getStat(WeaponStats.ELEMENTAL_CHANCE)
+        self.status_counter += self.getStat(WeaponStats.CRIT_CHANCE)
         procs = int(self.status_counter)
         self.status_counter %= 1
 
