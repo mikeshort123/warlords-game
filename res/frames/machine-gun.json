@@ -1,5 +1,6 @@
 {
   "type" : "gun-auto",
+  "projectile" : "bullet",
 
   "subtypes" : {
 

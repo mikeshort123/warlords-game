@@ -1,5 +1,6 @@
 {
   "type" : "gun-semiauto",
+  "projectile" : "bullet",
 
   "subtypes" : {
 

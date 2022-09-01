@@ -1,11 +1,12 @@
 {
   "type" : "gun-semiauto",
+  "projectile" : "rocket",
 
   "subtypes" : {
 
     "bidge" : {
       "damage" : 1000,
-      "firerate" : 0.5
+      "firerate" : 70
     }
 
   }

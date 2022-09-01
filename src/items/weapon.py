@@ -6,8 +6,10 @@ from src.items.fullauto import Fullauto
 from src.items.semiauto import Semiauto
 from src.models.weaponModel import WeaponModel
 from src.definitions.weaponStats import WeaponStats
+from src.definitions.armourStats import ArmourStats
 from src.events.eventManager import EventManager
-from src.entities.bullet import Bullet
+from src.projectiles.bullet import Bullet
+from src.projectiles.rocket import Rocket
 
 class Weapon:
 
@@ -31,8 +33,15 @@ class Weapon:
             "gun-semiauto" : Semiauto
         }
 
+        projectile_name_reference = {
+            "bullet" : Bullet,
+            "rocket" : Rocket
+        }
+
         Trigger_type = frame_name_reference[weapon_type_data["type"]]
         weapon_subtype_stats = weapon_type_data["subtypes"][weapon_subtype_name]
+
+        self.projectile_type = projectile_name_reference[weapon_type_data["projectile"]]
 
         # use stats to set up weapons
         self.trigger = Trigger_type()
@@ -53,14 +62,27 @@ class Weapon:
     def tick(self, handler):
         if self.trigger.tick(handler, self.getStat(WeaponStats.FIRERATE)):
 
+            effects = []
+
+            self.status_counter += self.getStat(WeaponStats.ELEMENTAL_CHANCE)
+            procs = int(self.status_counter)
+            self.status_counter %= 1
+
+            if procs > 0:
+                for effect in self.wielder.getElementalEffects(self.element):
+                    effects.append((effect, procs))
+
+            damage = self.getStat(WeaponStats.DAMAGE) * self.wielder.modded_stats[ArmourStats.DAMAGE]
+
             EventManager.addEvent(
-                "BULLET",
-                Bullet(
+                "PROJECTILE",
+                self.projectile_type(
                     self.wielder.pos.copy(),
                     handler.getGameMousePos().normalize(),
-                    self.element.colour,
+                    self.element,
                     self.wielder,
-                    self.generateDamageProfile
+                    damage,
+                    effects
                 )
             )
 

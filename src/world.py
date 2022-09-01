@@ -1,5 +1,5 @@
 from src.utils.vector import Vector
-from src.entities.bullet import Bullet
+from src.projectiles.bullet import Bullet
 from src.entities.enemyFactory import EnemyFactory
 from src.tiles.grid import Grid
 from src.uis.uiFrame import UIFrame
@@ -52,7 +52,7 @@ class World(UIFrame):
                 self.entities.remove(entity)
 
         for event in EventManager.get():
-            if event.type == "BULLET":
+            if event.type == "PROJECTILE":
                 self.projectiles.append(event.package)
 
             if event.type == "EXPLOSION":
