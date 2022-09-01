@@ -54,6 +54,8 @@ class Main():
 
                 handler.handleEvent(event)
 
+            renderer.drawAlphaBackground((0,0,0), 255)
+
 
             State.tick(handler)
             State.render(renderer)

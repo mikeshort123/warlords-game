@@ -16,7 +16,7 @@ class XSlider:
         self.allowance = 0.3
 
 
-    def tick(self, pos, speed):
+    def tick(self, pos, speed, player, grid):
 
         if self.atTarget(pos):
             r = random.randint(0,100)

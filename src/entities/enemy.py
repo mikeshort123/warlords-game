@@ -10,13 +10,16 @@ from src.definitions.armourStats import ArmourStats
 
 class Enemy(Dude):
 
-    def __init__(self, pos, generator):
+    def __init__(self, pos, generator, ai=False):
 
         Dude.__init__(self,pos)
 
         self.speed = 0.1
 
-        self.ai = Chaser(self.pos)
+        if ai:
+            self.ai = Chaser(self.pos)
+        else:
+            self.ai = 
 
         self.model, self.animator = Assets.loadModel(generator.model_path)
         self.maxhealth = generator.maxhealth
