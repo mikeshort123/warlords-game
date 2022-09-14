@@ -11,6 +11,7 @@ from src.events.eventManager import EventManager
 from src.events.eventType import EventType
 from src.projectiles.bullet import Bullet
 from src.projectiles.rocket import Rocket
+from src.projectiles.melee import Melee
 
 
 class Weapon:
@@ -37,7 +38,7 @@ class Weapon:
 
         projectile_name_reference = {
             "bullet" : Bullet,
-            "rocket" : Rocket
+            "rocket" : Melee
         }
 
         Trigger_type = frame_name_reference[weapon_type_data["type"]]
